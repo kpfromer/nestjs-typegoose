@@ -1,0 +1,10 @@
+language: node_js
+node_js:
+      - "7"
+install:
+     - npm install
+     - npm run build
+script:
+      - npm test
+      - npm run test:e2e
+after_success: npm run coverage
