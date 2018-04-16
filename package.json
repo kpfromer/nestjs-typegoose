@@ -1,0 +1,68 @@
+{
+  "name": "nestjs-typegoose",
+  "version": "1.0.0",
+  "description": "A nestjs module wrapper for typegoose",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "typings": "lib/index.d.ts",
+  "scripts": {
+    "build": "rimraf dist && tsc -p tsconfig.json",
+    "test": "jest",
+    "test:cov": "jest --coverage",
+    "test:e2e": "jest --config ./test/jest-e2e.json",
+    "coverage": "jest --coverage && cat ./coverage/lcov.info | coveralls"
+  },
+  "author": "Kyle Pfromer",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kpfromer/nestjs-typegoose"
+  },
+  "peerDependencies": {
+    "mongoose": "^5.0.14",
+    "@nestjs/common": "^4.6.6",
+    "typegoose": "^5.0.0"
+  },
+  "dependencies": {
+    "@nestjs/common": "^4.6.6",
+    "mongoose": "^5.0.14",
+    "reflect-metadata": "^0.1.10",
+    "typegoose": "^5.0.0"
+  },
+  "devDependencies": {
+    "@nestjs/core": "^4.6.6",
+    "@nestjs/testing": "^4.6.6",
+    "@types/jest": "^21.1.2",
+    "@types/mongoose": "^5.0.9",
+    "@types/supertest": "^2.0.4",
+    "body-parser": "latest",
+    "express": "latest",
+    "jest": "^22.4.3",
+    "mockgoose": "latest",
+    "rimraf": "2.6.2",
+    "rxjs": "^5.5.10",
+    "supertest": "latest",
+    "ts-jest": "^22.4.3",
+    "tslint": "5.9.1",
+    "typescript": "2.8.1",
+    "coveralls": "^3.0.0"
+  },
+  "jest": {
+    "moduleFileExtensions": [
+      "js",
+      "json",
+      "ts"
+    ],
+    "moduleDirectories": [
+      "node_modules",
+      "src"
+    ],
+    "rootDir": "src",
+    "testRegex": ".spec.ts$",
+    "transform": {
+      "^.+\\.(t|j)s$": "ts-jest"
+    },
+    "coverageDirectory": "../coverage",
+    "resetMocks": true
+  }
+}
