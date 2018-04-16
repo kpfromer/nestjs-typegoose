@@ -1,4 +1,4 @@
-import {TypegooseCoreModule} from './typegoose-core.module';
+import { TypegooseCoreModule } from './typegoose-core.module';
 import * as mongoose from 'mongoose';
 import any = jasmine.any;
 
@@ -27,6 +27,18 @@ describe('TypegooseCoreModule', () => {
       const dbProvider = module.exports[0];
 
       expect(dbProvider.useFactory()).toBe(connection);
+    });
+
+    it('should create connection with no mongoose config', () => {
+      const connection = 'i am a connection';
+
+      jest.spyOn(mongoose, 'createConnection').mockReturnValue(connection);
+
+      const module = TypegooseCoreModule.forRoot('mongouri');
+
+      module.exports[0].useFactory();
+
+      expect(mongoose.createConnection).toHaveBeenCalledWith('mongouri', {});
     });
   });
 });

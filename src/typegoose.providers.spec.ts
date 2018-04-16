@@ -1,8 +1,8 @@
-import {prop, Typegoose} from 'typegoose';
-import {createTypegooseProviders} from './typegoose.providers';
+import { prop, Typegoose } from 'typegoose';
+import { createTypegooseProviders } from './typegoose.providers';
 import * as mongoose from 'mongoose';
-import {Connection} from 'mongoose';
-import {Mockgoose} from 'mockgoose';
+import { Connection } from 'mongoose';
+import { Mockgoose } from 'mockgoose';
 import any = jasmine.any;
 
 const mockgoose: Mockgoose = new Mockgoose(mongoose);
@@ -68,6 +68,12 @@ describe('createTypegooseProviders', () => {
 
     expect(model.prototype.model).toBeTruthy();
   }, 15000);
+
+  it('should create no providers if no models are given', () => {
+    const providers = createTypegooseProviders();
+
+    expect(providers).toEqual([]);
+  });
 
   afterAll(() => {
     // TODO: get working

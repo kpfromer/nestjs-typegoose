@@ -35,6 +35,16 @@ describe('TypegooseModule', () => {
 
       expect(CoreModule.forRoot).toHaveBeenCalledWith('mongourl', {db: 'db settings'})
     });
+
+    it('should call global CoreModule forRoot with empty config', () => {
+      jest.spyOn(CoreModule, 'forRoot').mockImplementation(() => ({
+        providers: 'DbConnection'
+      }));
+
+      TypegooseModule.forRoot('mongourl');
+
+      expect(CoreModule.forRoot).toHaveBeenCalledWith('mongourl', {});
+    });
   });
 
   describe('forFeature', () => {
