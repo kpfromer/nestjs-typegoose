@@ -1,10 +1,10 @@
 {
   "name": "nestjs-typegoose",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "A nestjs module wrapper for typegoose",
-  "main": "lib/index.js",
-  "types": "lib/index.d.ts",
-  "typings": "lib/index.d.ts",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "typings": "dist/index.d.ts",
   "scripts": {
     "build": "rimraf dist && tsc -p tsconfig.json",
     "test": "jest",

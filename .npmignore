@@ -5,7 +5,7 @@
 # Reference: https://intellij-support.jetbrains.com/hc/en-us/articles/206544839
 
 # User-specific stuff:
-.idea/**/workspace.xml
+.idea
 .idea/**/tasks.xml
 
 # Sensitive or high-churn files:
@@ -218,5 +218,8 @@ $RECYCLE.BIN/
 
 # End of https://www.gitignore.io/api/linux,macos,windows,visualstudiocode,node,intellij,webstorm
 
+src
 tsconfig.json
 test
+.travis.yml
+.gitignore

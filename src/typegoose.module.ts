@@ -1,8 +1,8 @@
-import {DynamicModule, Module} from '@nestjs/common';
-import {TypegooseCoreModule} from 'typegoose-core.module';
-import {createTypegooseProviders} from 'typegoose.providers';
-import {TypegooseClass} from 'typegoose-class.interface';
-import {ConnectionOptions} from 'mongoose';
+import { DynamicModule, Module } from '@nestjs/common';
+import { TypegooseCoreModule } from './typegoose-core.module';
+import { createTypegooseProviders } from './typegoose.providers';
+import { TypegooseClass } from './typegoose-class.interface';
+import { ConnectionOptions } from 'mongoose';
 
 @Module({})
 export class TypegooseModule {
