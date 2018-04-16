@@ -51,6 +51,10 @@ describe('App consuming TypegooseModule', () => {
   const server = express();
   server.use(bodyParser.json());
 
+  beforeAll(() => {
+    this.timeout(120000)
+  });
+
   beforeAll(async () => {
     await mockgoose.prepareStorage();
 
@@ -80,4 +84,8 @@ describe('App consuming TypegooseModule', () => {
     expect(body._id).toBeTruthy();
     expect(body.description).toBe('hello world');
   }, 15000);
+
+  afterAll(() => {
+    this.timeout(120000)
+  });
 });
