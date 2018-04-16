@@ -6,5 +6,4 @@ install:
      - npm run build
 script:
       - npm test
-      - npm run test:e2e
 after_success: npm run coverage
