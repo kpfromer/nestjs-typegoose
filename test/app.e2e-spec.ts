@@ -79,5 +79,5 @@ describe('App consuming TypegooseModule', () => {
 
     expect(body._id).toBeTruthy();
     expect(body.description).toBe('hello world');
-  });
+  }, 15000);
 });

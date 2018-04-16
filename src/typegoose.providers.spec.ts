@@ -63,7 +63,7 @@ describe('createTypegooseProviders', () => {
     const model = userProvider.useFactory(connection);
 
     expect(model.prototype.model).toBeTruthy();
-  });
+  }, 15000);
 
   afterAll(() => {
     // TODO: get working
