@@ -66,10 +66,11 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Cat } from './interfaces/cat.interface';
 import { CreateCatDto } from './dto/create-cat.dto';
 import { CatSchema } from './schemas/cat.schema';
+import { ModelType } from 'typegoose';
 
 @Component()
 export class CatsService {
-  constructor(@InjectModel(Cat) private readonly catModel) {}
+  constructor(@InjectModel(Cat) private readonly catModel: ModelType<Cat>) {}
 
   async create(createCatDto: {name: string}): Promise<Cat> {
     const createdCat = new this.catModel(createCatDto);
