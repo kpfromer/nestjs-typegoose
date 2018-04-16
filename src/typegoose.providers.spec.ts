@@ -21,6 +21,7 @@ describe('createTypegooseProviders', () => {
   let connection: Connection;
 
   beforeAll(async () => {
+    jest.setTimeout(120000);
     await mockgoose.prepareStorage();
 
     connection = await mongoose.createConnection('mongodb://foobar/baz');
