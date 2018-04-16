@@ -38,6 +38,9 @@ describe('createTypegooseProviders', () => {
   });
 
   it('should create typegoose providers from models', () => {
+
+    jest.setTimeout(30000);
+
     const models = [
       MockUser,
       MockTask
