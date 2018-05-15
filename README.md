@@ -85,9 +85,10 @@ export class CatsService {
 
 ## Requirements
 
- 1. Typegoose +5.0.0
- 2. @nestjs/common +4.6.6
- 3. mongoose +5.0.14
+ 1. Typegoose +5.2.1
+ 2. @nestjs/common +5.0.0
+ 3. @nestjs/core +5.0.0
+ 4. mongoose +5.1.1
 
 ## License
 
