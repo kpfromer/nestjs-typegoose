@@ -20,7 +20,7 @@ export class TypegooseModule {
     const providers = createTypegooseProviders(models);
     return {
       module: TypegooseModule,
-      components: providers,
+      providers,
       exports: providers
     };
   }

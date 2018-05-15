@@ -61,7 +61,7 @@ describe('TypegooseModule', () => {
 
       expect(module).toEqual({
         module: TypegooseModule,
-        components: expectedProviders,
+        providers: expectedProviders,
         exports: expectedProviders
       });
     });

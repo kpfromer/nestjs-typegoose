@@ -1,6 +1,6 @@
 import * as mongoose from 'mongoose';
-import {ConnectionOptions} from 'mongoose';
-import {DynamicModule, Global, Module} from '@nestjs/common';
+import { ConnectionOptions } from 'mongoose';
+import { DynamicModule, Global, Module } from '@nestjs/common';
 
 @Global()
 @Module({})
@@ -15,7 +15,7 @@ export class TypegooseCoreModule {
     };
     return {
       module: TypegooseCoreModule,
-      components: [connectionProvider],
+      providers: [connectionProvider],
       exports: [connectionProvider]
     };
   }

@@ -1,5 +1,6 @@
 import { TypegooseCoreModule } from './typegoose-core.module';
 import * as mongoose from 'mongoose';
+import { FactoryProvider } from '@nestjs/common/interfaces/modules/provider.interface';
 import any = jasmine.any;
 
 
@@ -20,11 +21,11 @@ describe('TypegooseCoreModule', () => {
 
       expect(module).toEqual({
         module: TypegooseCoreModule,
-        components: [connectionProvider],
+        providers: [connectionProvider],
         exports: [connectionProvider]
       });
 
-      const dbProvider = module.exports[0];
+      const dbProvider = module.exports[0] as FactoryProvider;
 
       expect(dbProvider.useFactory()).toBe(connection);
     });
@@ -36,7 +37,7 @@ describe('TypegooseCoreModule', () => {
 
       const module = TypegooseCoreModule.forRoot('mongouri');
 
-      module.exports[0].useFactory();
+      (module.exports[0] as FactoryProvider).useFactory();
 
       expect(mongoose.createConnection).toHaveBeenCalledWith('mongouri', {});
     });

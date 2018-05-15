@@ -52,7 +52,7 @@ import { CatsService } from './cat.service';
 
 @Module({
   imports: [TypegooseModule.forFeature(Cat)],
-  components: [CatsService]
+  providers: [CatsService]
 })
 export class CatsModule {}
 ```
@@ -61,14 +61,14 @@ Get the cat model in a service
 
 **cats.service.ts**
 ```typescript
-import { Component } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Cat } from './interfaces/cat.interface';
 import { CreateCatDto } from './dto/create-cat.dto';
 import { CatSchema } from './schemas/cat.schema';
 import { ModelType } from 'typegoose';
 
-@Component()
+@Injectable()
 export class CatsService {
   constructor(@InjectModel(Cat) private readonly catModel: ModelType<Cat>) {}
 

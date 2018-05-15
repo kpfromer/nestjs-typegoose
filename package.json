@@ -1,6 +1,6 @@
 {
   "name": "nestjs-typegoose",
-  "version": "1.0.3",
+  "version": "5.0.0",
   "description": "A nestjs module wrapper for typegoose",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -19,43 +19,40 @@
     "url": "https://github.com/kpfromer/nestjs-typegoose"
   },
   "peerDependencies": {
-    "mongoose": "^5.0.14",
-    "@nestjs/common": "^4.6.6",
-    "typegoose": "^5.0.0"
+    "mongoose": "~5.1.1",
+    "@nestjs/common": "~5.0.0",
+    "@nestjs/core": "~5.0.0",
+    "typegoose": "~5.2.1"
   },
   "dependencies": {
-    "@nestjs/common": "^4.6.6",
-    "mongoose": "^5.0.14",
-    "reflect-metadata": "^0.1.10",
-    "typegoose": "^5.0.0"
+    "reflect-metadata": "^0.1.12"
   },
   "devDependencies": {
-    "@nestjs/core": "^4.6.6",
-    "@nestjs/testing": "^4.6.6",
+    "mongoose": "~5.1.1",
+    "@nestjs/common": "~5.0.0",
+    "@nestjs/core": "~5.0.0",
+    "typegoose": "~5.2.1",
+    "@nestjs/testing": "^5.0.0",
     "@types/jest": "^21.1.2",
-    "@types/mongoose": "^5.0.9",
+    "@types/mongoose": "^5.0.10",
     "@types/supertest": "^2.0.4",
     "body-parser": "latest",
+    "coveralls": "^3.0.0",
     "express": "latest",
     "jest": "^22.4.3",
     "mockgoose": "latest",
     "rimraf": "2.6.2",
-    "rxjs": "^5.5.10",
+    "rxjs": "^6.1.0",
     "supertest": "latest",
-    "ts-jest": "^22.4.3",
+    "ts-jest": "^22.4.4",
     "tslint": "5.9.1",
-    "typescript": "2.8.1",
-    "coveralls": "^3.0.0"
+    "typescript": "2.8.1"
   },
   "jest": {
     "moduleFileExtensions": [
       "js",
       "json",
       "ts"
-    ],
-    "moduleDirectories": [
-      "node_modules",
-      "src"
     ],
     "rootDir": "src",
     "testRegex": ".spec.ts$",

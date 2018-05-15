@@ -30,7 +30,7 @@ describe('createTypegooseProviders', () => {
         if(err) return console.log(err);
         console.log('disconnected');
       });
-    }, 1000);
+    }, 60000);
 
   });
 
@@ -76,7 +76,6 @@ describe('createTypegooseProviders', () => {
   });
 
   afterAll(() => {
-    // TODO: get working
     connection.close();
   })
 });
