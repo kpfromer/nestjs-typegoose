@@ -1,5 +1,5 @@
 import { prop, Typegoose } from 'typegoose';
-import { createTypegooseProviders } from './typegoose.providers';
+import { convertToTypegooseClassWithOptions, createTypegooseProviders } from './typegoose.providers';
 import * as mongoose from 'mongoose';
 import { Connection } from 'mongoose';
 import { Mockgoose } from 'mockgoose';
@@ -38,13 +38,59 @@ describe('createTypegooseProviders', () => {
     await mongoose.connection.close();
   });
 
+  describe('setModelForClass', () => {
+    let mockSetModel, MockTypegooseClass, mockConnection, schemaOptions, provider;
+    beforeEach(() => {
+      mockSetModel = jest.fn();
+      MockTypegooseClass = jest.fn().mockImplementation(() => ({
+        setModelForClass: mockSetModel
+      }));
+      mockConnection = jest.fn() as any;
+
+      schemaOptions = {
+        collection: 'newCollectionName'
+      };
+
+      const models = [
+        {
+          typegooseClass: MockTypegooseClass,
+          schemaOptions
+        }
+      ];
+
+      ([ provider ] = createTypegooseProviders(models));
+      provider.useFactory(mockConnection);
+    });
+
+    it('should setup the database model', () => {
+      expect(mockSetModel).toHaveBeenCalled();
+    });
+
+    it('should use existing connection from DbConnectionToken', () => {
+      expect(mockSetModel.mock.calls[0][1]).toEqual(expect.objectContaining({
+        existingConnection: mockConnection
+      }));
+    });
+
+    it('should forward schema options to typegoose', () => {
+      expect(mockSetModel.mock.calls[0][1]).toEqual(expect.objectContaining({
+        schemaOptions
+      }));
+    });
+  });
+
+
   it('should create typegoose providers from models', () => {
 
     jest.setTimeout(30000);
 
     const models = [
-      MockUser,
-      MockTask
+      {
+        typegooseClass: MockUser
+      },
+      {
+        typegooseClass: MockTask
+      }
     ];
 
     const providers = createTypegooseProviders(models);
@@ -78,4 +124,36 @@ describe('createTypegooseProviders', () => {
   afterAll(() => {
     connection.close();
   })
+});
+
+class MockTypegooseClass {}
+
+describe('convertToTypegooseClassWithOptions', () => {
+  it('returns model as typegooseClass if it is just a class', () => {
+    expect(convertToTypegooseClassWithOptions(MockTypegooseClass)).toEqual({
+      typegooseClass: MockTypegooseClass
+    });
+  });
+  it('returns model and schemaOptions if it is a TypegooseClassWithOptions', () => {
+    const options = {
+      collection: 'differentName'
+    };
+
+    const expected = {
+      typegooseClass: MockTypegooseClass,
+      schemaOptions: options
+    };
+
+    expect(convertToTypegooseClassWithOptions(expected)).toEqual(expected);
+  });
+  it('throws error is not a class or not a TypegooseClassWithOptions', () => {
+    const handler = () => {
+      expect(convertToTypegooseClassWithOptions({
+        // @ts-ignore
+        something: 'different'
+      }))
+    };
+
+    expect(handler).toThrowErrorMatchingSnapshot();
+  });
 });
