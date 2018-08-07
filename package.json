@@ -61,6 +61,7 @@
       "^.+\\.(t|j)s$": "ts-jest"
     },
     "coverageDirectory": "../coverage",
-    "resetMocks": true
+    "resetMocks": true,
+    "testEnvironment": "node"
   }
 }
