@@ -48,22 +48,53 @@ describe('TypegooseModule', () => {
   });
 
   describe('forFeature', () => {
-    it('should return module that exports providers for Models', () => {
-      jest.spyOn(createProviders, 'createTypegooseProviders')
-        .mockImplementation(modelArray => modelArray.map(model => model.name));
-
-      const module = TypegooseModule.forFeature(MockTask, MockUser);
-
-      const expectedProviders = [
-        'MockTask',
-        'MockUser'
+    let models, convertedModels;
+    beforeEach(() => {
+      models = [
+        MockTask,
+        {
+          typegooseClass: MockUser,
+          schemaOptions: {
+            collection: 'differentCollectionNameUser'
+          }
+        }
       ];
 
+      let count = -1;
+      convertedModels = [
+        'convertedTask',
+        'convertedUser'
+      ];
+
+      jest.spyOn(createProviders, 'convertToTypegooseClassWithOptions')
+        .mockImplementation(() => {
+          count += 1;
+          return convertedModels[count];
+        });
+
+      jest.spyOn(createProviders, 'createTypegooseProviders')
+        .mockReturnValue('createdProviders');
+    });
+
+    it('should return module that exports providers for Models', () => {
+      const module = TypegooseModule.forFeature(...models);
+
+      const expectedProviders = 'createdProviders';
+
+      expect(createProviders.convertToTypegooseClassWithOptions).toHaveBeenCalledWith(MockTask);
+      expect(createProviders.convertToTypegooseClassWithOptions).toHaveBeenCalledWith({
+        typegooseClass: MockUser,
+        schemaOptions: {
+          collection: 'differentCollectionNameUser'
+        }
+      });
+
+      expect(createProviders.createTypegooseProviders).toHaveBeenCalledWith(convertedModels);
       expect(module).toEqual({
         module: TypegooseModule,
         providers: expectedProviders,
         exports: expectedProviders
       });
     });
-  })
+  });
 });

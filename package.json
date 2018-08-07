@@ -25,7 +25,8 @@
     "typegoose": "~5.2.1"
   },
   "dependencies": {
-    "reflect-metadata": "^0.1.12"
+    "reflect-metadata": "^0.1.12",
+    "is-class": "latest"
   },
   "devDependencies": {
     "mongoose": "~5.1.1",
