@@ -16,7 +16,7 @@ Using Typegoose removes the need for having an Model interface.
 
 ## Basic usage
 
-  **app.module.ts**
+**app.module.ts**
 ```typescript
 import { Module } from '@nestjs/common';
 import { TypegooseModule } from 'nestjs-typegoose';
@@ -72,12 +72,12 @@ import { ModelType } from 'typegoose';
 export class CatsService {
   constructor(@InjectModel(Cat) private readonly catModel: ModelType<Cat>) {}
 
-  async create(createCatDto: {name: string}): Promise<Cat> {
+  async create(createCatDto: { name: string }): Promise<Cat> {
     const createdCat = new this.catModel(createCatDto);
     return await createdCat.save();
   }
 
-  async findAll(): Promise<Cat[]> {
+  async findAll(): Promise<Cat[] | null> {
     return await this.catModel.find().exec();
   }
 }
