@@ -16,13 +16,13 @@ Using Typegoose removes the need for having an Model interface.
 
 ## Basic usage
 
-  **app.module.ts**
+**app.module.ts**
 ```typescript
 import { Module } from '@nestjs/common';
 import { TypegooseModule } from 'nestjs-typegoose';
 
 @Module({
-  imports: [TypegooseModule.forRoot('mongodb://localhost/nest'), CatsModule],
+  imports: [TypegooseModule.forRoot('mongodb://localhost:27017/nest', { useNewUrlParser: true }), CatsModule],
 })
 export class ApplicationModule {}
 ```
@@ -48,10 +48,12 @@ Inject Cat for `CatsModule`
 import { Module } from '@nestjs/common';
 import { TypegooseModule } from 'nestjs-typegoose';
 import { Cat } from './cat.model';
-import { CatsService } from './cat.service';
+import { CatsController } from './cats.controller'
+import { CatsService } from './cats.service';
 
 @Module({
   imports: [TypegooseModule.forFeature(Cat)],
+  controllers: [CatsController],
   providers: [CatsService]
 })
 export class CatsModule {}
@@ -63,23 +65,45 @@ Get the cat model in a service
 ```typescript
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { Cat } from './interfaces/cat.interface';
-import { CreateCatDto } from './dto/create-cat.dto';
-import { CatSchema } from './schemas/cat.schema';
+import { Cat } from './cat.model';
 import { ModelType } from 'typegoose';
 
 @Injectable()
 export class CatsService {
   constructor(@InjectModel(Cat) private readonly catModel: ModelType<Cat>) {}
 
-  async create(createCatDto: {name: string}): Promise<Cat> {
+  async create(createCatDto: { name: string }): Promise<Cat> {
     const createdCat = new this.catModel(createCatDto);
     return await createdCat.save();
   }
 
-  async findAll(): Promise<Cat[]> {
+  async findAll(): Promise<Cat[] | null> {
     return await this.catModel.find().exec();
   }
+}
+```
+
+Finally, use the service in a controller!
+
+**cats.controller.ts**
+
+```typescript
+import { Controller, Get, Post, Body } from '@nestjs/common';
+import { CatsService } from './cats.service';
+
+@Controller('cats')
+export class CatsController {
+    constructor(private readonly catsService: CatsService) {}
+    
+    @Get()
+    async getCats(): Promise<Cat[] | null> {
+      return await this.catsService.findAll();
+    }
+
+    @Post()
+    async create(@Body() cat: Cat): Promise<Cat> {
+       return await this.catsService.create(cat);
+    }
 }
 ```
 
