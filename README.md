@@ -48,10 +48,12 @@ Inject Cat for `CatsModule`
 import { Module } from '@nestjs/common';
 import { TypegooseModule } from 'nestjs-typegoose';
 import { Cat } from './cat.model';
-import { CatsService } from './cat.service';
+import { CatsController } from './cats.controller'
+import { CatsService } from './cats.service';
 
 @Module({
   imports: [TypegooseModule.forFeature(Cat)],
+  controllers: [CatsController],
   providers: [CatsService]
 })
 export class CatsModule {}
@@ -78,6 +80,30 @@ export class CatsService {
   async findAll(): Promise<Cat[]> {
     return await this.catModel.find().exec();
   }
+}
+```
+
+Finally, use the service in a controller!
+
+**cats.controller.ts**
+
+```typescript
+import { Controller, Get, Post, Body } from '@nestjs/common';
+import { CatsService } from './cats.service';
+
+@Controller('cats')
+export class CatsController {
+    constructor(private readonly catsService: CatsService) {}
+    
+    @Get()
+    async getCats(): Promise<Cat[] | null> {
+      return await this.catsService.findAll();
+    }
+
+    @Post()
+    async create(@Body() cat: Cat): Promise<Cat> {
+       return await this.catsService.create(cat);
+    }
 }
 ```
 
