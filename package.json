@@ -26,7 +26,7 @@
   },
   "dependencies": {
     "reflect-metadata": "^0.1.12",
-    "is-class": "latest"
+    "is-class": "^0.0.5"
   },
   "devDependencies": {
     "mongoose": "~5.1.1",
