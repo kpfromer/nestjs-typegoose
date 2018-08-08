@@ -22,7 +22,7 @@ import { Module } from '@nestjs/common';
 import { TypegooseModule } from 'nestjs-typegoose';
 
 @Module({
-  imports: [TypegooseModule.forRoot('mongodb://localhost/nest'), CatsModule],
+  imports: [TypegooseModule.forRoot('mongodb://localhost:27017/nest', { useNewUrlParser: true }), CatsModule],
 })
 export class ApplicationModule {}
 ```
