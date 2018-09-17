@@ -64,7 +64,7 @@ Get the cat model in a service
 **cats.service.ts**
 ```typescript
 import { Injectable } from '@nestjs/common';
-import { InjectModel } from '@nestjs/mongoose';
+import { InjectModel } from 'nestjs-typegoose';
 import { Cat } from './cat.model';
 import { ModelType } from 'typegoose';
 
