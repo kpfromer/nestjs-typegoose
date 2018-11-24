@@ -19,10 +19,10 @@
     "url": "https://github.com/kpfromer/nestjs-typegoose"
   },
   "peerDependencies": {
-    "mongoose": "~5.1.1",
-    "@nestjs/common": "~5.0.0",
-    "@nestjs/core": "~5.0.0",
-    "typegoose": "~5.2.1"
+    "mongoose": "^5.0.0",
+    "@nestjs/common": "^5.0.0",
+    "@nestjs/core": "^5.0.0",
+    "typegoose": "^5.2.1"
   },
   "dependencies": {
     "reflect-metadata": "^0.1.12",
