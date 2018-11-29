@@ -8,6 +8,7 @@ import {
 } from './typegoose.providers';
 import { TypegooseClass } from './typegoose-class.interface';
 import { ConnectionOptions } from 'mongoose';
+import { TypegooseModuleAsyncOptions } from 'typegoose-options.interface';
 
 @Module({})
 export class TypegooseModule {
@@ -18,6 +19,13 @@ export class TypegooseModule {
     return {
       module: TypegooseModule,
       imports: [TypegooseCoreModule.forRoot(uri, options)],
+    };
+  }
+
+  static forRootAsync(options: TypegooseModuleAsyncOptions): DynamicModule {
+    return {
+      module: TypegooseModule,
+      imports: [TypegooseCoreModule.forRootAsync(options)],
     };
   }
 
