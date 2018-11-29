@@ -1,13 +1,11 @@
 import { TypegooseCoreModule } from './typegoose-core.module';
 import * as mongoose from 'mongoose';
-import { FactoryProvider } from '@nestjs/common/interfaces/modules/provider.interface';
-import any = jasmine.any;
-
+import { DynamicModule } from '@nestjs/common';
+import { FactoryProvider, ClassProvider } from '@nestjs/common/interfaces';
 
 describe('TypegooseCoreModule', () => {
   describe('forRoot', () => {
     it('should return module that provides mongoose connection', () => {
-
       const connection = 'i am a connection';
 
       jest.spyOn(mongoose, 'createConnection').mockReturnValue(connection);
@@ -16,7 +14,7 @@ describe('TypegooseCoreModule', () => {
 
       const connectionProvider = {
         provide: 'DbConnectionToken',
-        useFactory: any(Function)
+        useFactory: expect.any(Function)
       };
 
       expect(module).toEqual({
@@ -40,6 +38,121 @@ describe('TypegooseCoreModule', () => {
       (module.exports[0] as FactoryProvider).useFactory();
 
       expect(mongoose.createConnection).toHaveBeenCalledWith('mongouri', {});
+    });
+  });
+  describe('forAsyncRoot', () => {
+    let connection, mockOptionFactory, wantedDependencies, module: DynamicModule;
+
+    beforeEach(() => {
+      connection = 'i am a connection';
+
+      jest.spyOn(mongoose, 'createConnection').mockReturnValue(connection);
+
+      mockOptionFactory = jest.fn();
+      wantedDependencies = ['CONFIG_SERVICE'];
+    });
+
+    describe('DbConnectionToken', () => {
+      let DbConnectionToken: FactoryProvider;
+      beforeEach(() => {
+        module = TypegooseCoreModule.forRootAsync({
+          useFactory: () => 'testing'
+        });
+        DbConnectionToken = module.exports[0] as FactoryProvider;
+      });
+      it('is the only export of the returned module', () => {
+        expect(module.exports.length).toBe(1);
+        expect(module.exports[0]).toMatchObject({
+          provide: 'DbConnectionToken'
+        });
+      });
+      it('injects the TYPEGOOSE_MODULE_OPTIONS config', () => {
+        expect(DbConnectionToken.inject).toEqual(['TYPEGOOSE_MODULE_OPTIONS']);
+      });
+      it('creates the mongoose connection', () => {
+        const optionsFromOptionFactory = {
+          uri: 'uriForMongoose',
+          other: 'options',
+          can: 'work'
+        };
+        expect(DbConnectionToken.useFactory(optionsFromOptionFactory)).toBe(connection);
+        expect(mongoose.createConnection).toHaveBeenCalledWith(optionsFromOptionFactory.uri, {
+          other: 'options',
+          can: 'work'
+        });
+      });
+    });
+
+    describe('different types', () => {
+      describe('useFactory', () => {
+        beforeEach(() => {
+          module = TypegooseCoreModule.forRootAsync({
+            useFactory: mockOptionFactory,
+            inject: wantedDependencies
+          });
+        });
+        it('injects the factory\'s async options into the DbConnectionToken', () => {
+          expect(module.providers).toMatchSnapshot();
+          expect(module.exports).toMatchSnapshot();
+          const typegooseModuleOptionsFactoryProvider =
+            module.providers.find(provider =>
+              (provider as FactoryProvider).provide === 'TYPEGOOSE_MODULE_OPTIONS'
+            ) as FactoryProvider;
+          expect(typegooseModuleOptionsFactoryProvider.inject).toBe(wantedDependencies);
+          expect(typegooseModuleOptionsFactoryProvider.useFactory).toBe(mockOptionFactory);
+        });
+      });
+
+      describe('useClass', () => {
+        let mockConfigClass;
+        beforeEach(() => {
+          mockConfigClass = {
+            createTypegooseOptions: jest.fn()
+          };
+
+          module = TypegooseCoreModule.forRootAsync({
+            useClass: mockConfigClass
+          });
+        });
+        it('provides the TypegooseConfigService class for TYPEGOOSE_MODULE_OPTIONS', () => {
+          const classProvider =
+            module.providers.find(provider =>
+              (provider as ClassProvider).provide === mockConfigClass
+            ) as ClassProvider;
+          expect(classProvider.provide).toBe(mockConfigClass);
+          expect(classProvider.useClass).toBe(mockConfigClass);
+        });
+        it('creates a factory called TYPEGOOSE_MODULE_OPTIONS that calls TypegooseConfigService\'s createMongooseOptions', async () => {
+          const typegooseModuleOptionsFactoryProvider =
+            module.providers.find(provider =>
+              (provider as FactoryProvider).provide === 'TYPEGOOSE_MODULE_OPTIONS'
+            ) as FactoryProvider;
+          // The factory needs to get the class
+          expect(typegooseModuleOptionsFactoryProvider.inject).toEqual([mockConfigClass]);
+          // Then provides wrapper factory, which will get injected TypegooseConfigService
+          await typegooseModuleOptionsFactoryProvider.useFactory(mockConfigClass);
+          expect(mockConfigClass.createTypegooseOptions).toHaveBeenCalled();
+        });
+      });
+
+      describe('useExisting', () => {
+        let mockUseExistingClass;
+
+        beforeEach(() => {
+          mockUseExistingClass = jest.fn();
+          module = TypegooseCoreModule.forRootAsync({
+            useExisting: mockUseExistingClass
+          });
+        });
+
+        it('injects the useExisting class into the TYPEGOOSE_MODULE_OPTIONS factory', () => {
+          const typegooseModuleOptionsFactoryProvider =
+            module.providers.find(provider =>
+              (provider as FactoryProvider).provide === 'TYPEGOOSE_MODULE_OPTIONS'
+            ) as FactoryProvider;
+          expect(typegooseModuleOptionsFactoryProvider.inject).toEqual([mockUseExistingClass]);
+        });
+      });
     });
   });
 });
