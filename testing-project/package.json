@@ -1,0 +1,20 @@
+{
+  "name": "testing-project",
+  "version": "1.0.0",
+  "description": "",
+  "private": true,
+  "main": "src/main.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@nestjs/common": "^5.1.0",
+    "@nestjs/core": "^5.1.0",
+    "mongoose": "^5.2.7",
+    "reflect-metadata": "^0.1.12",
+    "rxjs": "^6.2.2",
+    "typegoose": "^5.4.1"
+  }
+}
