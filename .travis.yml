@@ -1,9 +1,18 @@
 language: node_js
-node_js:
-      - "7"
+node_js: "7"
 install:
-     - npm install
-     - npm run build
-script:
-      - npm run test:ci
-after_success: npm run coverage
+  - npm install
+  - npm run build
+jobs:
+  include:
+    - stage: unit tests
+      script: npm run test
+    - stage: build
+      script: npm run build
+      after_success: npm run coverage
+    - stage: npm release
+      script: echo "Deploying to npm ..."
+      deploy:
+        provider: npm
+        api_key: $NPM_API_KEY
+        on: npm-release
