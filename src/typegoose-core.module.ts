@@ -1,6 +1,7 @@
 import * as mongoose from 'mongoose';
 import { ConnectionOptions } from 'mongoose';
-import { DynamicModule, Global, Module } from '@nestjs/common';
+import { DynamicModule, Global, Module, Provider } from '@nestjs/common';
+import { TypegooseOptionsFactory, TypegooseModuleOptions, TypegooseModuleAsyncOptions } from 'typegoose-options.interface';
 
 @Global()
 @Module({})
@@ -17,6 +18,59 @@ export class TypegooseCoreModule {
       module: TypegooseCoreModule,
       providers: [connectionProvider],
       exports: [connectionProvider]
+    };
+  }
+
+  static forRootAsync(options: TypegooseModuleAsyncOptions): DynamicModule {
+    const connectionProvider = {
+      provide: 'DbConnectionToken',
+      useFactory: (typegooseModuleOptions: TypegooseModuleOptions) => {
+        const {
+          uri,
+          ...typegooseOptions
+        } = typegooseModuleOptions;
+        return mongoose.createConnection(uri, typegooseOptions);
+      },
+      inject: ['TYPEGOOSE_MODULE_OPTIONS'] // inject output of async config creator
+    };
+    const asyncProviders = this.createAsyncProviders(options);
+    return {
+      module: TypegooseCoreModule,
+      imports: options.imports, // imports from async for root
+      providers: [
+        ...asyncProviders,
+        connectionProvider
+      ],
+      exports: [connectionProvider]
+    };
+  }
+
+  private static createAsyncProviders(options: TypegooseModuleAsyncOptions): Provider[] {
+    if (options.useExisting || options.useFactory) {
+      return [this.createAsyncOptionsProvider(options)];
+    }
+    return [
+      this.createAsyncOptionsProvider(options),
+      {
+        provide: options.useClass,
+        useClass: options.useClass,
+      },
+    ];
+  }
+
+  private static createAsyncOptionsProvider(options: TypegooseModuleAsyncOptions): Provider {
+    if (options.useFactory) { // If a factory provider
+      return {
+        provide: 'TYPEGOOSE_MODULE_OPTIONS',
+        useFactory: options.useFactory,
+        inject: options.inject || [],
+      };
+    } // else MongooseOptionsFactory
+    return {
+      provide: 'TYPEGOOSE_MODULE_OPTIONS',
+      useFactory: async (optionsFactory: TypegooseOptionsFactory) =>
+        await optionsFactory.createTypegooseOptions(),
+      inject: [options.useExisting || options.useClass],
     };
   }
 }
