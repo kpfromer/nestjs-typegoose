@@ -9,7 +9,7 @@
     "build": "rimraf dist && tsc -p tsconfig.json",
     "test": "jest",
     "test:ci": "jest --forceExit",
-    "test:cov": "jest --coverage",
+    "test:cov": "jest --coverage --forceExit",
     "test:e2e": "jest --config ./test/jest-e2e.json",
     "coverage": "jest --coverage && cat ./coverage/lcov.info | coveralls"
   },
