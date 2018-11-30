@@ -2,11 +2,10 @@ language: node_js
 node_js: "7"
 install:
   - npm install
-  - npm run build
 jobs:
   include:
     - stage: unit tests
-      script: npm run test
+      script: npm run test:ci
     - stage: build
       script: npm run build
       after_success: npm run coverage
