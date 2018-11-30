@@ -47,6 +47,36 @@ describe('TypegooseModule', () => {
     });
   });
 
+  describe('forRootAsync', () => {
+    it('should call global CoreModule forRoot', () => {
+      jest.spyOn(CoreModule, 'forRootAsync').mockImplementation(() => ({
+        providers: 'DbConnection'
+      }));
+
+      const options = {
+        useFactory: () => {
+          return {
+            uri: 'mongourl',
+            db: 'db settings'
+          };
+        }
+      }
+
+      const module = TypegooseModule.forRootAsync(options);
+
+      expect(module).toEqual({
+        module: TypegooseModule,
+        imports: [
+          {
+            providers: 'DbConnection'
+          }
+        ]
+      });
+
+      expect(CoreModule.forRootAsync).toHaveBeenCalledWith(options);
+    });
+  });
+
   describe('forFeature', () => {
     let models, convertedModels;
     beforeEach(() => {
