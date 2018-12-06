@@ -8,7 +8,7 @@ import {
 } from './typegoose.providers';
 import { TypegooseClass } from './typegoose-class.interface';
 import { ConnectionOptions } from 'mongoose';
-import { TypegooseModuleAsyncOptions } from 'typegoose-options.interface';
+import { TypegooseModuleAsyncOptions } from './typegoose-options.interface';
 
 @Module({})
 export class TypegooseModule {
