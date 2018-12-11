@@ -137,6 +137,7 @@ To provide asynchronous mongoose schema options (similar to [nestjs mongoose imp
       imports: [ConfigModule],
       useFactory: async (configService: ConfigService) => ({
         uri: configService.getString('MONGODB_URI'),
+        // ...typegooseOptions (Note: config is spread with the uri)
       }),
       inject: [ConfigService]
     })
@@ -144,6 +145,10 @@ To provide asynchronous mongoose schema options (similar to [nestjs mongoose imp
 })
 export class CatsModule {}
 ```
+
+#### Note: typegooseOptions with async
+
+The typegooseOptions is spread with the `uri`. The `uri` is required!
 
 You can also use a class with `useClass`
 
