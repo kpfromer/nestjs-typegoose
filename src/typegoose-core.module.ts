@@ -1,11 +1,14 @@
 import * as mongoose from 'mongoose';
 import { ConnectionOptions } from 'mongoose';
-import { DynamicModule, Global, Module, Provider } from '@nestjs/common';
+import { DynamicModule, Global, Module, Provider, OnModuleDestroy } from '@nestjs/common';
+import { ModuleRef } from '@nestjs/core';
 import { TypegooseOptionsFactory, TypegooseModuleOptions, TypegooseModuleAsyncOptions } from 'typegoose-options.interface';
 
 @Global()
 @Module({})
-export class TypegooseCoreModule {
+export class TypegooseCoreModule implements OnModuleDestroy {
+  constructor(private readonly moduleRef: ModuleRef) {}
+
   static forRoot(
     uri: string,
     options: ConnectionOptions = {},
@@ -72,5 +75,13 @@ export class TypegooseCoreModule {
         await optionsFactory.createTypegooseOptions(),
       inject: [options.useExisting || options.useClass],
     };
+  }
+
+  async onModuleDestroy() {
+    const connection = this.moduleRef.get<any>('DbConnectionToken');
+
+    if (connection) {
+      await connection.close();
+    }
   }
 }
