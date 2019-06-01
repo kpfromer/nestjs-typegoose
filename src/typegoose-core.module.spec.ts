@@ -1,7 +1,8 @@
 import { TypegooseCoreModule } from './typegoose-core.module';
 import * as mongoose from 'mongoose';
 import { DynamicModule } from '@nestjs/common';
-import { FactoryProvider, ClassProvider } from '@nestjs/common/interfaces';
+import { Test, TestingModule } from '@nestjs/testing';
+import { FactoryProvider, ClassProvider, OnModuleDestroy } from '@nestjs/common/interfaces';
 
 describe('TypegooseCoreModule', () => {
   describe('forRoot', () => {
@@ -153,6 +154,27 @@ describe('TypegooseCoreModule', () => {
           expect(typegooseModuleOptionsFactoryProvider.inject).toEqual([mockUseExistingClass]);
         });
       });
+    });
+  });
+
+  describe('Disconnect in onModuleDestroy', () => {
+    it('should close connection while destroying module', async () => {
+      const closeMock = jest.fn(() => Promise.resolve());
+      const coreModule = new TypegooseCoreModule({
+        get: () => ({ close: closeMock }) as any,
+      });
+
+      await coreModule.onModuleDestroy();
+
+      expect(closeMock).toHaveBeenCalledTimes(1);
+    });
+
+    it('shouldn\'t throw error on destroy when dbConnectionToken not found in ref', async () => {
+      const coreModule = new TypegooseCoreModule({
+        get: () => null,
+      } as any);
+
+      await expect(() => coreModule.onModuleDestroy()).not.toThrow();
     });
   });
 });
