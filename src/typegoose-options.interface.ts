@@ -1,5 +1,10 @@
 import { Type } from '@nestjs/common';
 import { ModuleMetadata } from '@nestjs/common/interfaces';
+import { ConnectionOptions } from 'mongoose';
+
+export interface TypegooseConnectionOptions extends ConnectionOptions {
+  connectionName?: string;
+}
 
 export interface TypegooseModuleOptions {
   uri: string;
@@ -13,6 +18,7 @@ export interface TypegooseOptionsFactory {
 }
 
 export interface TypegooseModuleAsyncOptions extends Pick<ModuleMetadata, 'imports'> {
+  connectionName?: string;
   useExisting?: Type<TypegooseOptionsFactory>;
   useClass?: Type<TypegooseOptionsFactory>;
   useFactory?: (
