@@ -165,17 +165,19 @@ describe('TypegooseCoreModule', () => {
   describe('Disconnect in onModuleDestroy', () => {
     it('should close connection while destroying module', async () => {
       const closeMock = jest.fn(() => Promise.resolve());
-      const coreModule = new TypegooseCoreModule({
-        get: () => ({ close: closeMock }) as any,
+      const moduleRefGet = jest.fn(() => ({ close: closeMock }));
+      const coreModule = new TypegooseCoreModule(DEFAULT_DB_CONNECTION_NAME, {
+        get: moduleRefGet
       });
 
       await coreModule.onModuleDestroy();
 
+      expect(moduleRefGet).toHaveBeenCalledWith(DEFAULT_DB_CONNECTION_NAME);
       expect(closeMock).toHaveBeenCalledTimes(1);
     });
 
-    it('shouldn\'t throw error on destroy when dbConnectionToken not found in ref', async () => {
-      const coreModule = new TypegooseCoreModule({
+    it('shouldn\'t throw error on destroy when the mongoose connection is not found in ref', async () => {
+      const coreModule = new TypegooseCoreModule(DEFAULT_DB_CONNECTION_NAME, {
         get: () => null,
       } as any);
 
