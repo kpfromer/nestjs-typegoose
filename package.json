@@ -20,35 +20,35 @@
     "url": "https://github.com/kpfromer/nestjs-typegoose"
   },
   "peerDependencies": {
-    "mongoose": "^5.0.0",
-    "@nestjs/common": "^5.0.0",
-    "@nestjs/core": "^5.0.0",
-    "typegoose": "^5.2.1"
+    "mongoose": "^5.5.13",
+    "@nestjs/common": "^6.3.1",
+    "@nestjs/core": "^6.3.1",
+    "typegoose": "^5.7.1"
   },
   "dependencies": {
-    "reflect-metadata": "^0.1.12",
-    "is-class": "^0.0.5"
+    "reflect-metadata": "^0.1.13",
+    "is-class": "^0.0.7"
   },
   "devDependencies": {
-    "mongoose": "~5.1.1",
-    "@nestjs/common": "~5.0.0",
-    "@nestjs/core": "~5.0.0",
-    "typegoose": "~5.2.1",
-    "@nestjs/testing": "^5.0.0",
-    "@types/jest": "^21.1.2",
-    "@types/mongoose": "^5.0.10",
+    "@nestjs/common": "^6.3.1",
+    "@nestjs/core": "^6.3.1",
+    "@nestjs/testing": "^6.3.1",
+    "@types/jest": "^24.0.13",
+    "@types/mongoose": "^5.5.5",
     "@types/supertest": "^2.0.4",
     "body-parser": "latest",
     "coveralls": "^3.0.0",
     "express": "latest",
-    "jest": "^22.4.3",
+    "jest": "^24.8.0",
     "mockgoose": "latest",
-    "rimraf": "2.6.2",
+    "mongoose": "^5.1.8",
+    "rimraf": "^2.6.3",
     "rxjs": "^6.1.0",
     "supertest": "latest",
-    "ts-jest": "^22.4.4",
-    "tslint": "5.9.1",
-    "typescript": "2.8.1"
+    "ts-jest": "^24.0.2",
+    "tslint": "^5.17.0",
+    "typegoose": "^5.2.1",
+    "typescript": "3.5.1"
   },
   "jest": {
     "moduleFileExtensions": [
