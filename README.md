@@ -8,7 +8,7 @@
 
 Injects [typegoose](https://github.com/szokodiakos/typegoose) models for [nest](https://github.com/nestjs/nest) components and controllers. Typegoose equivalant for [@nestjs/mongoose.](https://docs.nestjs.com/techniques/mongodb)
 
-Using Typegoose removes the need for having an Model interface.
+Using Typegoose removes the need for having a Model interface.
 
 ## Installation
 
@@ -52,7 +52,7 @@ import { CatsController } from './cats.controller'
 import { CatsService } from './cats.service';
 
 @Module({
-  imports: [TypegooseModule.forFeature(Cat)],
+  imports: [TypegooseModule.forFeature([Cat])],
   controllers: [CatsController],
   providers: [CatsService]
 })
@@ -115,12 +115,12 @@ you can simply change `Typegoose.forFeature` to the following format:
 ```typescript
 @Module({
   imports: [
-    TypegooseModule.forFeature({
+    TypegooseModule.forFeature([{
       typegooseClass: Cat,
       schemaOptions: {
         collection: 'ADifferentCollectionNameForCats'
       }
-    })
+    }])
   ]
 })
 export class CatsModule {}
@@ -181,6 +181,51 @@ Or if you want to prevent creating another `TypegooseConfigService` class and wa
     TypegooseModule.forAsyncRoot({
       imports: [ConfigModule],
       useExisting: ConfigService,
+    })
+  ]
+})
+export class CatsModule {}
+```
+
+### Multiple MongoDB Connections
+
+To have multiple mongoDB connections one needs to add a `connectionName` string to `forRoot` and `forFeature`.
+
+**app.module.ts**
+```typescript
+import { Module } from '@nestjs/common';
+import { TypegooseModule } from 'nestjs-typegoose';
+
+@Module({
+  imports: [TypegooseModule.forRoot('mongodb://localhost:27017/otherdb', { useNewUrlParser: true, connctionName: 'other-mongodb' }), CatsModule],
+})
+export class ApplicationModule {}
+```
+
+**cat.module.ts**
+```typescript
+@Module({
+  imports: [TypegooseModule.forFeature([Cat], 'other-mongodb')],
+  controllers: [CatsController],
+  providers: [CatsService]
+})
+export class CatsModule {}
+```
+
+And for `forAsyncRoot` add `connectionName` to the options as well.
+
+```typescript
+@Module({
+  imports: [
+    TypegooseModule.forAsyncRoot({
+      connectionName: 'other-mongodb',
+      imports: [ConfigModule],
+      useFactory: async (configService: ConfigService) => ({
+        uri: configService.getString('MONGODB_URI'),
+        connectionName: config
+        // ...typegooseOptions (Note: config is spread with the uri)
+      }),
+      inject: [ConfigService]
     })
   ]
 })
