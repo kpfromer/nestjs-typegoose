@@ -7,14 +7,13 @@ import {
   TypegooseClassWithOptions
 } from './typegoose.providers';
 import { TypegooseClass } from './typegoose-class.interface';
-import { ConnectionOptions } from 'mongoose';
-import { TypegooseModuleAsyncOptions } from './typegoose-options.interface';
+import { TypegooseModuleAsyncOptions, TypegooseConnectionOptions } from './typegoose-options.interface';
 
 @Module({})
 export class TypegooseModule {
   static forRoot(
     uri: string,
-    options: ConnectionOptions = {},
+    options: TypegooseConnectionOptions = {},
   ): DynamicModule {
     return {
       module: TypegooseModule,
@@ -29,9 +28,9 @@ export class TypegooseModule {
     };
   }
 
-  static forFeature(...models: (TypegooseClass<any> | TypegooseClassWithOptions)[]): DynamicModule {
+  static forFeature(models: (TypegooseClass<any> | TypegooseClassWithOptions)[], connectionName?: string): DynamicModule {
     const convertedModels = models.map(model => convertToTypegooseClassWithOptions(model));
-    const providers = createTypegooseProviders(convertedModels);
+    const providers = createTypegooseProviders(connectionName, convertedModels);
     return {
       module: TypegooseModule,
       providers,
