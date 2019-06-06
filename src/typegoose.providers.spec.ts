@@ -3,6 +3,7 @@ import { convertToTypegooseClassWithOptions, createTypegooseProviders } from './
 import * as mongoose from 'mongoose';
 import { Connection } from 'mongoose';
 import { Mockgoose } from 'mockgoose';
+import { DEFAULT_DB_CONNECTION_NAME, TYPEGOOSE_MODULE_OPTIONS, TYPEGOOSE_CONNECTION_NAME } from './typegoose.constants';
 import any = jasmine.any;
 
 const mockgoose: Mockgoose = new Mockgoose(mongoose);
@@ -58,7 +59,7 @@ describe('createTypegooseProviders', () => {
         }
       ];
 
-      ([ provider ] = createTypegooseProviders(models));
+      ([ provider ] = createTypegooseProviders(DEFAULT_DB_CONNECTION_NAME, models));
       provider.useFactory(mockConnection);
     });
 
@@ -93,18 +94,18 @@ describe('createTypegooseProviders', () => {
       }
     ];
 
-    const providers = createTypegooseProviders(models);
+    const providers = createTypegooseProviders(DEFAULT_DB_CONNECTION_NAME, models);
 
     expect(providers).toEqual([
       {
         provide: 'MockUserModel',
         useFactory: any(Function),
-        inject: ['DbConnectionToken']
+        inject: [DEFAULT_DB_CONNECTION_NAME]
       },
       {
         provide: 'MockTaskModel',
         useFactory: any(Function),
-        inject: ['DbConnectionToken']
+        inject: [DEFAULT_DB_CONNECTION_NAME]
       }
     ]);
 
@@ -116,7 +117,7 @@ describe('createTypegooseProviders', () => {
   }, 15000);
 
   it('should create no providers if no models are given', () => {
-    const providers = createTypegooseProviders();
+    const providers = createTypegooseProviders(DEFAULT_DB_CONNECTION_NAME);
 
     expect(providers).toEqual([]);
   });
