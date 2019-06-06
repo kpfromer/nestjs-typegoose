@@ -1,31 +1,35 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`TypegooseCoreModule forAsyncRoot different types useFactory injects the factory's async options into the DbConnectionToken 1`] = `
+exports[`TypegooseCoreModule forAsyncRoot different types useFactory injects the factory's async options into DEFAULT_DB_CONNECTION_NAME 1`] = `
 Array [
   Object {
     "inject": Array [
       "CONFIG_SERVICE",
     ],
-    "provide": "TYPEGOOSE_MODULE_OPTIONS",
+    "provide": "TypegooseModuleOptions",
     "useFactory": [MockFunction],
   },
   Object {
     "inject": Array [
-      "TYPEGOOSE_MODULE_OPTIONS",
+      "TypegooseModuleOptions",
     ],
-    "provide": "DbConnectionToken",
+    "provide": "DefaultTypegooseConnection",
     "useFactory": [Function],
+  },
+  Object {
+    "provide": "TypegooseConnectionName",
+    "useValue": "DefaultTypegooseConnection",
   },
 ]
 `;
 
-exports[`TypegooseCoreModule forAsyncRoot different types useFactory injects the factory's async options into the DbConnectionToken 2`] = `
+exports[`TypegooseCoreModule forAsyncRoot different types useFactory injects the factory's async options into DEFAULT_DB_CONNECTION_NAME 2`] = `
 Array [
   Object {
     "inject": Array [
-      "TYPEGOOSE_MODULE_OPTIONS",
+      "TypegooseModuleOptions",
     ],
-    "provide": "DbConnectionToken",
+    "provide": "DefaultTypegooseConnection",
     "useFactory": [Function],
   },
 ]
