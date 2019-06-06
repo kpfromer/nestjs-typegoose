@@ -29,9 +29,9 @@ export class TypegooseModule {
     };
   }
 
-  static forFeature(...models: (TypegooseClass<any> | TypegooseClassWithOptions)[]): DynamicModule {
+  static forFeature(models: (TypegooseClass<any> | TypegooseClassWithOptions)[], connectionName?: string): DynamicModule {
     const convertedModels = models.map(model => convertToTypegooseClassWithOptions(model));
-    const providers = createTypegooseProviders(convertedModels);
+    const providers = createTypegooseProviders(connectionName, convertedModels);
     return {
       module: TypegooseModule,
       providers,
