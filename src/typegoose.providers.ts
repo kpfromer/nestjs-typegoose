@@ -1,4 +1,4 @@
-import { getModelToken } from './typegoose.utils';
+import { getModelToken, getConnectionToken } from './typegoose.utils';
 import { TypegooseClass } from './typegoose-class.interface';
 import { Connection, SchemaOptions } from 'mongoose';
 import * as isClass from 'is-class';
@@ -23,13 +23,13 @@ export const convertToTypegooseClassWithOptions = (item: TypegooseClass<any> | T
   throw new Error('Invalid model object');
 };
 
-export function createTypegooseProviders(models: TypegooseClassWithOptions[] = []) {
+export function createTypegooseProviders(connectionName: string, models: TypegooseClassWithOptions[] = []) {
   return models.map(({ typegooseClass, schemaOptions = {} }) => ({
     provide: getModelToken(typegooseClass.name),
     useFactory: (connection: Connection) => new typegooseClass().setModelForClass(typegooseClass, {
       existingConnection: connection,
       schemaOptions
     }),
-    inject: ['DbConnectionToken']
+    inject: [getConnectionToken(connectionName)]
   }));
 }
