@@ -2,16 +2,16 @@ import { TypegooseCoreModule } from './typegoose-core.module';
 import * as mongoose from 'mongoose';
 import { DEFAULT_DB_CONNECTION_NAME, TYPEGOOSE_MODULE_OPTIONS, TYPEGOOSE_CONNECTION_NAME } from './typegoose.constants';
 import { DynamicModule } from '@nestjs/common';
-import { FactoryProvider, ClassProvider, OnModuleDestroy } from '@nestjs/common/interfaces';
+import { FactoryProvider, ClassProvider } from '@nestjs/common/interfaces';
 
 describe('TypegooseCoreModule', () => {
   describe('forRoot', () => {
     it('should return module that provides a mongoose connection', () => {
       const connection = 'i am a connection';
 
-      jest.spyOn(mongoose, 'createConnection').mockReturnValue(connection);
+      jest.spyOn(mongoose, 'createConnection').mockReturnValue(connection as any);
 
-      const module = TypegooseCoreModule.forRoot('mongouri', {authdb: 'mongo connection'});
+      const module = TypegooseCoreModule.forRoot('mongouri', {authdb: 'mongo connection'} as any);
 
       const connectionNameProvider = {
         provide: TYPEGOOSE_CONNECTION_NAME,
@@ -37,7 +37,7 @@ describe('TypegooseCoreModule', () => {
     it('should create connection with no mongoose config', () => {
       const connection = 'i am a connection';
 
-      jest.spyOn(mongoose, 'createConnection').mockReturnValue(connection);
+      jest.spyOn(mongoose, 'createConnection').mockReturnValue(connection as any);
 
       const module = TypegooseCoreModule.forRoot('mongouri');
 
@@ -63,7 +63,7 @@ describe('TypegooseCoreModule', () => {
       beforeEach(() => {
         module = TypegooseCoreModule.forRootAsync({
           useFactory: () => 'testing'
-        });
+        } as any);
         DbConnectionToken = module.exports[0] as FactoryProvider;
       });
       it('is the only export of the returned module', () => {
@@ -168,7 +168,7 @@ describe('TypegooseCoreModule', () => {
       const moduleRefGet = jest.fn(() => ({ close: closeMock }));
       const coreModule = new TypegooseCoreModule(DEFAULT_DB_CONNECTION_NAME, {
         get: moduleRefGet
-      });
+      } as any);
 
       await coreModule.onModuleDestroy();
 

@@ -20,7 +20,7 @@ describe('TypegooseModule', () => {
     it('should call global CoreModule forRoot', () => {
       jest.spyOn(CoreModule, 'forRoot').mockImplementation(() => ({
         providers: 'DbConnection'
-      }));
+      } as any));
 
       const module = TypegooseModule.forRoot('mongourl', {db: 'db settings'});
 
@@ -39,7 +39,7 @@ describe('TypegooseModule', () => {
     it('should call global CoreModule forRoot with empty config', () => {
       jest.spyOn(CoreModule, 'forRoot').mockImplementation(() => ({
         providers: 'DbConnection'
-      }));
+      } as any));
 
       TypegooseModule.forRoot('mongourl');
 
@@ -51,7 +51,7 @@ describe('TypegooseModule', () => {
     it('should call global CoreModule forRoot', () => {
       jest.spyOn(CoreModule, 'forRootAsync').mockImplementation(() => ({
         providers: 'DbConnection'
-      }));
+      } as any));
 
       const options = {
         useFactory: () => {
@@ -103,7 +103,7 @@ describe('TypegooseModule', () => {
         });
 
       jest.spyOn(createProviders, 'createTypegooseProviders')
-        .mockReturnValue('createdProviders');
+        .mockReturnValue('createdProviders' as any);
     });
 
     it('should return module that exports providers for models', () => {
