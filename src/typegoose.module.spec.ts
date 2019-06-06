@@ -106,8 +106,8 @@ describe('TypegooseModule', () => {
         .mockReturnValue('createdProviders');
     });
 
-    it('should return module that exports providers for Models', () => {
-      const module = TypegooseModule.forFeature(...models);
+    it('should return module that exports providers for models', () => {
+      const module = TypegooseModule.forFeature(models);
 
       const expectedProviders = 'createdProviders';
 
@@ -119,12 +119,20 @@ describe('TypegooseModule', () => {
         }
       });
 
-      expect(createProviders.createTypegooseProviders).toHaveBeenCalledWith(convertedModels);
+      expect(createProviders.createTypegooseProviders).toHaveBeenCalledWith(undefined, convertedModels);
       expect(module).toEqual({
         module: TypegooseModule,
         providers: expectedProviders,
         exports: expectedProviders
       });
+    });
+
+    it('should return module that createdTypegooseProviders with provided connectionName', () => {
+      const connectionName = 'OtherMongoDB';
+
+      const module = TypegooseModule.forFeature(models, connectionName);
+      
+      expect(createProviders.createTypegooseProviders).toHaveBeenCalledWith(connectionName, convertedModels);
     });
   });
 });
