@@ -133,7 +133,7 @@ To provide asynchronous mongoose schema options (similar to [nestjs mongoose imp
 ```typescript
 @Module({
   imports: [
-    TypegooseModule.forAsyncRoot({
+    TypegooseModule.forRootAsync({
       imports: [ConfigModule],
       useFactory: async (configService: ConfigService) => ({
         uri: configService.getString('MONGODB_URI'),
