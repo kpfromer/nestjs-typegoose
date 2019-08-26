@@ -266,12 +266,22 @@ const module: TestingModule = await Test.createTestingModule({
 
 The string given to `getModelToken` function should be the class name of the typegoose model that you are testing.
 
+## FAQ
+
+---
+
+**Q:** 'useNewUrlParser' does not exist in type 'TypegooseConnectionOptions'
+
+**A:** Make sure that you have the typings for mongoose installed. `npm install --save-dev @types/mongoose`
+
+---
+
 ## Requirements
 
- 1. Typegoose +5.2.1
- 2. @nestjs/common +5.0.0
- 3. @nestjs/core +5.0.0
- 4. mongoose +5.1.1
+1.  Typegoose +5.2.1
+2.  @nestjs/common +5.0.0
+3.  @nestjs/core +5.0.0
+4.  mongoose (with typings `@types/mongoose`) +5.1.1
 
 ## License
 
