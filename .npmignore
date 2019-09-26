@@ -223,3 +223,5 @@ tsconfig.json
 test
 .travis.yml
 .gitignore
+/testing-project/
+/src/__snapshots__/
