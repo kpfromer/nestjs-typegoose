@@ -1,7 +1,7 @@
 import * as mongoose from 'mongoose';
 import { DynamicModule, Global, Module, Provider, OnModuleDestroy, Inject } from '@nestjs/common';
 import { ModuleRef } from '@nestjs/core';
-import { TypegooseOptionsFactory, TypegooseModuleOptions, TypegooseModuleAsyncOptions, TypegooseConnectionOptions } from 'typegoose-options.interface';
+import { TypegooseOptionsFactory, TypegooseModuleOptions, TypegooseModuleAsyncOptions, TypegooseConnectionOptions } from './typegoose-options.interface';
 import { TYPEGOOSE_CONNECTION_NAME, TYPEGOOSE_MODULE_OPTIONS } from './typegoose.constants';
 import { getConnectionToken } from './typegoose.utils';
 

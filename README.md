@@ -31,7 +31,7 @@ Create class that extends [Typegoose](https://github.com/szokodiakos/typegoose#m
 
 **cat.model.ts**
 ```typescript
-import { prop, Typegoose } from 'typegoose';
+import { prop, Typegoose } from '@hasezoey/typegoose';
 import { IsString } from 'class-validator';
 
 export class Cat extends Typegoose {
@@ -66,7 +66,7 @@ Get the cat model in a service
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from 'nestjs-typegoose';
 import { Cat } from './cat.model';
-import { ModelType } from 'typegoose';
+import { ModelType } from '@hasezoey/typegoose';
 
 @Injectable()
 export class CatsService {

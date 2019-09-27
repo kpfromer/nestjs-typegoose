@@ -1,19 +1,17 @@
-import * as express from 'express';
-import * as bodyParser from 'body-parser';
 import * as request from 'supertest';
-import {Test} from '@nestjs/testing';
-import {Body, Controller, Module, Post} from '@nestjs/common';
-import {InjectModel, TypegooseModule} from '../src';
+import { Test } from '@nestjs/testing';
+import { Body, Controller, Module, Post } from '@nestjs/common';
+import { InjectModel, TypegooseModule } from '../src';
+import { prop, Typegoose } from '@hasezoey/typegoose';
 import * as mongoose from 'mongoose';
-import {Mockgoose} from 'mockgoose';
-import {prop, Typegoose} from 'typegoose';
+import { Mockgoose } from 'mockgoose';
 
 const mockgoose: Mockgoose = new Mockgoose(mongoose);
 
 @Module({
   imports: [TypegooseModule.forRoot('mongoose:uri')]
 })
-class MockApp {}
+export class MockApp {}
 
 class MockTypegooseClass extends Typegoose {
 
@@ -27,14 +25,14 @@ class MockController {
 
   @Post('create')
   async createTask(@Body() body: {description: string}) {
-    return await this.model.create({
+    return this.model.create({
       description: body.description
     });
   }
 
   @Post('get')
   async getTask(@Body() body: {description: string}) {
-    return await this.model.findOne({
+    return this.model.findOne({
       description: body.description
     });
   }
@@ -42,18 +40,13 @@ class MockController {
 }
 
 @Module({
-  imports: [TypegooseModule.forFeature(MockTypegooseClass)],
+  imports: [TypegooseModule.forFeature([MockTypegooseClass])],
   controllers: [MockController]
 })
 class MockSubModule {}
 
 describe('App consuming TypegooseModule', () => {
-  const server = express();
-  server.use(bodyParser.json());
-
-  beforeAll(() => {
-    this.timeout(120000)
-  });
+  let app;
 
   beforeAll(async () => {
     await mockgoose.prepareStorage();
@@ -62,18 +55,18 @@ describe('App consuming TypegooseModule', () => {
       imports: [MockApp, MockSubModule]
     }).compile();
 
-    const app = moduleFixture.createNestApplication(server);
+    app = moduleFixture.createNestApplication();
     await app.init();
   });
 
   it('should store and get mockTask', async () => {
-    await request(server)
+    await request(app.getHttpServer())
       .post('/create')
       .send({
         description: 'hello world'
       });
-    //
-    const response = await request(server)
+
+    const response = await request(app.getHttpServer())
       .post('/get')
       .send({
         description: 'hello world'
@@ -83,9 +76,7 @@ describe('App consuming TypegooseModule', () => {
 
     expect(body._id).toBeTruthy();
     expect(body.description).toBe('hello world');
-  }, 15000);
-
-  afterAll(() => {
-    this.timeout(120000)
   });
+
+  afterAll(() => mockgoose.shutdown())
 });
