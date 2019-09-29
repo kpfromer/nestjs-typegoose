@@ -225,3 +225,5 @@ test
 .gitignore
 /testing-project/
 /src/__snapshots__/
+gulpfile.js
+tslint.json
