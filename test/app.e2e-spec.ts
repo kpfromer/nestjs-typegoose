@@ -2,7 +2,7 @@ import * as request from 'supertest';
 import { Test } from '@nestjs/testing';
 import { Body, Controller, Module, Post } from '@nestjs/common';
 import { InjectModel, TypegooseModule } from '../src';
-import { prop, Typegoose } from '@hasezoey/typegoose';
+import { prop, Typegoose } from '@typegoose/typegoose';
 import * as mongoose from 'mongoose';
 import { Mockgoose } from 'mockgoose';
 

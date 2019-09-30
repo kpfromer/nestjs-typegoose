@@ -138,13 +138,6 @@
     exec-sh "^0.3.2"
     minimist "^1.2.0"
 
-"@hasezoey/typegoose@^5.9.2":
-  version "5.9.2"
-  resolved "https://registry.yarnpkg.com/@hasezoey/typegoose/-/typegoose-5.9.2.tgz#10e949ba04da61156416448f9d5990794dd15fd3"
-  integrity sha512-PwbOGJi9IggUF8E2K3fEHSEoBgXV3nlDd1H6m/rjC9iWG1GeKHAp9gp0SPZh3e/5rJ3vWbfWbyukD/pMT3tbxA==
-  dependencies:
-    reflect-metadata "^0.1.13"
-
 "@jest/console@^24.7.1", "@jest/console@^24.9.0":
   version "24.9.0"
   resolved "https://registry.yarnpkg.com/@jest/console/-/console-24.9.0.tgz#79b1bc06fb74a8cfb01cbdedf945584b1b9707f0"
@@ -339,6 +332,13 @@
     chalk "^2.4.1"
     consola "^2.3.0"
     node-fetch "^2.3.0"
+
+"@typegoose/typegoose@^5.9.2":
+  version "5.9.2"
+  resolved "https://registry.yarnpkg.com/@typegoose/typegoose/-/typegoose-5.9.2.tgz#6ce1f8ab816151c44a1fbe51d51f559011231227"
+  integrity sha512-aNA03ZbHSwT9ft5WdzbIYOhqLPXunUMV6OVd7ak6zR7G1azm+YQqmlSF+u8W/WTPHn4YQnn1IqTGlndR6i74Cw==
+  dependencies:
+    reflect-metadata "^0.1.13"
 
 "@types/babel__core@^7.1.0":
   version "7.1.3"
