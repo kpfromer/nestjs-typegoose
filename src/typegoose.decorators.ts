@@ -1,5 +1,5 @@
 import { Inject } from '@nestjs/common';
-import { Typegoose } from '@hasezoey/typegoose';
+import { Typegoose } from '@typegoose/typegoose';
 import { TypegooseClass } from './typegoose-class.interface';
 import { getModelToken } from './typegoose.utils';
 
