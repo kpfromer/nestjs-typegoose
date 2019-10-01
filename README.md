@@ -1,4 +1,5 @@
 # nestjs-typegoose
+
 [![NPM](https://nodei.co/npm/nestjs-typegoose.png)](https://nodei.co/npm/nestjs-typegoose/)
 [![npm version](https://badge.fury.io/js/nestjs-typegoose.svg)](https://badge.fury.io/js/nestjs-typegoose)
 [![Build Status](https://travis-ci.org/kpfromer/nestjs-typegoose.svg?branch=master)](https://travis-ci.org/kpfromer/nestjs-typegoose)
@@ -17,12 +18,18 @@ Using Typegoose removes the need for having a Model interface.
 ## Basic usage
 
 **app.module.ts**
+
 ```typescript
-import { Module } from '@nestjs/common';
-import { TypegooseModule } from 'nestjs-typegoose';
+import { Module } from "@nestjs/common";
+import { TypegooseModule } from "nestjs-typegoose";
 
 @Module({
-  imports: [TypegooseModule.forRoot('mongodb://localhost:27017/nest', { useNewUrlParser: true }), CatsModule],
+  imports: [
+    TypegooseModule.forRoot("mongodb://localhost:27017/nest", {
+      useNewUrlParser: true
+    }),
+    CatsModule
+  ]
 })
 export class ApplicationModule {}
 ```
@@ -30,9 +37,10 @@ export class ApplicationModule {}
 Create class that extends [Typegoose](https://github.com/szokodiakos/typegoose#motivation)
 
 **cat.model.ts**
+
 ```typescript
-import { prop, Typegoose } from 'typegoose';
-import { IsString } from 'class-validator';
+import { prop, Typegoose } from "@hasezoey/typegoose";
+import { IsString } from "class-validator";
 
 export class Cat extends Typegoose {
   @IsString()
@@ -44,12 +52,13 @@ export class Cat extends Typegoose {
 Inject Cat for `CatsModule`
 
 **cat.module.ts**
+
 ```typescript
-import { Module } from '@nestjs/common';
-import { TypegooseModule } from 'nestjs-typegoose';
-import { Cat } from './cat.model';
-import { CatsController } from './cats.controller'
-import { CatsService } from './cats.service';
+import { Module } from "@nestjs/common";
+import { TypegooseModule } from "nestjs-typegoose";
+import { Cat } from "./cat.model";
+import { CatsController } from "./cats.controller";
+import { CatsService } from "./cats.service";
 
 @Module({
   imports: [TypegooseModule.forFeature([Cat])],
@@ -62,11 +71,12 @@ export class CatsModule {}
 Get the cat model in a service
 
 **cats.service.ts**
+
 ```typescript
-import { Injectable } from '@nestjs/common';
-import { InjectModel } from 'nestjs-typegoose';
-import { Cat } from './cat.model';
-import { ModelType } from 'typegoose';
+import { Injectable } from "@nestjs/common";
+import { InjectModel } from "nestjs-typegoose";
+import { Cat } from "./cat.model";
+import { ModelType } from "@hasezoey/typegoose";
 
 @Injectable()
 export class CatsService {
@@ -88,22 +98,22 @@ Finally, use the service in a controller!
 **cats.controller.ts**
 
 ```typescript
-import { Controller, Get, Post, Body } from '@nestjs/common';
-import { CatsService } from './cats.service';
+import { Controller, Get, Post, Body } from "@nestjs/common";
+import { CatsService } from "./cats.service";
 
-@Controller('cats')
+@Controller("cats")
 export class CatsController {
-    constructor(private readonly catsService: CatsService) {}
-    
-    @Get()
-    async getCats(): Promise<Cat[] | null> {
-      return await this.catsService.findAll();
-    }
+  constructor(private readonly catsService: CatsService) {}
 
-    @Post()
-    async create(@Body() cat: Cat): Promise<Cat> {
-       return await this.catsService.create(cat);
-    }
+  @Get()
+  async getCats(): Promise<Cat[] | null> {
+    return await this.catsService.findAll();
+  }
+
+  @Post()
+  async create(@Body() cat: Cat): Promise<Cat> {
+    return await this.catsService.create(cat);
+  }
 }
 ```
 
@@ -115,12 +125,14 @@ you can simply change `Typegoose.forFeature` to the following format:
 ```typescript
 @Module({
   imports: [
-    TypegooseModule.forFeature([{
-      typegooseClass: Cat,
-      schemaOptions: {
-        collection: 'ADifferentCollectionNameForCats'
+    TypegooseModule.forFeature([
+      {
+        typegooseClass: Cat,
+        schemaOptions: {
+          collection: "ADifferentCollectionNameForCats"
+        }
       }
-    }])
+    ])
   ]
 })
 export class CatsModule {}
@@ -136,7 +148,7 @@ To provide asynchronous mongoose schema options (similar to [nestjs mongoose imp
     TypegooseModule.forRootAsync({
       imports: [ConfigModule],
       useFactory: async (configService: ConfigService) => ({
-        uri: configService.getString('MONGODB_URI'),
+        uri: configService.getString("MONGODB_URI")
         // ...typegooseOptions (Note: config is spread with the uri)
       }),
       inject: [ConfigService]
@@ -153,14 +165,19 @@ The typegooseOptions is spread with the `uri`. The `uri` is required!
 You can also use a class with `useClass`
 
 ```typescript
-import { TypegooseOptionsFactory, TypegooseModuleOptions } from 'nestjs-typegoose';
+import {
+  TypegooseOptionsFactory,
+  TypegooseModuleOptions
+} from "nestjs-typegoose";
 
 class TypegooseConfigService extends TypegooseOptionsFactory {
-  createTypegooseOptions(): Promise<TypegooseModuleOptions> | TypegooseModuleOptions {
+  createTypegooseOptions():
+    | Promise<TypegooseModuleOptions>
+    | TypegooseModuleOptions {
     return {
-      uri: 'mongodb://localhost/nest'
-    }
-  };
+      uri: "mongodb://localhost/nest"
+    };
+  }
 }
 
 @Module({
@@ -180,7 +197,7 @@ Or if you want to prevent creating another `TypegooseConfigService` class and wa
   imports: [
     TypegooseModule.forAsyncRoot({
       imports: [ConfigModule],
-      useExisting: ConfigService,
+      useExisting: ConfigService
     })
   ]
 })
@@ -192,20 +209,28 @@ export class CatsModule {}
 To have multiple mongoDB connections one needs to add a `connectionName` string to `forRoot` and `forFeature`.
 
 **app.module.ts**
+
 ```typescript
-import { Module } from '@nestjs/common';
-import { TypegooseModule } from 'nestjs-typegoose';
+import { Module } from "@nestjs/common";
+import { TypegooseModule } from "nestjs-typegoose";
 
 @Module({
-  imports: [TypegooseModule.forRoot('mongodb://localhost:27017/otherdb', { useNewUrlParser: true, connctionName: 'other-mongodb' }), CatsModule],
+  imports: [
+    TypegooseModule.forRoot("mongodb://localhost:27017/otherdb", {
+      useNewUrlParser: true,
+      connctionName: "other-mongodb"
+    }),
+    CatsModule
+  ]
 })
 export class ApplicationModule {}
 ```
 
 **cat.module.ts**
+
 ```typescript
 @Module({
-  imports: [TypegooseModule.forFeature([Cat], 'other-mongodb')],
+  imports: [TypegooseModule.forFeature([Cat], "other-mongodb")],
   controllers: [CatsController],
   providers: [CatsService]
 })
@@ -218,10 +243,10 @@ And for `forAsyncRoot` add `connectionName` to the options as well.
 @Module({
   imports: [
     TypegooseModule.forAsyncRoot({
-      connectionName: 'other-mongodb',
+      connectionName: "other-mongodb",
       imports: [ConfigModule],
       useFactory: async (configService: ConfigService) => ({
-        uri: configService.getString('MONGODB_URI'),
+        uri: configService.getString("MONGODB_URI"),
         connectionName: config
         // ...typegooseOptions (Note: config is spread with the uri)
       }),
@@ -256,11 +281,11 @@ In a spec file this would look like:
 const module: TestingModule = await Test.createTestingModule({
   providers: [
     {
-      provide: getModelToken('Product'),
-      useValue: productModel,
+      provide: getModelToken("Product"),
+      useValue: productModel
     },
     ProductService
-  ],
+  ]
 }).compile();
 ```
 
@@ -278,11 +303,11 @@ The string given to `getModelToken` function should be the class name of the typ
 
 ## Requirements
 
-1.  Typegoose +5.2.1
+1.  @hasezoey/typegoose +5.9.2
 2.  @nestjs/common +5.0.0
 3.  @nestjs/core +5.0.0
 4.  mongoose (with typings `@types/mongoose`) +5.1.1
 
 ## License
 
-  nestjs-typegoose is [MIT licensed](LICENSE).
+nestjs-typegoose is [MIT licensed](LICENSE).

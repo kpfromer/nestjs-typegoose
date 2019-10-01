@@ -6,12 +6,12 @@
   "types": "dist/index.d.ts",
   "typings": "dist/index.d.ts",
   "scripts": {
-    "build": "rimraf dist && tsc -p tsconfig.json",
+    "build": "gulp build",
     "test": "jest",
     "test:ci": "jest --forceExit",
     "test:cov": "jest --coverage --forceExit",
     "test:e2e": "jest --config ./test/jest-e2e.json",
-    "coverage": "npm test:cov && cat ./coverage/lcov.info | coveralls"
+    "coverage": "yarn run test:cov && cat ./coverage/lcov.info | coveralls"
   },
   "author": "Kyle Pfromer",
   "license": "MIT",
@@ -20,35 +20,36 @@
     "url": "https://github.com/kpfromer/nestjs-typegoose"
   },
   "peerDependencies": {
-    "mongoose": "^5.5.13",
+    "@hasezoey/typegoose": "^5.9.2",
     "@nestjs/common": "^6.3.1",
     "@nestjs/core": "^6.3.1",
-    "typegoose": "^5.7.1"
+    "mongoose": "^5.5.13"
   },
   "dependencies": {
-    "reflect-metadata": "^0.1.13",
-    "is-class": "^0.0.7"
+    "is-class": "^0.0.7",
+    "reflect-metadata": "^0.1.13"
   },
   "devDependencies": {
-    "@nestjs/common": "^6.3.1",
-    "@nestjs/core": "^6.3.1",
-    "@nestjs/testing": "^6.3.1",
-    "@types/jest": "^24.0.13",
-    "@types/mongoose": "^5.5.5",
-    "@types/supertest": "^2.0.4",
-    "body-parser": "latest",
-    "coveralls": "^3.0.0",
-    "express": "latest",
-    "jest": "^24.8.0",
+    "@hasezoey/typegoose": "^5.9.2",
+    "@nestjs/common": "^6.7.2",
+    "@nestjs/core": "^6.7.2",
+    "@nestjs/platform-express": "^6.7.2",
+    "@nestjs/testing": "^6.7.2",
+    "@types/jest": "^24.0.18",
+    "@types/mongoose": "^5.5.18",
+    "@types/supertest": "^2.0.8",
+    "coveralls": "^3.0.6",
+    "gulp": "^4.0.2",
+    "gulp-typescript": "^5.0.1",
+    "jest": "^24.9.0",
     "mockgoose": "latest",
-    "mongoose": "^5.1.8",
-    "rimraf": "^2.6.3",
-    "rxjs": "^6.1.0",
+    "mongoose": "^5.7.1",
+    "rimraf": "^2.7.1",
+    "rxjs": "^6.5.3",
     "supertest": "latest",
-    "ts-jest": "^24.0.2",
-    "tslint": "^5.17.0",
-    "typegoose": "^5.2.1",
-    "typescript": "3.5.1"
+    "ts-jest": "^24.1.0",
+    "tslint": "^5.20.0",
+    "typescript": "3.4.3"
   },
   "jest": {
     "moduleFileExtensions": [

@@ -6,12 +6,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [6.0.0] - 2019-09-29
+### Changed
+- **BREAKING CHANGE**: `nestjs-typegoose` uses `@hasezoey/typegoose` as a peer dependency instead of `typegoose` now. 
+
 ## [5.2.0] - 2019-06-06
 ### Added
 - Multiple database connections.
 
 ### Changed
-- BREAKING CHANGE: models are no long spread for `forFeature`. For example:
+- **BREAKING CHANGE:** models are no long spread for `forFeature`. For example:
 Before:
 ```typescript
 @Module({
