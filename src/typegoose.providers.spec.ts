@@ -1,6 +1,7 @@
-import { prop, Typegoose } from '@typegoose/typegoose';
+import { prop } from '@typegoose/typegoose';
 import { convertToTypegooseClassWithOptions, createTypegooseProviders } from './typegoose.providers';
 import * as mongoose from 'mongoose';
+import * as typegoose from '@typegoose/typegoose';
 import { Connection } from 'mongoose';
 import { Mockgoose } from 'mockgoose';
 import { DEFAULT_DB_CONNECTION_NAME, TYPEGOOSE_MODULE_OPTIONS, TYPEGOOSE_CONNECTION_NAME } from './typegoose.constants';
@@ -8,12 +9,12 @@ import any = jasmine.any;
 
 const mockgoose: Mockgoose = new Mockgoose(mongoose);
 
-class MockUser extends Typegoose {
+class MockUser {
   @prop()
   name: string;
 }
 
-class MockTask extends Typegoose {
+class MockTask {
   @prop()
   description: string;
 }
@@ -27,8 +28,8 @@ describe('createTypegooseProviders', () => {
 
     connection = await mongoose.createConnection('mongodb://foobar/baz');
     setTimeout(() => {
-      connection.close(err =>{
-        if(err) return console.log(err);
+      connection.close(err => {
+        if (err) return console.log(err);
         console.log('disconnected');
       });
     }, 60000);
@@ -42,10 +43,8 @@ describe('createTypegooseProviders', () => {
   describe('setModelForClass', () => {
     let mockSetModel, MockTypegooseClass, mockConnection, schemaOptions, provider;
     beforeEach(() => {
-      mockSetModel = jest.fn();
-      MockTypegooseClass = jest.fn().mockImplementation(() => ({
-        setModelForClass: mockSetModel
-      }));
+      mockSetModel = jest.spyOn(typegoose, 'getModelForClass').mockImplementation(() => jest.fn());
+      MockTypegooseClass = jest.fn();
       mockConnection = jest.fn() as any;
 
       schemaOptions = {
@@ -61,6 +60,10 @@ describe('createTypegooseProviders', () => {
 
       ([ provider ] = createTypegooseProviders(DEFAULT_DB_CONNECTION_NAME, models));
       provider.useFactory(mockConnection);
+    });
+
+    afterEach(() => {
+      jest.restoreAllMocks();
     });
 
     it('should setup the database model', () => {
@@ -79,7 +82,6 @@ describe('createTypegooseProviders', () => {
       }));
     });
   });
-
 
   it('should create typegoose providers from models', () => {
 
@@ -124,7 +126,7 @@ describe('createTypegooseProviders', () => {
 
   afterAll(() => {
     connection.close();
-  })
+  });
 });
 
 class MockTypegooseClass {}
@@ -152,7 +154,7 @@ describe('convertToTypegooseClassWithOptions', () => {
       expect(convertToTypegooseClassWithOptions({
         // @ts-ignore
         something: 'different'
-      }))
+      }));
     };
 
     expect(handler).toThrowErrorMatchingSnapshot();

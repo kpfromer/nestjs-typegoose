@@ -333,11 +333,12 @@
     consola "^2.3.0"
     node-fetch "^2.3.0"
 
-"@typegoose/typegoose@^5.9.2":
-  version "5.9.2"
-  resolved "https://registry.yarnpkg.com/@typegoose/typegoose/-/typegoose-5.9.2.tgz#6ce1f8ab816151c44a1fbe51d51f559011231227"
-  integrity sha512-aNA03ZbHSwT9ft5WdzbIYOhqLPXunUMV6OVd7ak6zR7G1azm+YQqmlSF+u8W/WTPHn4YQnn1IqTGlndR6i74Cw==
+"@typegoose/typegoose@^6.0.0":
+  version "6.0.0"
+  resolved "https://registry.yarnpkg.com/@typegoose/typegoose/-/typegoose-6.0.0.tgz#2c0c840222c492fda04294bc0034c3a2ded5cb5f"
+  integrity sha512-EQCSCwmB6/5iriBAzwIY3MmKzDf8Y50wh/82xXkonIRgRD8aS7u2CgYPvNRASZPIxEF/jlROVDzKJ44TrInprA==
   dependencies:
+    loglevel "^1.6.4"
     reflect-metadata "^0.1.13"
 
 "@types/babel__core@^7.1.0":
@@ -3548,6 +3549,11 @@ log-driver@^1.2.7:
   version "1.2.7"
   resolved "https://registry.yarnpkg.com/log-driver/-/log-driver-1.2.7.tgz#63b95021f0702fedfa2c9bb0a24e7797d71871d8"
   integrity sha512-U7KCmLdqsGHBLeWqYlFA0V0Sl6P08EE1ZrmA9cxjUE0WVqT9qnyVDPz1kzpFEP0jdJuFnasWIfSd7fsaNXkpbg==
+
+loglevel@^1.6.4:
+  version "1.6.4"
+  resolved "https://registry.yarnpkg.com/loglevel/-/loglevel-1.6.4.tgz#f408f4f006db8354d0577dcf6d33485b3cb90d56"
+  integrity sha512-p0b6mOGKcGa+7nnmKbpzR6qloPbrgLcnio++E+14Vo/XffOGwZtRpUhr8dTH/x2oCMmEoIU0Zwm3ZauhvYD17g==
 
 loose-envify@^1.0.0:
   version "1.4.0"
