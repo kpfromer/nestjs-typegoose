@@ -39,10 +39,10 @@ Create class that extends [Typegoose](https://github.com/szokodiakos/typegoose#m
 **cat.model.ts**
 
 ```typescript
-import { prop, Typegoose } from "@hasezoey/typegoose";
+import { prop } from "@typegoose/typegoose";
 import { IsString } from "class-validator";
 
-export class Cat extends Typegoose {
+export class Cat {
   @IsString()
   @prop({ required: true })
   name: string;
@@ -76,11 +76,11 @@ Get the cat model in a service
 import { Injectable } from "@nestjs/common";
 import { InjectModel } from "nestjs-typegoose";
 import { Cat } from "./cat.model";
-import { ModelType } from "@hasezoey/typegoose";
+import { ReturnModelType } from "@typegoose/typegoose";
 
 @Injectable()
 export class CatsService {
-  constructor(@InjectModel(Cat) private readonly catModel: ModelType<Cat>) {}
+  constructor(@InjectModel(Cat) private readonly catModel: ReturnModelType<typeof Cat>) {}
 
   async create(createCatDto: { name: string }): Promise<Cat> {
     const createdCat = new this.catModel(createCatDto);
@@ -303,7 +303,7 @@ The string given to `getModelToken` function should be the class name of the typ
 
 ## Requirements
 
-1.  @hasezoey/typegoose +5.9.2
+1.  @typegoose/typegoose +6.0.0
 2.  @nestjs/common +5.0.0
 3.  @nestjs/core +5.0.0
 4.  mongoose (with typings `@types/mongoose`) +5.1.1

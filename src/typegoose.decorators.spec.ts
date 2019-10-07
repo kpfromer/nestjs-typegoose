@@ -1,4 +1,4 @@
-import {prop, Typegoose} from '@hasezoey/typegoose';
+import {prop} from '@typegoose/typegoose';
 import * as nest from '@nestjs/common';
 import {InjectModel} from './typegoose.decorators';
 
@@ -6,7 +6,7 @@ jest.mock('@nestjs/common', () => ({
   Inject: jest.fn()
 }));
 
-class MockUser extends Typegoose {
+class MockUser {
   @prop()
   name: string;
 }

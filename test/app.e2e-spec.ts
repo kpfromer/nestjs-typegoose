@@ -1,19 +1,20 @@
 import * as request from 'supertest';
-import { Test } from '@nestjs/testing';
-import { Body, Controller, Module, Post } from '@nestjs/common';
-import { InjectModel, TypegooseModule } from '../src';
-import { prop, Typegoose } from '@hasezoey/typegoose';
+import {Test} from '@nestjs/testing';
+import {Body, Controller, Module, Post} from '@nestjs/common';
+import {InjectModel, TypegooseModule} from '../src';
+import {prop} from '@typegoose/typegoose';
 import * as mongoose from 'mongoose';
-import { Mockgoose } from 'mockgoose';
+import {Mockgoose} from 'mockgoose';
 
 const mockgoose: Mockgoose = new Mockgoose(mongoose);
 
 @Module({
   imports: [TypegooseModule.forRoot('mongoose:uri')]
 })
-export class MockApp {}
+export class MockApp {
+}
 
-class MockTypegooseClass extends Typegoose {
+class MockTypegooseClass {
 
   @prop()
   description;
@@ -21,17 +22,18 @@ class MockTypegooseClass extends Typegoose {
 
 @Controller()
 class MockController {
-  constructor(@InjectModel(MockTypegooseClass) private readonly model: any) {} // In reality, it's a Model<schema of MockTypegooseClass>
+  constructor(@InjectModel(MockTypegooseClass) private readonly model: any) {
+  } // In reality, it's a Model<schema of MockTypegooseClass>
 
   @Post('create')
-  async createTask(@Body() body: {description: string}) {
+  async createTask(@Body() body: { description: string }) {
     return this.model.create({
       description: body.description
     });
   }
 
   @Post('get')
-  async getTask(@Body() body: {description: string}) {
+  async getTask(@Body() body: { description: string }) {
     return this.model.findOne({
       description: body.description
     });
@@ -43,7 +45,8 @@ class MockController {
   imports: [TypegooseModule.forFeature([MockTypegooseClass])],
   controllers: [MockController]
 })
-class MockSubModule {}
+class MockSubModule {
+}
 
 describe('App consuming TypegooseModule', () => {
   let app;
@@ -78,5 +81,5 @@ describe('App consuming TypegooseModule', () => {
     expect(body.description).toBe('hello world');
   });
 
-  afterAll(() => mockgoose.shutdown())
+  afterAll(() => mockgoose.shutdown());
 });
