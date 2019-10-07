@@ -1,18 +1,17 @@
 import { TypegooseModule } from './typegoose.module';
 import { TypegooseCoreModule as CoreModule } from './typegoose-core.module';
-import { prop, Typegoose } from '@typegoose/typegoose';
+import { prop } from '@typegoose/typegoose';
 import * as createProviders from './typegoose.providers';
 
-class MockTask extends Typegoose {
+class MockTask {
   @prop()
   description: string;
 }
 
-class MockUser extends Typegoose {
+class MockUser {
   @prop()
   name: string;
 }
-
 
 describe('TypegooseModule', () => {
 
@@ -33,7 +32,7 @@ describe('TypegooseModule', () => {
         ]
       });
 
-      expect(CoreModule.forRoot).toHaveBeenCalledWith('mongourl', {db: 'db settings'})
+      expect(CoreModule.forRoot).toHaveBeenCalledWith('mongourl', {db: 'db settings'});
     });
 
     it('should call global CoreModule forRoot with empty config', () => {
@@ -60,7 +59,7 @@ describe('TypegooseModule', () => {
             db: 'db settings'
           };
         }
-      }
+      };
 
       const module = TypegooseModule.forRootAsync(options);
 
@@ -131,7 +130,7 @@ describe('TypegooseModule', () => {
       const connectionName = 'OtherMongoDB';
 
       const module = TypegooseModule.forFeature(models, connectionName);
-      
+
       expect(createProviders.createTypegooseProviders).toHaveBeenCalledWith(connectionName, convertedModels);
     });
   });
