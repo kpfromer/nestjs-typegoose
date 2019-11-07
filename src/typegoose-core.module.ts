@@ -103,8 +103,15 @@ export class TypegooseCoreModule implements OnModuleDestroy {
 
     if (connection) {
       await connection.close();
-      models.clear();
-      constructors.clear();
+      [...models.entries()].reduce((array, [key, model]) => {
+        if (model.db === connection) {
+          array.push(key);
+        }
+        return array;
+      }, []).forEach((modelKey) => {
+        models.delete(modelKey);
+        constructors.delete(modelKey);
+      });
     }
   }
 }
