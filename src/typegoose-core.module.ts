@@ -1,4 +1,5 @@
 import * as mongoose from 'mongoose';
+import {models, constructors} from '@typegoose/typegoose/lib/internal/data';
 import { DynamicModule, Global, Module, Provider, OnModuleDestroy, Inject } from '@nestjs/common';
 import { ModuleRef } from '@nestjs/core';
 import { TypegooseOptionsFactory, TypegooseModuleOptions, TypegooseModuleAsyncOptions, TypegooseConnectionOptions } from './typegoose-options.interface';
@@ -102,6 +103,8 @@ export class TypegooseCoreModule implements OnModuleDestroy {
 
     if (connection) {
       await connection.close();
+      models.clear();
+      constructors.clear();
     }
   }
 }
