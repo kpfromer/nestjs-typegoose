@@ -15,9 +15,18 @@ export class MockApp {
 }
 
 class MockTypegooseClass {
-
   @prop()
   description;
+}
+
+class MockDiscriminatorParent extends MockTypegooseClass {
+  @prop()
+  isParent: boolean;
+}
+
+class MockDiscriminator extends MockDiscriminatorParent {
+  @prop()
+  isSubtype: boolean;
 }
 
 @Controller()
@@ -41,9 +50,38 @@ class MockController {
 
 }
 
+@Controller()
+class MockSubController {
+  constructor(@InjectModel(MockDiscriminator) private readonly model: any) {
+  } // In reality, it's a Model<schema of MockDiscriminator>
+
+  @Post('createSubTask')
+  async createSubTask(@Body() body: { description: string, isSubtype: boolean }) {
+    return this.model.create({
+      description: body.description,
+      isParent: false,
+      isSubtype: body.isSubtype
+    });
+  }
+
+  @Post('getSubTask')
+  async getSubTask(@Body() body: { isSubtype: boolean }) {
+    return this.model.findOne({
+      isSubtype: body.isSubtype
+    });
+  }
+
+}
+
 @Module({
-  imports: [TypegooseModule.forFeature([MockTypegooseClass])],
-  controllers: [MockController]
+  imports: [TypegooseModule.forFeature([
+                                         MockTypegooseClass,
+                                         {
+                                           typegooseClass: MockDiscriminatorParent,
+                                           discriminators: [MockDiscriminator],
+                                         },
+                                       ])],
+  controllers: [MockController, MockSubController]
 })
 class MockSubModule {
 }
@@ -79,6 +117,28 @@ describe('App consuming TypegooseModule', () => {
 
     expect(body._id).toBeTruthy();
     expect(body.description).toBe('hello world');
+  });
+
+  it('should store and get mockSubTask', async () => {
+    await request(app.getHttpServer())
+      .post('/createSubTask')
+      .send({
+        description: 'hello world',
+        isSubtype: true
+      });
+
+    const response = await request(app.getHttpServer())
+      .post('/getSubTask')
+      .send({
+        description: 'hello world',
+        isSubtype: true
+      });
+
+    const body = response.body;
+
+    expect(body._id).toBeTruthy();
+    expect(body.isParent).toBe(false);
+    expect(body.isSubtype).toBe(true);
   });
 
   afterAll(() => mockgoose.shutdown());

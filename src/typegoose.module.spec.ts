@@ -1,6 +1,6 @@
+import { prop } from '@typegoose/typegoose';
 import { TypegooseModule } from './typegoose.module';
 import { TypegooseCoreModule as CoreModule } from './typegoose-core.module';
-import { prop } from '@typegoose/typegoose';
 import * as createProviders from './typegoose.providers';
 
 class MockTask {
