@@ -1,10 +1,11 @@
 import * as mongoose from 'mongoose';
-import {models, constructors} from '@typegoose/typegoose/lib/internal/data';
+import { models } from '@typegoose/typegoose/lib/internal/data';
 import { DynamicModule, Global, Module, Provider, OnModuleDestroy, Inject } from '@nestjs/common';
 import { ModuleRef } from '@nestjs/core';
 import { TypegooseOptionsFactory, TypegooseModuleOptions, TypegooseModuleAsyncOptions, TypegooseConnectionOptions } from './typegoose-options.interface';
 import { TYPEGOOSE_CONNECTION_NAME, TYPEGOOSE_MODULE_OPTIONS } from './typegoose.constants';
 import { getConnectionToken } from './typegoose.utils';
+import { deleteModel } from '@typegoose/typegoose';
 
 @Global()
 @Module({})
@@ -109,8 +110,7 @@ export class TypegooseCoreModule implements OnModuleDestroy {
         }
         return array;
       }, []).forEach((modelKey) => {
-        models.delete(modelKey);
-        constructors.delete(modelKey);
+        deleteModel(modelKey);
       });
     }
   }
