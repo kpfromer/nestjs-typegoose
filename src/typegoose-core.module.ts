@@ -109,9 +109,7 @@ export class TypegooseCoreModule implements OnModuleDestroy {
           array.push(key);
         }
         return array;
-      }, []).forEach((modelKey) => {
-        deleteModel(modelKey);
-      });
+      }, []).forEach(deleteModel);
     }
   }
 }
