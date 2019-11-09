@@ -1,11 +1,11 @@
 {
   "extends": "./tsconfig.json",
   "exclude": [
-    "test/**/*.ts",
-    "**/*.spec.ts"
+    "**/*spec.ts",
+    "dist",
+    "build"
   ],
   "compilerOptions": {
-    "outDir": "dist",
-    "baseUrl": "src"
+    "outDir": "./dist"
   }
 }
