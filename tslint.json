@@ -7,7 +7,7 @@
     "no-unused-expression": true
   },
   "rules": {
-    "eofline": false,
+    "eofline": true,
     "quotemark": [
       true,
       "single"
@@ -38,19 +38,12 @@
     "arrow-parens": false,
     "object-literal-sort-keys": false,
     "no-unused-expression": false,
-    "max-classes-per-file": [
-      false
-    ],
-    "variable-name": [
-      false
-    ],
+    "max-classes-per-file": false,
+    "variable-name": false,
     "one-line": [
       false
     ],
-    "one-variable-per-declaration": [
-      false
-    ],
+    "one-variable-per-declaration": false,
     "trailing-comma": false
-  },
-  "rulesDirectory": []
+  }
 }
