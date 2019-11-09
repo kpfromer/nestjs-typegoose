@@ -20,19 +20,15 @@
   },
   "author": "Kyle Pfromer",
   "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/kpfromer/nestjs-typegoose"
-  },
+  "repository": "github:kpfromer/nestjs-typegoose",
   "peerDependencies": {
-    "@nestjs/common": "^6.3.1",
-    "@nestjs/core": "^6.3.1",
+    "@nestjs/common": "^6.7.2",
+    "@nestjs/core": "^6.7.2",
     "@typegoose/typegoose": "^6.0.0",
-    "mongoose": "^5.5.13"
+    "mongoose": "^5.7.1"
   },
   "dependencies": {
     "is-class": "^0.0.9",
-    "mongodb-memory-server": "^6.0.1",
     "reflect-metadata": "^0.1.13"
   },
   "devDependencies": {
@@ -45,9 +41,8 @@
     "@types/mongoose": "^5.5.18",
     "@types/supertest": "^2.0.8",
     "coveralls": "^3.0.6",
-    "gulp": "^4.0.2",
-    "gulp-typescript": "^5.0.1",
     "jest": "^24.9.0",
+    "mongodb-memory-server": "^6.0.1",
     "mongoose": "^5.7.1",
     "rxjs": "^6.5.3",
     "supertest": "latest",
@@ -58,7 +53,6 @@
   "jest": {
     "moduleFileExtensions": [
       "js",
-      "json",
       "ts"
     ],
     "rootDir": "src",
