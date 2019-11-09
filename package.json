@@ -5,6 +5,9 @@
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "typings": "dist/index.d.ts",
+  "engines": {
+    "node": ">=8.10.0"
+  },
   "scripts": {
     "build": "tsc",
     "lint": "tslint --project tsconfig.json",
