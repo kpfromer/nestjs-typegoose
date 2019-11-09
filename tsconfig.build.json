@@ -5,6 +5,7 @@
     "**/*.spec.ts"
   ],
   "compilerOptions": {
-    "outDir": "dist"
+    "outDir": "dist",
+    "baseUrl": "src"
   }
 }

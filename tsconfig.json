@@ -10,12 +10,13 @@
     "experimentalDecorators": true,
     "target": "es2017",
     "sourceMap": false,
-    "outDir": "./build",
+    "outDir": "build",
     "baseUrl": "./",
     "incremental": true,
+    "tsBuildInfoFile": ".tsbuildinfo",
     "lib": [
       "esnext"
     ]
   },
-  "exclude": ["node_modules", "dist"]
+  "exclude": ["node_modules", "dist", "build"]
 }
