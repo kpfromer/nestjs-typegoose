@@ -28,7 +28,7 @@
     "mongoose": "^5.5.13"
   },
   "dependencies": {
-    "is-class": "^0.0.7",
+    "is-class": "^0.0.9",
     "mongodb-memory-server": "^6.0.1",
     "reflect-metadata": "^0.1.13"
   },
@@ -46,12 +46,11 @@
     "gulp-typescript": "^5.0.1",
     "jest": "^24.9.0",
     "mongoose": "^5.7.1",
-    "rimraf": "^2.7.1",
     "rxjs": "^6.5.3",
     "supertest": "latest",
     "ts-jest": "^24.1.0",
     "tslint": "^5.20.0",
-    "typescript": "3.4.3"
+    "typescript": "3.7.2"
   },
   "jest": {
     "moduleFileExtensions": [
