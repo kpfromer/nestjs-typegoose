@@ -9,7 +9,7 @@
     "node": ">=8.10.0"
   },
   "scripts": {
-    "build": "tsc",
+    "build": "tsc -p tsconfig.build.json",
     "lint": "tslint --project tsconfig.json",
     "test": "jest",
     "test:ci": "jest --forceExit",
@@ -17,7 +17,7 @@
     "test:e2e": "jest --config ./test/jest-e2e.json",
     "test:watch": "jest --watch",
     "coverage": "yarn run test:cov && cat ./coverage/lcov.info | coveralls",
-    "prepare": "tsc"
+    "prepare": "npm run build"
   },
   "author": "Kyle Pfromer",
   "license": "MIT",

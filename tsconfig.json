@@ -3,6 +3,8 @@
     "module": "commonjs",
     "declaration": true,
     "noImplicitAny": false,
+    "strictBindCallApply": true,
+    "strictFunctionTypes": true,
     "removeComments": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
@@ -10,7 +12,10 @@
     "sourceMap": false,
     "outDir": "./dist",
     "baseUrl": "./",
-    "incremental": true
+    "incremental": true,
+    "lib": [
+      "esnext"
+    ]
   },
   "exclude": ["node_modules", "dist"]
 }
