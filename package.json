@@ -6,14 +6,15 @@
   "types": "dist/index.d.ts",
   "typings": "dist/index.d.ts",
   "scripts": {
-    "build": "gulp build",
+    "build": "tsc",
     "lint": "tslint --project tsconfig.json",
     "test": "jest",
     "test:ci": "jest --forceExit",
     "test:cov": "jest --coverage --forceExit",
     "test:e2e": "jest --config ./test/jest-e2e.json",
     "test:watch": "jest --watch",
-    "coverage": "yarn run test:cov && cat ./coverage/lcov.info | coveralls"
+    "coverage": "yarn run test:cov && cat ./coverage/lcov.info | coveralls",
+    "prepare": "tsc"
   },
   "author": "Kyle Pfromer",
   "license": "MIT",

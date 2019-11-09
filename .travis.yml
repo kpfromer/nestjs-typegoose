@@ -5,11 +5,12 @@ install:
 jobs:
   include:
     - stage: unit tests
-      script: yarn test:ci
+      script: yarn run test:ci
     - stage: build
-      script: yarn build
-      after_success: npm run coverage
+      script: yarn run build
+      after_success: yarn run coverage
     - stage: npm release
+      if: branch IN (npm-release) AND NOT type IN (pull_request) # this is that travis dosnt create a "deploy" job in an commit other than in "npm-release"
       script: echo "Deploying to npm ..."
       deploy:
         provider: npm
