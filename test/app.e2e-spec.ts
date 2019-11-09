@@ -4,9 +4,9 @@ import {Body, Controller, Module, Post} from '@nestjs/common';
 import {InjectModel, TypegooseModule} from '../src';
 import {prop} from '@typegoose/typegoose';
 import * as mongoose from 'mongoose';
-import {Mockgoose} from 'mockgoose';
+import { MongoMemoryServer } from 'mongodb-memory-server';
 
-const mockgoose: Mockgoose = new Mockgoose(mongoose);
+const mongod = new MongoMemoryServer();
 
 @Module({
   imports: [TypegooseModule.forRoot('mongoose:uri')]
@@ -52,7 +52,7 @@ describe('App consuming TypegooseModule', () => {
   let app;
 
   beforeAll(async () => {
-    await mockgoose.prepareStorage();
+    await mongod.getConnectionString();
 
     const moduleFixture = await Test.createTestingModule({
       imports: [MockApp, MockSubModule]
@@ -81,5 +81,5 @@ describe('App consuming TypegooseModule', () => {
     expect(body.description).toBe('hello world');
   });
 
-  afterAll(() => mockgoose.shutdown());
+  afterAll(() => mongod.stop());
 });
