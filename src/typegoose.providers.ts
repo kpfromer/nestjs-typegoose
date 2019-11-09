@@ -1,12 +1,12 @@
 import { getModelToken, getConnectionToken } from './typegoose.utils';
 import { TypegooseClass } from './typegoose-class.interface';
 import { Connection, SchemaOptions } from 'mongoose';
-import {getModelForClass} from '@typegoose/typegoose';
+import { getModelForClass } from '@typegoose/typegoose';
 import { isClass } from 'is-class';
 
-export type TypegooseClassWithOptions = {
-  typegooseClass: TypegooseClass,
-  schemaOptions?: SchemaOptions
+export interface TypegooseClassWithOptions {
+  typegooseClass: TypegooseClass;
+  schemaOptions?: SchemaOptions;
 }
 
 export const isTypegooseClassWithOptions = (item): item is TypegooseClassWithOptions =>

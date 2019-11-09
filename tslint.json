@@ -1,5 +1,5 @@
 {
-  "defaultSeverity": "error",
+  "defaultSeverity": "warn",
   "extends": [
     "tslint:recommended"
   ],
@@ -8,41 +8,45 @@
   },
   "rules": {
     "eofline": true,
+    "semicolon": true,
+    "no-unused-expression": true,
+    "no-unused-variable": true,
     "quotemark": [
       true,
       "single"
     ],
-    "indent": false,
-    "member-access": [
-      false
-    ],
-    "ordered-imports": [
-      false
+    "indent": [
+      true,
+      "spaces",
+      2
     ],
     "max-line-length": [
       true,
       150
     ],
-    "member-ordering": [
-      false
-    ],
+    "whitespace": {
+      "options": [
+        "check-branch",
+        "check-operator",
+        "check-separator",
+        "check-preblock",
+        "check-branch",
+        "check-module"
+      ]
+    },
+    "member-access": false,
+    "ordered-imports": false,
+    "member-ordering": false,
     "curly": false,
-    "interface-name": [
-      false
-    ],
-    "array-type": [
-      false
-    ],
+    "interface-name": false,
+    "array-type": false,
     "no-empty-interface": false,
     "no-empty": false,
     "arrow-parens": false,
     "object-literal-sort-keys": false,
-    "no-unused-expression": false,
     "max-classes-per-file": false,
     "variable-name": false,
-    "one-line": [
-      false
-    ],
+    "one-line": false,
     "one-variable-per-declaration": false,
     "trailing-comma": false
   }

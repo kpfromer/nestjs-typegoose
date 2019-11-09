@@ -1,4 +1,4 @@
-import { DEFAULT_DB_CONNECTION_NAME } from "./typegoose.constants";
+import { DEFAULT_DB_CONNECTION_NAME } from './typegoose.constants';
 
 export function getModelToken(model: string) {
   return `${model}Model`;

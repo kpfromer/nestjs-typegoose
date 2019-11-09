@@ -1,9 +1,8 @@
 import * as request from 'supertest';
-import {Test} from '@nestjs/testing';
-import {Body, Controller, Module, Post} from '@nestjs/common';
-import {InjectModel, TypegooseModule} from '../src';
-import {prop} from '@typegoose/typegoose';
-import * as mongoose from 'mongoose';
+import { Test } from '@nestjs/testing';
+import { Body, Controller, Module, Post } from '@nestjs/common';
+import { InjectModel, TypegooseModule } from '../src';
+import { prop } from '@typegoose/typegoose';
 import { MongoMemoryServer } from 'mongodb-memory-server';
 
 const mongod = new MongoMemoryServer();

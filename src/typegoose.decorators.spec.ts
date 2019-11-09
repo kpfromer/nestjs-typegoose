@@ -1,6 +1,6 @@
-import {prop} from '@typegoose/typegoose';
+import { prop } from '@typegoose/typegoose';
 import * as nest from '@nestjs/common';
-import {InjectModel} from './typegoose.decorators';
+import { InjectModel } from './typegoose.decorators';
 
 jest.mock('@nestjs/common', () => ({
   Inject: jest.fn()

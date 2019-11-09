@@ -4,17 +4,10 @@ import * as mongoose from 'mongoose';
 import * as typegoose from '@typegoose/typegoose';
 import { Connection } from 'mongoose';
 import { MongoMemoryServer } from 'mongodb-memory-server';
-import { DEFAULT_DB_CONNECTION_NAME, TYPEGOOSE_MODULE_OPTIONS, TYPEGOOSE_CONNECTION_NAME } from './typegoose.constants';
+import { DEFAULT_DB_CONNECTION_NAME } from './typegoose.constants';
 import any = jasmine.any;
 
 const mongod = new MongoMemoryServer();
-
-const options = {
-  useCreateIndex: true,
-  useFindAndModify: true,
-  useNewUrlParser: true,
-  useUnifiedTopology: true
-} as mongoose.ConnectionOptions;
 
 class MockUser {
   @prop()
@@ -32,14 +25,18 @@ describe('createTypegooseProviders', () => {
   beforeAll(async () => {
     jest.setTimeout(120000);
 
-    connection = await mongoose.createConnection(await mongod.getConnectionString(), options);
+    connection = await mongoose.createConnection(await mongod.getConnectionString(), {
+      useCreateIndex: true,
+      useFindAndModify: true,
+      useNewUrlParser: true,
+      useUnifiedTopology: true
+    });
     // setTimeout(() => {
     //   connection.close(err => {
     //     if (err) return console.log(err);
     //     console.log('disconnected');
     //   });
     // }, 60000);
-
   });
 
   afterAll(async () => {
@@ -48,10 +45,10 @@ describe('createTypegooseProviders', () => {
   });
 
   describe('setModelForClass', () => {
-    let mockSetModel, MockTypegooseClass, mockConnection, schemaOptions, provider;
+    let mockSetModel, MockTypegooseClass1, mockConnection, schemaOptions, provider;
     beforeEach(() => {
       mockSetModel = jest.spyOn(typegoose, 'getModelForClass').mockImplementation(() => jest.fn());
-      MockTypegooseClass = jest.fn();
+      MockTypegooseClass1 = jest.fn();
       mockConnection = jest.fn() as any;
 
       schemaOptions = {
@@ -60,7 +57,7 @@ describe('createTypegooseProviders', () => {
 
       const models = [
         {
-          typegooseClass: MockTypegooseClass,
+          typegooseClass: MockTypegooseClass1,
           schemaOptions
         }
       ];

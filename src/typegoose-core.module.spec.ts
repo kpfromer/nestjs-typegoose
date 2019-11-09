@@ -16,7 +16,7 @@ describe('TypegooseCoreModule', () => {
       const connectionNameProvider = {
         provide: TYPEGOOSE_CONNECTION_NAME,
         useValue: DEFAULT_DB_CONNECTION_NAME
-      }
+      };
 
       const connectionProvider = {
         provide: DEFAULT_DB_CONNECTION_NAME,
