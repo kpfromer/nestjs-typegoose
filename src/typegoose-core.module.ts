@@ -22,7 +22,7 @@ export class TypegooseCoreModule implements OnModuleDestroy {
     const connectionNameProvider = {
       provide: TYPEGOOSE_CONNECTION_NAME,
       useValue: connectionName
-    }
+    };
 
     const connectionProvider = {
       provide: connectionName,
@@ -42,7 +42,7 @@ export class TypegooseCoreModule implements OnModuleDestroy {
     const connectionNameProvider = {
       provide: TYPEGOOSE_CONNECTION_NAME,
       useValue: connectionName
-    }
+    };
 
     const connectionProvider = {
       provide: connectionName,
