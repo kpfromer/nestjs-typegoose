@@ -31,12 +31,6 @@ describe('createTypegooseProviders', () => {
       useNewUrlParser: true,
       useUnifiedTopology: true
     });
-    // setTimeout(() => {
-    //   connection.close(err => {
-    //     if (err) return console.log(err);
-    //     console.log('disconnected');
-    //   });
-    // }, 60000);
   });
 
   afterAll(async () => {
