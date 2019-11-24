@@ -4,6 +4,8 @@ install:
   - npm install
 jobs:
   include:
+    - stage: lint
+      script: yarn run lint
     - stage: unit tests
       script: yarn run coverage
     - stage: build
