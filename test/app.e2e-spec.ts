@@ -1,8 +1,8 @@
 import * as request from 'supertest';
 import {Test} from '@nestjs/testing';
-import {Body, Controller, Module, Post} from '@nestjs/common';
-import {InjectModel, TypegooseModule} from '../src';
-import {prop} from '@typegoose/typegoose';
+import {Body, Controller, INestApplication, Module, Post} from '@nestjs/common';
+import {getModelToken, InjectModel, TypegooseModule} from '../src';
+import {prop, ReturnModelType} from '@typegoose/typegoose';
 import * as mongoose from 'mongoose';
 import {Mockgoose} from 'mockgoose';
 
@@ -81,5 +81,40 @@ describe('App consuming TypegooseModule', () => {
     expect(body.description).toBe('hello world');
   });
 
+  afterAll(async () => {
+    await mockgoose.shutdown();
+    await app.close();
+  });
+});
+
+describe('Clear typegoose state after module destroy', () => {
+  let app: INestApplication;
+
+  beforeAll(async () => {
+    await mockgoose.prepareStorage();
+  });
+
+  beforeEach(async () => {
+    const moduleFixture = await Test.createTestingModule({
+      imports: [MockApp, MockSubModule]
+    }).compile();
+
+    app = moduleFixture.createNestApplication();
+    await app.init();
+  });
+
+  afterEach(async () => {
+    await app.close();
+  });
+
   afterAll(() => mockgoose.shutdown());
+
+  Array.from({length: 2}).forEach(() => {
+    it('resolved model should use correct connection', async () => {
+      const model = await app.get(getModelToken(MockTypegooseClass.name));
+      await model.create({
+        description: 'test'
+      });
+    });
+  });
 });

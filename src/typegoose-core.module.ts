@@ -1,9 +1,11 @@
 import * as mongoose from 'mongoose';
+import { models } from '@typegoose/typegoose/lib/internal/data';
 import { DynamicModule, Global, Module, Provider, OnModuleDestroy, Inject } from '@nestjs/common';
 import { ModuleRef } from '@nestjs/core';
 import { TypegooseOptionsFactory, TypegooseModuleOptions, TypegooseModuleAsyncOptions, TypegooseConnectionOptions } from './typegoose-options.interface';
 import { TYPEGOOSE_CONNECTION_NAME, TYPEGOOSE_MODULE_OPTIONS } from './typegoose.constants';
 import { getConnectionToken } from './typegoose.utils';
+import { deleteModel } from '@typegoose/typegoose';
 
 @Global()
 @Module({})
@@ -22,7 +24,7 @@ export class TypegooseCoreModule implements OnModuleDestroy {
     const connectionNameProvider = {
       provide: TYPEGOOSE_CONNECTION_NAME,
       useValue: connectionName
-    }
+    };
 
     const connectionProvider = {
       provide: connectionName,
@@ -42,7 +44,7 @@ export class TypegooseCoreModule implements OnModuleDestroy {
     const connectionNameProvider = {
       provide: TYPEGOOSE_CONNECTION_NAME,
       useValue: connectionName
-    }
+    };
 
     const connectionProvider = {
       provide: connectionName,
@@ -102,6 +104,12 @@ export class TypegooseCoreModule implements OnModuleDestroy {
 
     if (connection) {
       await connection.close();
+      [...models.entries()].reduce((array, [key, model]) => {
+        if (model.db === connection) {
+          array.push(key);
+        }
+        return array;
+      }, []).forEach(deleteModel);
     }
   }
 }
