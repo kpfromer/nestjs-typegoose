@@ -332,7 +332,7 @@
     consola "^2.3.0"
     node-fetch "^2.3.0"
 
-"@typegoose/typegoose@^6.0.0":
+"@typegoose/typegoose@^6.1.1":
   version "6.1.1"
   resolved "https://registry.yarnpkg.com/@typegoose/typegoose/-/typegoose-6.1.1.tgz#7bc1bfc0db966e6fa10177760c85fc8f70ed3382"
   integrity sha512-nqmsgZFgS8ws/WletvSvKN9jw4rGkMoUZDvRNJOhXJnP0REz4sFGoKxrtUYyGZMMS0SMhh89JmyA5rZY/MACJA==
@@ -3219,10 +3219,21 @@ mongodb-memory-server@^6.0.1:
   dependencies:
     mongodb-memory-server-core "6.0.1"
 
-mongodb@3.3.3, mongodb@^3.2.7:
+mongodb@3.3.3:
   version "3.3.3"
   resolved "https://registry.yarnpkg.com/mongodb/-/mongodb-3.3.3.tgz#509cad2225a1c56c65a331ed73a0d5d4ed5cbe67"
   integrity sha512-MdRnoOjstmnrKJsK8PY0PjP6fyF/SBS4R8coxmhsfEU7tQ46/J6j+aSHF2n4c2/H8B+Hc/Klbfp8vggZfI0mmA==
+  dependencies:
+    bson "^1.1.1"
+    require_optional "^1.0.1"
+    safe-buffer "^5.1.2"
+  optionalDependencies:
+    saslprep "^1.0.0"
+
+mongodb@^3.2.7:
+  version "3.3.4"
+  resolved "https://registry.yarnpkg.com/mongodb/-/mongodb-3.3.4.tgz#f52eec4a04005101e63715d4d1f67bf784fa0aef"
+  integrity sha512-6fmHu3FJTpeZxacJcfjUGIP3BSteG0l2cxLkSrf1nnnS1OrlnVGiP9P/wAC4aB6dM6H4vQ2io8YDjkuPkje7AA==
   dependencies:
     bson "^1.1.1"
     require_optional "^1.0.1"
@@ -3235,7 +3246,7 @@ mongoose-legacy-pluralize@1.0.2:
   resolved "https://registry.yarnpkg.com/mongoose-legacy-pluralize/-/mongoose-legacy-pluralize-1.0.2.tgz#3ba9f91fa507b5186d399fb40854bff18fb563e4"
   integrity sha512-Yo/7qQU4/EyIS8YDFSeenIvXxZN+ld7YdV9LqFVQJzTLye8unujAWPZ4NWKfFA+RNjh+wvTWKY9Z3E5XM6ZZiQ==
 
-mongoose@^5.7.1:
+mongoose@^5.7.9:
   version "5.7.9"
   resolved "https://registry.yarnpkg.com/mongoose/-/mongoose-5.7.9.tgz#c7b7684e079749a26cdcc59b7027aae5d2b8f0f8"
   integrity sha512-wXYY4+IEvplbEEeOxLVOHBGosBDNn/DYgwKzBFgsamCTvRQZHbdw88m9xUH8Srza+jdKND73/4XbQLynPseRAQ==
