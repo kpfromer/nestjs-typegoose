@@ -39,10 +39,10 @@ Create class that extends [Typegoose](https://github.com/szokodiakos/typegoose#m
 **cat.model.ts**
 
 ```typescript
-import { prop } from "@typegoose/typegoose";
+import { prop, Typegoose } from "@typegoose/typegoose";
 import { IsString } from "class-validator";
 
-export class Cat {
+export class Cat extends Typegoose {
   @IsString()
   @prop({ required: true })
   name: string;
