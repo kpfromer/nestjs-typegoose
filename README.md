@@ -34,7 +34,7 @@ import { TypegooseModule } from "nestjs-typegoose";
 export class ApplicationModule {}
 ```
 
-Create class that extends [Typegoose](https://github.com/szokodiakos/typegoose#motivation)
+Create class that describes your schema
 
 **cat.model.ts**
 
@@ -42,7 +42,7 @@ Create class that extends [Typegoose](https://github.com/szokodiakos/typegoose#m
 import { prop, Typegoose } from "@typegoose/typegoose";
 import { IsString } from "class-validator";
 
-export class Cat extends Typegoose {
+export class Cat {
   @IsString()
   @prop({ required: true })
   name: string;
