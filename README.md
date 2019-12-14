@@ -39,7 +39,7 @@ Create class that describes your schema
 **cat.model.ts**
 
 ```typescript
-import { prop, Typegoose } from "@typegoose/typegoose";
+import { prop } from "@typegoose/typegoose";
 import { IsString } from "class-validator";
 
 export class Cat {
