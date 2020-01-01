@@ -34,7 +34,7 @@ import { TypegooseModule } from "nestjs-typegoose";
 export class ApplicationModule {}
 ```
 
-Create class that extends [Typegoose](https://github.com/szokodiakos/typegoose#motivation)
+Create class that describes your schema
 
 **cat.model.ts**
 
