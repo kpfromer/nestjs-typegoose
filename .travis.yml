@@ -4,11 +4,10 @@ install:
   - npm install
 jobs:
   include:
-    - stage: unit tests
-      script: yarn test:ci
+    - stage: unit tests with coverage
+      script: yarn coverage
     - stage: build
       script: yarn build
-      after_success: npm run coverage
     - stage: npm release
       script: echo "Deploying to npm ..."
       deploy:
