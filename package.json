@@ -24,8 +24,8 @@
   "peerDependencies": {
     "@nestjs/common": "^6.10.1",
     "@nestjs/core": "^6.10.1",
-    "@typegoose/typegoose": "^6.1.5",
-    "mongoose": "^5.7.12"
+    "@typegoose/typegoose": "^6.2.1",
+    "mongoose": "^5.8.4"
   },
   "dependencies": {
     "is-class": "^0.0.9",
@@ -36,19 +36,19 @@
     "@nestjs/core": "^6.10.1",
     "@nestjs/platform-express": "^6.10.1",
     "@nestjs/testing": "^6.10.1",
-    "@typegoose/typegoose": "^6.1.5",
+    "@typegoose/typegoose": "^6.2.1",
     "@types/jest": "^24.0.18",
-    "@types/mongoose": "^5.5.32",
+    "@types/mongoose": "^5.5.38",
     "@types/supertest": "^2.0.8",
-    "coveralls": "^3.0.8",
+    "coveralls": "^3.0.9",
     "jest": "^24.9.0",
-    "mongodb-memory-server": "^6.0.1",
-    "mongoose": "^5.7.12",
-    "rxjs": "^6.5.3",
+    "mongodb-memory-server": "^6.2.1",
+    "mongoose": "^5.8.4",
+    "rxjs": "^6.5.4",
     "supertest": "latest",
     "ts-jest": "^24.2.0",
     "tslint": "^5.20.0",
-    "typescript": "3.7.2"
+    "typescript": "3.7.4"
   },
   "jest": {
     "moduleFileExtensions": [
