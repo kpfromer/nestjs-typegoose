@@ -1,6 +1,6 @@
 import * as mongoose from 'mongoose';
 import { models } from '@typegoose/typegoose/lib/internal/data';
-import { DynamicModule, Global, Module, Provider, OnModuleDestroy, Inject } from '@nestjs/common';
+import { DynamicModule, Global, Module, Provider, OnApplicationShutdown, Inject } from '@nestjs/common';
 import { ModuleRef } from '@nestjs/core';
 import { TypegooseOptionsFactory, TypegooseModuleOptions, TypegooseModuleAsyncOptions, TypegooseConnectionOptions } from './typegoose-options.interface';
 import { TYPEGOOSE_CONNECTION_NAME, TYPEGOOSE_MODULE_OPTIONS } from './typegoose.constants';
@@ -9,7 +9,7 @@ import { deleteModel } from '@typegoose/typegoose';
 
 @Global()
 @Module({})
-export class TypegooseCoreModule implements OnModuleDestroy {
+export class TypegooseCoreModule implements OnApplicationShutdown {
   constructor(
     @Inject(TYPEGOOSE_CONNECTION_NAME) private readonly connectionName: string,
     private readonly moduleRef: ModuleRef
@@ -99,7 +99,7 @@ export class TypegooseCoreModule implements OnModuleDestroy {
     };
   }
 
-  async onModuleDestroy() {
+  async onApplicationShutdown() {
     const connection = this.moduleRef.get<any>(this.connectionName);
 
     if (connection) {

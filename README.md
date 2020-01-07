@@ -24,6 +24,7 @@ You can checkout the `example` project for more details.
 ```typescript
 import { Module } from "@nestjs/common";
 import { TypegooseModule } from "nestjs-typegoose";
+import { CatsModule } from "./cat.module.ts";
 
 @Module({
   imports: [
@@ -82,7 +83,9 @@ import { ReturnModelType } from "@typegoose/typegoose";
 
 @Injectable()
 export class CatsService {
-  constructor(@InjectModel(Cat) private readonly catModel: ReturnModelType<typeof Cat>) {}
+  constructor(
+    @InjectModel(Cat) private readonly catModel: ReturnModelType<typeof Cat>
+  ) {}
 
   async create(createCatDto: { name: string }): Promise<Cat> {
     const createdCat = new this.catModel(createCatDto);
@@ -102,6 +105,7 @@ Finally, use the service in a controller!
 ```typescript
 import { Controller, Get, Post, Body } from "@nestjs/common";
 import { CatsService } from "./cats.service";
+import { Cat } from "./cats.model.ts";
 
 @Controller("cats")
 export class CatsController {

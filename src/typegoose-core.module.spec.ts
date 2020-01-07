@@ -170,7 +170,7 @@ describe('TypegooseCoreModule', () => {
         get: moduleRefGet
       } as any);
 
-      await coreModule.onModuleDestroy();
+      await coreModule.onApplicationShutdown();
 
       expect(moduleRefGet).toHaveBeenCalledWith(DEFAULT_DB_CONNECTION_NAME);
       expect(closeMock).toHaveBeenCalledTimes(1);
@@ -181,7 +181,7 @@ describe('TypegooseCoreModule', () => {
         get: () => null,
       } as any);
 
-      await expect(() => coreModule.onModuleDestroy()).not.toThrow();
+      await expect(() => coreModule.onApplicationShutdown()).not.toThrow();
     });
   });
 });
