@@ -221,3 +221,7 @@ $RECYCLE.BIN/
 dist/
 build/
 .tsbuildinfo
+
+# example project
+example/dist
+example/node_modules
