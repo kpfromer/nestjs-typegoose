@@ -4,57 +4,55 @@
   "description": "A nestjs module wrapper for typegoose",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
-  "typings": "dist/index.d.ts",
+  "engines": {
+    "node": ">=8.10.0"
+  },
   "scripts": {
-    "build": "gulp build",
+    "build": "tsc -p tsconfig.build.json",
+    "lint": "tslint --project tsconfig.json",
     "test": "jest",
     "test:ci": "jest --forceExit",
     "test:cov": "jest --coverage --forceExit",
     "test:e2e": "jest --config ./test/jest-e2e.json",
-    "coverage": "yarn run test:cov && cat ./coverage/lcov.info | coveralls"
+    "test:watch": "jest --watch",
+    "coverage": "yarn run test:cov && cat ./coverage/lcov.info | coveralls",
+    "prepare": "npm run build"
   },
   "author": "Kyle Pfromer",
   "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/kpfromer/nestjs-typegoose"
-  },
+  "repository": "github:kpfromer/nestjs-typegoose",
   "peerDependencies": {
-    "@typegoose/typegoose": "^6.1.1",
-    "@nestjs/common": "^6.3.1",
-    "@nestjs/core": "^6.3.1",
-    "mongoose": "^5.7.9"
+    "@nestjs/common": "^6.10.1",
+    "@nestjs/core": "^6.10.1",
+    "@typegoose/typegoose": "^6.2.1",
+    "mongoose": "^5.8.4"
   },
   "dependencies": {
-    "is-class": "^0.0.7",
+    "is-class": "^0.0.9",
     "reflect-metadata": "^0.1.13"
   },
   "devDependencies": {
-    "@typegoose/typegoose": "^6.1.1",
-    "@nestjs/common": "^6.7.2",
-    "@nestjs/core": "^6.7.2",
-    "@nestjs/platform-express": "^6.7.2",
-    "@nestjs/testing": "^6.7.2",
+    "@nestjs/common": "^6.10.13",
+    "@nestjs/core": "^6.10.13",
+    "@nestjs/platform-express": "^6.10.13",
+    "@nestjs/testing": "^6.10.13",
+    "@typegoose/typegoose": "^6.2.1",
     "@types/jest": "^24.0.18",
-    "@types/mongoose": "^5.5.18",
+    "@types/mongoose": "^5.5.38",
     "@types/supertest": "^2.0.8",
-    "coveralls": "^3.0.6",
-    "gulp": "^4.0.2",
-    "gulp-typescript": "^5.0.1",
+    "coveralls": "^3.0.9",
     "jest": "^24.9.0",
-    "mockgoose": "latest",
-    "mongoose": "^5.7.9",
-    "rimraf": "^2.7.1",
-    "rxjs": "^6.5.3",
+    "mongodb-memory-server": "^6.2.1",
+    "mongoose": "^5.8.4",
+    "rxjs": "^6.5.4",
     "supertest": "latest",
-    "ts-jest": "^24.1.0",
+    "ts-jest": "^24.2.0",
     "tslint": "^5.20.0",
-    "typescript": "3.5.3"
+    "typescript": "3.7.4"
   },
   "jest": {
     "moduleFileExtensions": [
       "js",
-      "json",
       "ts"
     ],
     "rootDir": "src",

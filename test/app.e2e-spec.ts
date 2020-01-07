@@ -1,12 +1,11 @@
 import * as request from 'supertest';
-import {Test} from '@nestjs/testing';
-import {Body, Controller, INestApplication, Module, Post} from '@nestjs/common';
-import {getModelToken, InjectModel, TypegooseModule} from '../src';
-import {prop, ReturnModelType} from '@typegoose/typegoose';
-import * as mongoose from 'mongoose';
-import {Mockgoose} from 'mockgoose';
+import { Test } from '@nestjs/testing';
+import { Body, Controller, Module, Post, INestApplication } from '@nestjs/common';
+import { InjectModel, TypegooseModule, getModelToken } from '../src';
+import { prop } from '@typegoose/typegoose';
+import { MongoMemoryServer } from 'mongodb-memory-server';
 
-const mockgoose: Mockgoose = new Mockgoose(mongoose);
+const mongod = new MongoMemoryServer();
 
 @Module({
   imports: [TypegooseModule.forRoot('mongoose:uri')]
@@ -52,7 +51,7 @@ describe('App consuming TypegooseModule', () => {
   let app;
 
   beforeAll(async () => {
-    await mockgoose.prepareStorage();
+    await mongod.getConnectionString();
 
     const moduleFixture = await Test.createTestingModule({
       imports: [MockApp, MockSubModule]
@@ -61,6 +60,8 @@ describe('App consuming TypegooseModule', () => {
     app = moduleFixture.createNestApplication();
     await app.init();
   });
+
+  afterAll(() => mongod.stop());
 
   it('should store and get mockTask', async () => {
     await request(app.getHttpServer())
@@ -80,19 +81,16 @@ describe('App consuming TypegooseModule', () => {
     expect(body._id).toBeTruthy();
     expect(body.description).toBe('hello world');
   });
-
-  afterAll(async () => {
-    await mockgoose.shutdown();
-    await app.close();
-  });
 });
 
 describe('Clear typegoose state after module destroy', () => {
   let app: INestApplication;
 
   beforeAll(async () => {
-    await mockgoose.prepareStorage();
+    await mongod.getConnectionString();
   });
+
+  afterAll(() => mongod.stop());
 
   beforeEach(async () => {
     const moduleFixture = await Test.createTestingModule({
@@ -106,8 +104,6 @@ describe('Clear typegoose state after module destroy', () => {
   afterEach(async () => {
     await app.close();
   });
-
-  afterAll(() => mockgoose.shutdown());
 
   Array.from({length: 2}).forEach(() => {
     it('resolved model should use correct connection', async () => {

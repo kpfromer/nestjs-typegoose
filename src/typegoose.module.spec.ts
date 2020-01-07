@@ -129,7 +129,7 @@ describe('TypegooseModule', () => {
     it('should return module that createdTypegooseProviders with provided connectionName', () => {
       const connectionName = 'OtherMongoDB';
 
-      const module = TypegooseModule.forFeature(models, connectionName);
+      TypegooseModule.forFeature(models, connectionName);
 
       expect(createProviders.createTypegooseProviders).toHaveBeenCalledWith(connectionName, convertedModels);
     });

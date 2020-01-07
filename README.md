@@ -305,10 +305,10 @@ The string given to `getModelToken` function should be the class name of the typ
 
 ## Requirements
 
-1.  @typegoose/typegoose +6.0.0
-2.  @nestjs/common +5.0.0
-3.  @nestjs/core +5.0.0
-4.  mongoose (with typings `@types/mongoose`) +5.1.1
+1.  @typegoose/typegoose +6.1.5
+2.  @nestjs/common +6.10.1
+3.  @nestjs/core +6.10.1
+4.  mongoose (with typings `@types/mongoose`) +5.7.12
 
 ## License
 
