@@ -17,6 +17,8 @@ Using Typegoose removes the need for having a Model interface.
 
 ## Basic usage
 
+You can checkout the `example` project for more details.
+
 **app.module.ts**
 
 ```typescript
