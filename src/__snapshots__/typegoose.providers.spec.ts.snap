@@ -1,3 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`convertToTypegooseClassWithOptions throws error if a discriminator is not a class or TypegooseDiscriminator 1`] = `"Invalid discriminator object"`;
+
 exports[`convertToTypegooseClassWithOptions throws error is not a class or not a TypegooseClassWithOptions 1`] = `"Invalid model object"`;
