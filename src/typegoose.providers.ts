@@ -19,14 +19,24 @@ export function createTypegooseProviders(connectionName: string,
   });
 
   const createDiscriminatorFactoryFrom = (parentFactory: ModelFactory) =>
-    ({ typegooseClass, discriminatorId }: TypegooseDiscriminator) => buildProvider(
-      typegooseClass,
-      (connection: Connection) => getDiscriminatorModelForClass(
-        parentFactory(connection),
-        typegooseClass,
-        discriminatorId,
-      ),
-    );
+    (discriminatorDefinition: TypegooseClass | TypegooseDiscriminator) => {
+      if (isTypegooseClass(discriminatorDefinition)) {
+        return buildProvider(discriminatorDefinition, (connection: Connection) =>
+          getDiscriminatorModelForClass(
+            parentFactory(connection),
+            discriminatorDefinition
+          )
+        );
+      }
+      const { typegooseClass, discriminatorId } = discriminatorDefinition;
+      return buildProvider(typegooseClass, (connection: Connection) =>
+        getDiscriminatorModelForClass(
+          parentFactory(connection),
+          typegooseClass,
+          discriminatorId
+        )
+      );
+    }
 
   return models.reduce(
     (providers, { typegooseClass, schemaOptions = {}, discriminators = [] }) => {
