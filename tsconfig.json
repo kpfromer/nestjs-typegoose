@@ -14,9 +14,7 @@
     "baseUrl": "./",
     "incremental": true,
     "tsBuildInfoFile": ".tsbuildinfo",
-    "lib": [
-      "esnext"
-    ]
+    "lib": ["esnext"]
   },
-  "exclude": ["node_modules", "dist", "build"]
+  "exclude": ["node_modules", "dist", "build", "example"]
 }
