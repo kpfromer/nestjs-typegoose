@@ -1,13 +1,13 @@
-import * as typegoose from "@typegoose/typegoose";
-import { prop, Ref } from "@typegoose/typegoose";
-import * as mongoose from "mongoose";
-import { Connection } from "mongoose";
-import { MongoMemoryServer } from "mongodb-memory-server";
-import { DEFAULT_DB_CONNECTION_NAME } from "./typegoose.constants";
+import * as typegoose from '@typegoose/typegoose';
+import { prop, Ref } from '@typegoose/typegoose';
+import * as mongoose from 'mongoose';
+import { Connection } from 'mongoose';
+import { MongoMemoryServer } from 'mongodb-memory-server';
+import { DEFAULT_DB_CONNECTION_NAME } from './typegoose.constants';
 import {
   createTypegooseProviders,
   convertToTypegooseClassWithOptions
-} from "./typegoose.providers";
+} from './typegoose.providers';
 import any = jasmine.any;
 
 const mongod = new MongoMemoryServer();
@@ -32,7 +32,7 @@ class MockTask {
   description: string;
 }
 
-describe("createTypegooseProviders", () => {
+describe('createTypegooseProviders', () => {
   let connection: Connection;
 
   beforeAll(async () => {
@@ -54,7 +54,7 @@ describe("createTypegooseProviders", () => {
     await mongod.stop();
   });
 
-  describe("setModelForClass", () => {
+  describe('setModelForClass', () => {
     let mockSetModel,
       MockTypegooseClass1,
       mockConnection,
@@ -62,13 +62,13 @@ describe("createTypegooseProviders", () => {
       provider;
     beforeEach(() => {
       mockSetModel = jest
-        .spyOn(typegoose, "getModelForClass")
+        .spyOn(typegoose, 'getModelForClass')
         .mockImplementation(() => jest.fn());
       MockTypegooseClass1 = jest.fn();
       mockConnection = jest.fn() as any;
 
       schemaOptions = {
-        collection: "newCollectionName"
+        collection: 'newCollectionName'
       };
 
       const models = [
@@ -86,11 +86,11 @@ describe("createTypegooseProviders", () => {
       jest.restoreAllMocks();
     });
 
-    it("should setup the database model", () => {
+    it('should setup the database model', () => {
       expect(mockSetModel).toHaveBeenCalled();
     });
 
-    it("should use existing connection from DbConnectionToken", () => {
+    it('should use existing connection from DbConnectionToken', () => {
       expect(mockSetModel.mock.calls[0][1]).toEqual(
         expect.objectContaining({
           existingConnection: mockConnection
@@ -98,7 +98,7 @@ describe("createTypegooseProviders", () => {
       );
     });
 
-    it("should forward schema options to typegoose", () => {
+    it('should forward schema options to typegoose', () => {
       expect(mockSetModel.mock.calls[0][1]).toEqual(
         expect.objectContaining({
           schemaOptions
@@ -107,7 +107,7 @@ describe("createTypegooseProviders", () => {
     });
   });
 
-  it("should create typegoose providers from models", () => {
+  it('should create typegoose providers from models', () => {
     jest.setTimeout(30000);
 
     const models = [
@@ -126,12 +126,12 @@ describe("createTypegooseProviders", () => {
 
     expect(providers).toEqual([
       {
-        provide: "MockUserModel",
+        provide: 'MockUserModel',
         useFactory: any(Function),
         inject: [DEFAULT_DB_CONNECTION_NAME]
       },
       {
-        provide: "MockTaskModel",
+        provide: 'MockTaskModel',
         useFactory: any(Function),
         inject: [DEFAULT_DB_CONNECTION_NAME]
       }
@@ -144,10 +144,10 @@ describe("createTypegooseProviders", () => {
     expect(model.prototype.model).toBeTruthy();
   }, 15000);
 
-  it("should create typegoose providers from models with discriminators", () => {
+  it('should create typegoose providers from models with discriminators', () => {
     jest.setTimeout(30000);
 
-    const customDiscriminatorId = "extra";
+    const customDiscriminatorId = 'extra';
     const models = [
       {
         typegooseClass: MockUser,
@@ -171,22 +171,22 @@ describe("createTypegooseProviders", () => {
 
     expect(providers).toEqual([
       {
-        provide: "MockUserModel",
+        provide: 'MockUserModel',
         useFactory: any(Function),
         inject: [DEFAULT_DB_CONNECTION_NAME]
       },
       {
-        provide: "MockSpecialUserModel",
+        provide: 'MockSpecialUserModel',
         useFactory: any(Function),
         inject: [DEFAULT_DB_CONNECTION_NAME]
       },
       {
-        provide: "MockExtraSpecialUserModel",
+        provide: 'MockExtraSpecialUserModel',
         useFactory: any(Function),
         inject: [DEFAULT_DB_CONNECTION_NAME]
       },
       {
-        provide: "MockTaskModel",
+        provide: 'MockTaskModel',
         useFactory: any(Function),
         inject: [DEFAULT_DB_CONNECTION_NAME]
       }
@@ -197,7 +197,7 @@ describe("createTypegooseProviders", () => {
 
     expect(specialModel.prototype.model).toBeTruthy();
     expect(specialModel).toHaveProperty(
-      "schema.discriminatorMapping.value",
+      'schema.discriminatorMapping.value',
       MockSpecialUser.name
     );
 
@@ -206,7 +206,7 @@ describe("createTypegooseProviders", () => {
 
     expect(extraModel.prototype.model).toBeTruthy();
     expect(extraModel).toHaveProperty(
-      "schema.discriminatorMapping.value",
+      'schema.discriminatorMapping.value',
       customDiscriminatorId
     );
 
@@ -224,7 +224,7 @@ describe("createTypegooseProviders", () => {
     );
   }, 15000);
 
-  it("should create no providers if no models are given", () => {
+  it('should create no providers if no models are given', () => {
     const providers = createTypegooseProviders(DEFAULT_DB_CONNECTION_NAME);
 
     expect(providers).toEqual([]);
@@ -235,18 +235,18 @@ describe("createTypegooseProviders", () => {
   });
 });
 
-describe("convertToTypegooseClassWithOptions", () => {
-  class MockTypegooseClass {}
-  class MockDiscriminator {}
+describe('convertToTypegooseClassWithOptions', () => {
+  class MockTypegooseClass { }
+  class MockDiscriminator { }
 
-  it("returns model as typegooseClass if it is just a class", () => {
+  it('returns model as typegooseClass if it is just a class', () => {
     expect(convertToTypegooseClassWithOptions(MockTypegooseClass)).toEqual({
       typegooseClass: MockTypegooseClass
     });
   });
-  it("returns model and schemaOptions if it is a TypegooseClassWithOptions", () => {
+  it('returns model and schemaOptions if it is a TypegooseClassWithOptions', () => {
     const options = {
-      collection: "differentName"
+      collection: 'differentName'
     };
 
     const expected = {
@@ -256,11 +256,11 @@ describe("convertToTypegooseClassWithOptions", () => {
 
     expect(convertToTypegooseClassWithOptions(expected)).toEqual(expected);
   });
-  it("throws error is not a class or not a TypegooseClassWithOptions", () => {
+  it('throws error is not a class or not a TypegooseClassWithOptions', () => {
     const handler = () => {
       expect(
         convertToTypegooseClassWithOptions({
-          something: "different"
+          something: 'different'
         } as any)
       );
     };
@@ -268,7 +268,7 @@ describe("convertToTypegooseClassWithOptions", () => {
     expect(handler).toThrowErrorMatchingSnapshot();
   });
 
-  it("returns model with discriminators as typegooseClass if they are just a class", () => {
+  it('returns model with discriminators as typegooseClass if they are just a class', () => {
     const options = {
       typegooseClass: MockTypegooseClass,
       discriminators: [MockDiscriminator]
@@ -283,26 +283,26 @@ describe("convertToTypegooseClassWithOptions", () => {
     };
     expect(convertToTypegooseClassWithOptions(options)).toEqual(expected);
   });
-  it("returns model with discriminators with options if they are TypegooseDiscriminators", () => {
+  it('returns model with discriminators with options if they are TypegooseDiscriminators', () => {
     const expected = {
       typegooseClass: MockTypegooseClass,
       discriminators: [
         {
           typegooseClass: MockDiscriminator,
-          discriminatorId: "test"
+          discriminatorId: 'test'
         }
       ]
     };
     expect(convertToTypegooseClassWithOptions(expected)).toEqual(expected);
   });
-  it("throws error if a discriminator is not a class or TypegooseDiscriminator", () => {
+  it('throws error if a discriminator is not a class or TypegooseDiscriminator', () => {
     const handler = () => {
       expect(
         convertToTypegooseClassWithOptions({
           typegooseClass: MockTypegooseClass,
           discriminators: [
             {
-              something: "different"
+              something: 'different'
             }
           ]
         } as any)

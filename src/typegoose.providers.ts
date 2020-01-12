@@ -36,7 +36,7 @@ export function createTypegooseProviders(connectionName: string,
           discriminatorId
         )
       );
-    }
+    };
 
   return models.reduce(
     (providers, { typegooseClass, schemaOptions = {}, discriminators = [] }) => {
