@@ -152,9 +152,7 @@ describe("createTypegooseProviders", () => {
       {
         typegooseClass: MockUser,
         discriminators: [
-          {
-            typegooseClass: MockSpecialUser
-          },
+          MockSpecialUser,
           {
             typegooseClass: MockExtraSpecialUser,
             discriminatorId: customDiscriminatorId
