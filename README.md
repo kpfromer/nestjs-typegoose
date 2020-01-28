@@ -225,7 +225,7 @@ class TypegooseConfigService extends TypegooseOptionsFactory {
 
 @Module({
   imports: [
-    TypegooseModule.forAsyncRoot({
+    TypegooseModule.forRootAsync({
       useClass: TypegooseConfigService
     })
   ]
@@ -238,7 +238,7 @@ Or if you want to prevent creating another `TypegooseConfigService` class and wa
 ```typescript
 @Module({
   imports: [
-    TypegooseModule.forAsyncRoot({
+    TypegooseModule.forRootAsync({
       imports: [ConfigModule],
       useExisting: ConfigService
     })
@@ -280,12 +280,12 @@ export class ApplicationModule {}
 export class CatsModule {}
 ```
 
-And for `forAsyncRoot` add `connectionName` to the options as well.
+And for `forRootAsync` add `connectionName` to the options as well.
 
 ```typescript
 @Module({
   imports: [
-    TypegooseModule.forAsyncRoot({
+    TypegooseModule.forRootAsync({
       connectionName: "other-mongodb",
       imports: [ConfigModule],
       useFactory: async (configService: ConfigService) => ({
