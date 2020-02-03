@@ -290,7 +290,6 @@ And for `forAsyncRoot` add `connectionName` to the options as well.
       imports: [ConfigModule],
       useFactory: async (configService: ConfigService) => ({
         uri: configService.getString("MONGODB_URI"),
-        connectionName: config
         // ...typegooseOptions (Note: config is spread with the uri)
       }),
       inject: [ConfigService]
