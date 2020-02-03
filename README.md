@@ -261,7 +261,7 @@ import { TypegooseModule } from "nestjs-typegoose";
   imports: [
     TypegooseModule.forRoot("mongodb://localhost:27017/otherdb", {
       useNewUrlParser: true,
-      connctionName: "other-mongodb"
+      connectionName: "other-mongodb"
     }),
     CatsModule
   ]
