@@ -7,8 +7,8 @@ import { TestingModule, Test } from "@nestjs/testing";
 import { getModelToken } from "nestjs-typegoose";
 
 const mockCat: (mock?: {
-  name?: string;
-}) => Partial<Cat> = (mock?: {
+  name: string;
+}) => Cat = (mock?: {
   name: string;
 }) => {
   return {
@@ -16,7 +16,7 @@ const mockCat: (mock?: {
   };
 };
 
-const catsArray = [
+const catsArray: Cat[] = [
   mockCat(),
   mockCat({ name: 'Vitani' }),
   mockCat({ name: 'Simba' }),
