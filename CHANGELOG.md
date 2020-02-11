@@ -6,6 +6,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [7.1.0] - 2020-2-11
+### Added
+- Mongoose Discriminators.
+
+### Changed
+- Updated peer dependency `@nestjs/common` from version `6.3.1` to `6.10.1`
+- Updated peer dependency `@nestjs/core` from version `6.3.1` to `6.10.1`
+- Updated peer dependency `@nestjs/core` from version `6.0.0` to `6.2.1`
+- Updated peer dependency `mongoose` from version `5.5.13` to `5.8.4`
+
+### Fixed
+- Fixed typos in the documentation.
+- Database shutdown behavior. (PR #54)
+- Clear cache of typegoose. (PR #40)
+
 ## [7.0.0] - 2019-10-08
 ### Changed
 - **BREAKING CHANGE**: `nest-typegoose` uses `@typegoose/typegoose` as a peer dependency instead of `@hasezoey/typegoose` now.
