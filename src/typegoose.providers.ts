@@ -7,6 +7,12 @@ import { getConnectionToken, getModelToken } from './typegoose.utils';
 
 type ModelFactory = (c: Connection) => any;
 
+/**
+ * Creates the nestjs providers for the provided models.
+ * @param connectionName the name of the mongoose connection
+ * @param models the models to create the nestjs providers
+ * @returns the model providers.
+ */
 export function createTypegooseProviders(connectionName: string,
                                          models: TypegooseClassWithOptions[] = []): FactoryProvider[] {
 
@@ -59,6 +65,12 @@ export function createTypegooseProviders(connectionName: string,
 type ClassOrDiscriminator = TypegooseClassWithOptions | TypegooseDiscriminator;
 type TypegooseInput = TypegooseClass | ClassOrDiscriminator;
 
+/**
+ * Santizes the input to a common object form used for creating providers.
+ * @param item varied general input to convert
+ * @returns a santized generic form
+ * @internal
+ */
 export function convertToTypegooseClassWithOptions(item: TypegooseInput): TypegooseClassWithOptions {
   const tcwo: TypegooseClassWithOptions = convertToOptions(item);
   if (tcwo) {
@@ -73,9 +85,26 @@ export function convertToTypegooseClassWithOptions(item: TypegooseInput): Typego
   return invalidObject('model');
 }
 
+/**
+ * Returns whether or not something is a class.
+ * @param item the value to check whether or not it is a class
+ * @internal
+ */
 const isTypegooseClass = (item): item is TypegooseClass => isClass(item);
+
+/**
+ * Returns whether or not a value is a typegoose class with options.
+ * @param item the value to check whether or not it is a typegoose class with options
+ * @internal
+ */
 const isTypegooseClassWithOptions = (item): item is TypegooseClassWithOptions => isTypegooseClass(item.typegooseClass);
 
+/**
+ * Converts a model class to valid typegoose class structure.
+ * @param item the item to convert
+ * @returns the valid typegoose class
+ * @internal
+ */
 function convertToOptions(item: TypegooseInput): ClassOrDiscriminator | undefined {
   if (isTypegooseClass(item)) {
     return { typegooseClass: item };
@@ -84,6 +113,10 @@ function convertToOptions(item: TypegooseInput): ClassOrDiscriminator | undefine
   }
 }
 
+/**
+ * Throws error representing an invalid provided value.
+ * @param type the invalid type
+ */
 function invalidObject(type: string): never {
   throw new Error(`Invalid ${type} object`);
 }
