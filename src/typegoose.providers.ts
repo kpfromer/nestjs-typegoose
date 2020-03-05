@@ -12,6 +12,7 @@ type ModelFactory = (c: Connection) => any;
  * @param connectionName the name of the mongoose connection
  * @param models the models to create the nestjs providers
  * @returns the model providers.
+ * @internal
  */
 export function createTypegooseProviders(connectionName: string,
                                          models: TypegooseClassWithOptions[] = []): FactoryProvider[] {
@@ -116,6 +117,7 @@ function convertToOptions(item: TypegooseInput): ClassOrDiscriminator | undefine
 /**
  * Throws error representing an invalid provided value.
  * @param type the invalid type
+ * @internal
  */
 function invalidObject(type: string): never {
   throw new Error(`Invalid ${type} object`);
