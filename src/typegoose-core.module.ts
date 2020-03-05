@@ -15,6 +15,12 @@ export class TypegooseCoreModule implements OnApplicationShutdown {
     private readonly moduleRef: ModuleRef
   ) {}
 
+  /**
+   * Creates the connection to the mongo database for all the models to use.
+   * @param uri the uri for the mongoose connection (example: mongodb://mongodb0.example.com:27017/admin). Read more [here](https://docs.mongodb.com/manual/reference/connection-string/).
+   * @param options the options for the Typegoose connection. You may provide a custom connection name, via `connectionName`, for multiple connections (Read more about [multiple connections here](https://mongoosejs.com/docs/connections.html#options)). Read more about mongoose options [here](https://mongoosejs.com/docs/connections.html#options).
+   * @internal
+   */
   static forRoot(
     uri: string,
     options: TypegooseConnectionOptions = {}
@@ -38,6 +44,11 @@ export class TypegooseCoreModule implements OnApplicationShutdown {
     };
   }
 
+  /**
+   * Similar to `forRoot` but is asynchronous instead. Read more [here](https://github.com/kpfromer/nestjs-typegoose#async-mongoose-schema-options).
+   * @param options the options for the Typegoose connection. You may provide a custom connection name, via `connectionName`, for multiple connections (Read more about [multiple connections here](https://mongoosejs.com/docs/connections.html#options)). Read more about mongoose options [here](https://mongoosejs.com/docs/connections.html#options).
+   * @internal
+   */
   static forRootAsync(options: TypegooseModuleAsyncOptions): DynamicModule {
     const connectionName = getConnectionToken(options.connectionName);
 
@@ -70,6 +81,11 @@ export class TypegooseCoreModule implements OnApplicationShutdown {
     };
   }
 
+  /**
+   * Creates the asynchronous providers handling the creation of the connection options needed for the providers.
+   * @param options the provider options and connection name needed to create the asynchronous provider.
+   * @internal
+   */
   private static createAsyncProviders(options: TypegooseModuleAsyncOptions): Provider[] {
     if (options.useExisting || options.useFactory) {
       return [this.createAsyncOptionsProvider(options)];
@@ -83,6 +99,11 @@ export class TypegooseCoreModule implements OnApplicationShutdown {
     ];
   }
 
+  /**
+   * Creates the typegoose connection options provider.
+   * @param options the provider options wrapping the typegoose connection options.
+   * @internal
+   */
   private static createAsyncOptionsProvider(options: TypegooseModuleAsyncOptions): Provider {
     if (options.useFactory) { // If a factory provider
       return {
@@ -99,6 +120,10 @@ export class TypegooseCoreModule implements OnApplicationShutdown {
     };
   }
 
+  /**
+   * Cleans up the connection and removes the models to prevent unintended usage.
+   * @internal
+   */
   async onApplicationShutdown() {
     const connection = this.moduleRef.get<any>(this.connectionName);
 
