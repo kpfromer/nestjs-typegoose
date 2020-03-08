@@ -1,1 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[34],{125:function(o){o.exports=JSON.parse('{"allTagsPath":"/nestjs-typegoose/blog/tags","slug":"facebook","name":"facebook","count":1,"permalink":"/nestjs-typegoose/blog/tags/facebook"}')}}]);
