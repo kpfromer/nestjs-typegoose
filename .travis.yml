@@ -17,3 +17,11 @@ jobs:
         email: "kpfromer2@gmail.com"
         api_key: $NPM_API_KEY
       on: npm-release
+    - stage: deploy documentation
+      if: branch IN (master) AND NOT type IN (pull_request)
+      script:
+        - git config --global user.name "${GH_NAME}"
+        - git config --global user.email "${GH_EMAIL}"
+        - echo "machine github.com login ${GH_NAME} password ${GH_TOKEN}" > ~/.netrc
+        - cd website && yarn install && GIT_USER="${GH_NAME}" yarn deploy
+      on: master
