@@ -4,19 +4,18 @@ title: Basic Usage
 ---
 
 :::note
-Checkout this [example project](https://github.com/kpfromer/nestjs-typegoose/tree/master/example) if you need help.
+Check out this [example project](https://github.com/kpfromer/nestjs-typegoose/tree/master/example) if you need help.
 :::
 
-You can checkout the `example` project for more details.
+You can check out the `example` project for more details.
 
-We will creating a `CatsModule`, a `Cat` database model, a `CatsService`, and a `CatsController`.
+We will be creating a `CatsModule`, a `Cat` database model, a `CatsService`, and a `CatsController`.
 
+## Connecting to the MongoDB database
 
-## Connecting to the mongoodb database
+First, we will connect to the mongo database using `TypegooseModule.forRoot`. We will import the `CatsModule` that we will create shortly.
 
-First we will connect to the mongo database using `TypegooseModule.forRoot`. We will import the `CatsModule` that we will create shortly.
-
-If want to have more connections to different databases read about how to do that [here](multiple-connections.md).
+If you want to have more connections to different databases read about how to do that [here](multiple-connections.md).
 
 **app.module.ts**
 
@@ -36,11 +35,11 @@ import { CatsModule } from "./cat.module.ts";
 export class ApplicationModule {}
 ```
 
-Here we are connecting to `mongodb://localhost:27017/nest`. To learn more about mongodb uri's see the official [mongodb article](https://docs.mongodb.com/manual/reference/connection-string/).
+Here we are connecting to `mongodb://localhost:27017/nest`. To learn more about MongoDB URI's see the official [mongodb article](https://docs.mongodb.com/manual/reference/connection-string/).
 
 ## Creating a Database Model
 
-We now need to create a database model that describes the data we want to store. In this case it will be cats with names. Read more about typegoose [here](https://github.com/typegoose/typegoose).
+We now need to create a database model that describes the data we want to store. In this case, it will be cats with names. Read more about typegoose [here](https://github.com/typegoose/typegoose).
 
 **cat.model.ts**
 
@@ -84,7 +83,7 @@ export class CatsService {
 
 ## Connecting with the API
 
-Now we have the service created we need to connect this with the actual api calls. The `CatsController` will receive GET and POST requests on the url `/cats` and will get and create cats respectively.
+Now we have the service created we need to connect this with the actual API calls. The `CatsController` will receive GET and POST requests on the URL `/cats` and will get and create cats respectively.
 
 **cats.controller.ts**
 
