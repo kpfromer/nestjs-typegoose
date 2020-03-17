@@ -1,7 +1,10 @@
 language: node_js
+
 node_js: "10"
+
 install:
   - npm install
+
 jobs:
   include:
     - stage: unit tests with coverage
@@ -9,14 +12,11 @@ jobs:
     - stage: run lint and build
       script: yarn run lint && yarn build
     - stage: npm release
-      if: branch IN (npm-release) AND NOT type IN (pull_request) # this is that travis dosnt create a "deploy" job in an commit other than in "npm-release"
-      script: echo "Deploying to npm ..."
-      deploy:
-        provider: npm
-        skip_cleanup: true
-        email: "kpfromer2@gmail.com"
-        api_key: $NPM_API_KEY
-      on: npm-release
+      if: NOT type IN (pull_request)
+      node_js: lts/*
+      script:
+        - npx semantic-release
+      on: master
     - stage: deploy documentation
       if: branch IN (master) AND NOT type IN (pull_request)
       script:

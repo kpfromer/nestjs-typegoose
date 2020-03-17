@@ -1,6 +1,6 @@
 {
   "name": "nestjs-typegoose",
-  "version": "7.1.0",
+  "version": "0.0.0-development",
   "description": "A nestjs module wrapper for typegoose",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -16,7 +16,8 @@
     "test:e2e": "jest --config ./test/jest-e2e.json",
     "test:watch": "jest --watch",
     "coverage": "yarn run test:cov && cat ./coverage/lcov.info | coveralls",
-    "prepare": "npm run build"
+    "prepare": "npm run build",
+    "commit": "git cz"
   },
   "author": "Kyle Pfromer",
   "license": "MIT",
@@ -32,19 +33,30 @@
     "reflect-metadata": "^0.1.13"
   },
   "devDependencies": {
+    "@commitlint/cli": "^8.3.5",
+    "@commitlint/config-conventional": "^8.3.4",
     "@nestjs/common": "^6.10.13",
     "@nestjs/core": "^6.10.13",
     "@nestjs/platform-express": "^6.10.13",
     "@nestjs/testing": "^6.10.13",
+    "@semantic-release/changelog": "^5.0.0",
+    "@semantic-release/commit-analyzer": "^8.0.1",
+    "@semantic-release/git": "^9.0.0",
+    "@semantic-release/npm": "^7.0.4",
+    "@semantic-release/release-notes-generator": "^9.0.1",
     "@typegoose/typegoose": "^6.2.1",
     "@types/jest": "^24.0.18",
     "@types/mongoose": "^5.5.38",
     "@types/supertest": "^2.0.8",
+    "commitizen": "^4.0.3",
     "coveralls": "^3.0.9",
+    "cz-conventional-changelog": "^3.1.0",
+    "husky": "^4.2.3",
     "jest": "^24.9.0",
     "mongodb-memory-server": "^6.2.1",
     "mongoose": "^5.8.4",
     "rxjs": "^6.5.4",
+    "semantic-release": "^17.0.4",
     "supertest": "latest",
     "ts-jest": "^24.2.0",
     "tslint": "^5.20.0",
@@ -63,5 +75,27 @@
     "coverageDirectory": "../coverage",
     "resetMocks": true,
     "testEnvironment": "node"
+  },
+  "release": {
+    "plugins": [
+      "@semantic-release/commit-analyzer",
+      "@semantic-release/release-notes-generator",
+      "@semantic-release/npm",
+      "@semantic-release/changelog",
+      "@semantic-release/git"
+    ],
+    "branch": "master"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "yarn test",
+      "pre-push": "yarn test",
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
   }
 }
