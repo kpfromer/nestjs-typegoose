@@ -1,0 +1,9 @@
+{
+  "extends": ["config:base"],
+  "assignees": ["@kpfromer"],
+  "automerge": true,
+  "major": {
+    "automerge": false
+  },
+  "semanticCommits": true
+}
