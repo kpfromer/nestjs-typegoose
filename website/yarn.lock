@@ -818,7 +818,7 @@
   resolved "https://registry.yarnpkg.com/@csstools/convert-colors/-/convert-colors-1.4.0.tgz#ad495dc41b12e75d588c6db8b9834f08fa131eb7"
   integrity sha512-5a6wqoJV/xEdbRNKVo6I4hO3VjyDq//8q2f9I6PBAvMesJHFauXDorcNCsr9RzvsZnaWi5NYCcfyqP1QeFHFbw==
 
-"@docusaurus/core@^2.0.0-alpha.43":
+"@docusaurus/core@2.0.0-alpha.43":
   version "2.0.0-alpha.43"
   resolved "https://registry.yarnpkg.com/@docusaurus/core/-/core-2.0.0-alpha.43.tgz#303ad77e7c948fcaccbc342f2be98b0124637afd"
   integrity sha512-hHZP3gY6lJtvFhDJvl0sE4KExM81pAUkudHiGiRwevkM+SLxhe4if8ddYRPVyQ2yimbSkWHrMlY0uBr1znxzKA==
@@ -951,7 +951,7 @@
     "@docusaurus/types" "^2.0.0-alpha.43"
     sitemap "^3.2.2"
 
-"@docusaurus/preset-classic@^2.0.0-alpha.43":
+"@docusaurus/preset-classic@2.0.0-alpha.43":
   version "2.0.0-alpha.43"
   resolved "https://registry.yarnpkg.com/@docusaurus/preset-classic/-/preset-classic-2.0.0-alpha.43.tgz#de996ed2432d272d8a99e63054900a44c7d36aec"
   integrity sha512-UF7GN/Xu1VzCGL0bbASaSe09Wwp0w/jJ04Iyn89zNK3cm5ld+fPWtxPHbZZWrEpn03UNQ57pXpSm0nj7SSuLmg==
@@ -2279,7 +2279,7 @@ class-utils@^0.3.5:
     isobject "^3.0.0"
     static-extend "^0.1.1"
 
-classnames@^2.2.5, classnames@^2.2.6:
+classnames@2.2.6, classnames@^2.2.5, classnames@^2.2.6:
   version "2.2.6"
   resolved "https://registry.yarnpkg.com/classnames/-/classnames-2.2.6.tgz#43935bffdd291f326dad0a205309b38d00f650ce"
   integrity sha512-JR/iSQOSt+LQIWwrwEzJ9uk0xfN3mTVYMwt1Ir5mUcSN6pU+V4zQFFaJsclJbPuAUQH+yfWef6tm7l1quW3C8Q==
@@ -7178,7 +7178,7 @@ react-dev-utils@^9.1.0:
     strip-ansi "5.2.0"
     text-table "0.2.0"
 
-react-dom@^16.8.4:
+react-dom@16.13.0:
   version "16.13.0"
   resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-16.13.0.tgz#cdde54b48eb9e8a0ca1b3dc9943d9bb409b81866"
   integrity sha512-y09d2c4cG220DzdlFkPTnVvGTszVvNpC73v+AaLGLHbkpy3SSgvYq8x0rNwPJ/Rk/CicTNgk0hbHNw1gMEZAXg==
@@ -7273,7 +7273,7 @@ react-toggle@^4.1.1:
   dependencies:
     classnames "^2.2.5"
 
-react@^16.8.4:
+react@16.13.0:
   version "16.13.0"
   resolved "https://registry.yarnpkg.com/react/-/react-16.13.0.tgz#d046eabcdf64e457bbeed1e792e235e1b9934cf7"
   integrity sha512-TSavZz2iSLkq5/oiE7gnFzmURKZMltmi193rm5HEoUDAXpzT9Kzw6oNZnGoai/4+fUnm7FqS5dwgUL34TujcWQ==
