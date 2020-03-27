@@ -60,7 +60,7 @@
     "supertest": "latest",
     "ts-jest": "24.3.0",
     "tslint": "5.20.1",
-    "typescript": "3.7.4"
+    "typescript": "3.8.3"
   },
   "jest": {
     "moduleFileExtensions": [
