@@ -1,3 +1,10 @@
+## [7.1.5](https://github.com/kpfromer/nestjs-typegoose/compare/v7.1.4...v7.1.5) (2020-03-28)
+
+
+### Bug Fixes
+
+* **deps:** update react monorepo to v16.13.1 ([2d38bef](https://github.com/kpfromer/nestjs-typegoose/commit/2d38bef8ed5705579f33802ea172d45a787be803))
+
 ## [7.1.4](https://github.com/kpfromer/nestjs-typegoose/compare/v7.1.3...v7.1.4) (2020-03-28)
 
 
