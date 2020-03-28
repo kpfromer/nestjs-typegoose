@@ -1,3 +1,10 @@
+## [7.1.6](https://github.com/kpfromer/nestjs-typegoose/compare/v7.1.5...v7.1.6) (2020-03-28)
+
+
+### Bug Fixes
+
+* **deps:** update dependency nestjs-typegoose to v7.1.5 ([3cf1d0e](https://github.com/kpfromer/nestjs-typegoose/commit/3cf1d0ec8d9ea6ebef7a21ec0b4fbfc39638c8e7))
+
 ## [7.1.5](https://github.com/kpfromer/nestjs-typegoose/compare/v7.1.4...v7.1.5) (2020-03-28)
 
 
