@@ -23,7 +23,7 @@
     "@nestjs/common": "6.10.13",
     "@nestjs/core": "6.10.13",
     "@nestjs/platform-express": "6.10.13",
-    "@typegoose/typegoose": "6.2.0",
+    "@typegoose/typegoose": "6.4.0",
     "class-validator": "0.11.0",
     "mongoose": "5.8.3",
     "nestjs-typegoose": "7.0.0",
