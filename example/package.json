@@ -26,7 +26,7 @@
     "@typegoose/typegoose": "6.4.0",
     "class-validator": "0.11.0",
     "mongoose": "5.8.3",
-    "nestjs-typegoose": "7.0.0",
+    "nestjs-typegoose": "7.1.2",
     "reflect-metadata": "0.1.13",
     "rimraf": "3.0.0",
     "rxjs": "6.5.4"
