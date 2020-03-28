@@ -1,3 +1,10 @@
+## [7.1.4](https://github.com/kpfromer/nestjs-typegoose/compare/v7.1.3...v7.1.4) (2020-03-28)
+
+
+### Bug Fixes
+
+* **deps:** update dependency rimraf to v3.0.2 ([315710c](https://github.com/kpfromer/nestjs-typegoose/commit/315710c672f867e8e8472a6282101fb0c3167118))
+
 ## [7.1.3](https://github.com/kpfromer/nestjs-typegoose/compare/v7.1.2...v7.1.3) (2020-03-28)
 
 
