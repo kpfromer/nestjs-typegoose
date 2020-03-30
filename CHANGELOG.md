@@ -1,3 +1,10 @@
+## [7.1.10](https://github.com/kpfromer/nestjs-typegoose/compare/v7.1.9...v7.1.10) (2020-03-30)
+
+
+### Bug Fixes
+
+* **deps:** update dependency class-validator to v0.11.1 ([c3ec083](https://github.com/kpfromer/nestjs-typegoose/commit/c3ec08391bd0f2ad5c9c67da0e29a4c6636e39d3))
+
 ## [7.1.9](https://github.com/kpfromer/nestjs-typegoose/compare/v7.1.8...v7.1.9) (2020-03-28)
 
 
