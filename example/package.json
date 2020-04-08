@@ -37,7 +37,7 @@
     "@nestjs/testing": "6.11.11",
     "@types/express": "4.17.5",
     "@types/jest": "24.9.1",
-    "@types/mongoose": "5.7.8",
+    "@types/mongoose": "5.7.9",
     "@types/node": "12.12.35",
     "@types/supertest": "2.0.8",
     "jest": "24.9.0",

@@ -46,7 +46,7 @@
     "@semantic-release/release-notes-generator": "9.0.1",
     "@typegoose/typegoose": "6.4.0",
     "@types/jest": "24.9.1",
-    "@types/mongoose": "5.7.8",
+    "@types/mongoose": "5.7.9",
     "@types/supertest": "2.0.8",
     "commitizen": "4.0.4",
     "coveralls": "3.0.11",
