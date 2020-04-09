@@ -51,7 +51,7 @@
     "commitizen": "4.0.4",
     "coveralls": "3.0.11",
     "cz-conventional-changelog": "3.1.0",
-    "husky": "4.2.4",
+    "husky": "4.2.5",
     "jest": "24.9.0",
     "mongodb-memory-server": "6.5.2",
     "mongoose": "5.9.7",
