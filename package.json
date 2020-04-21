@@ -49,7 +49,7 @@
     "@types/mongoose": "5.7.12",
     "@types/supertest": "2.0.8",
     "commitizen": "4.0.4",
-    "coveralls": "3.0.12",
+    "coveralls": "3.0.13",
     "cz-conventional-changelog": "3.1.0",
     "husky": "4.2.5",
     "jest": "24.9.0",
