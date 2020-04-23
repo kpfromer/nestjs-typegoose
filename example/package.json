@@ -24,7 +24,7 @@
     "@nestjs/core": "6.11.11",
     "@nestjs/platform-express": "6.11.11",
     "@typegoose/typegoose": "6.5.0",
-    "class-validator": "0.12.1",
+    "class-validator": "0.12.2",
     "mongoose": "5.9.10",
     "nestjs-typegoose": "7.1.8",
     "reflect-metadata": "0.1.13",
