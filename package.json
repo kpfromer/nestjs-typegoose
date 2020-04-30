@@ -52,7 +52,7 @@
     "coveralls": "3.1.0",
     "cz-conventional-changelog": "3.1.0",
     "husky": "4.2.5",
-    "jest": "25.5.2",
+    "jest": "25.5.3",
     "mongodb-memory-server": "6.5.2",
     "mongoose": "5.9.11",
     "rxjs": "6.5.5",
