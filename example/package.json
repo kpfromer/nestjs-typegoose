@@ -40,7 +40,7 @@
     "@types/mongoose": "5.7.14",
     "@types/node": "12.12.37",
     "@types/supertest": "2.0.9",
-    "jest": "25.5.3",
+    "jest": "25.5.4",
     "mongodb-memory-server": "6.5.2",
     "prettier": "1.19.1",
     "supertest": "4.0.2",
