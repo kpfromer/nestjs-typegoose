@@ -61,9 +61,10 @@ describe('createTypegooseProviders', () => {
       schemaOptions,
       provider;
     beforeEach(() => {
-      mockSetModel = jest
-        .spyOn(typegoose, 'getModelForClass')
-        .mockImplementation(() => jest.fn());
+      mockSetModel = (jest.spyOn(
+        typegoose,
+        "getModelForClass"
+      ) as jest.Mock).mockImplementation(() => jest.fn());
       MockTypegooseClass1 = jest.fn();
       mockConnection = jest.fn() as any;
 

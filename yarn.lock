@@ -990,10 +990,10 @@
   resolved "https://registry.yarnpkg.com/@tootallnate/once/-/once-1.0.0.tgz#9c13c2574c92d4503b005feca8f2e16cc1611506"
   integrity sha512-KYyTT/T6ALPkIRd2Ge080X/BsXvy9O0hcWTtMWkPvwAwF99+vn6Dv4GzrFT/Nn1LePr+FFDbRXXlqmsy9lw2zA==
 
-"@typegoose/typegoose@6.5.0":
-  version "6.5.0"
-  resolved "https://registry.yarnpkg.com/@typegoose/typegoose/-/typegoose-6.5.0.tgz#fb012dd62b4aaad3b2c7a460a348bdaf19bb402b"
-  integrity sha512-FARKV2B+LOM9YlDxlf4y3gTgjl0RjbSofMUAesuNvETVuTehJ3YY5SYOXnoM8LrJgemESP8oBnVfExVSs8YxVA==
+"@typegoose/typegoose@7.0.0":
+  version "7.0.0"
+  resolved "https://registry.yarnpkg.com/@typegoose/typegoose/-/typegoose-7.0.0.tgz#43aee18ce69a847202f39114cf13f35711d5c200"
+  integrity sha512-rnnDZk2qBkqRWuou3JIJYAopU65bawPCn3HnYgjxfahiu8f+wsnOvzSSilbTomIX6mrJ6u/pyK6rkxP3rmVPYw==
   dependencies:
     lodash "^4.17.15"
     loglevel "^1.6.8"
