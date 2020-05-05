@@ -1,9 +1,13 @@
 # nestjs-typegoose
 
 [![NPM](https://nodei.co/npm/nestjs-typegoose.png)](https://nodei.co/npm/nestjs-typegoose/)
+
 [![npm version](https://badge.fury.io/js/nestjs-typegoose.svg)](https://badge.fury.io/js/nestjs-typegoose)
 [![Build Status](https://travis-ci.org/kpfromer/nestjs-typegoose.svg?branch=master)](https://travis-ci.org/kpfromer/nestjs-typegoose)
 [![Coverage Status](https://coveralls.io/repos/github/kpfromer/nestjs-typegoose/badge.svg?branch=master)](https://coveralls.io/github/kpfromer/nestjs-typegoose?branch=master)
+![npm](https://img.shields.io/npm/dm/nestjs-typegoose)
+![npm bundle size](https://img.shields.io/bundlephobia/min/nestjs-typegoose)
+![David](https://img.shields.io/david/peer/kpfromer/nestjs-typegoose)
 
 ## Description
 
@@ -13,7 +17,15 @@ Using Typegoose removes the need for having a Model interface.
 
 ## Installation
 
-`npm install --save nestjs-typegoose`
+```bash
+npm install --save nestjs-typegoose
+```
+
+or
+
+```
+yarn add nestjs-typegoose
+```
 
 ## Documentation
 
@@ -33,10 +45,10 @@ import { CatsModule } from "./cat.module.ts";
 @Module({
   imports: [
     TypegooseModule.forRoot("mongodb://localhost:27017/nest", {
-      useNewUrlParser: true
+      useNewUrlParser: true,
     }),
-    CatsModule
-  ]
+    CatsModule,
+  ],
 })
 export class ApplicationModule {}
 ```
@@ -70,7 +82,7 @@ import { CatsService } from "./cats.service";
 @Module({
   imports: [TypegooseModule.forFeature([Cat])],
   controllers: [CatsController],
-  providers: [CatsService]
+  providers: [CatsService],
 })
 export class CatsModule {}
 ```
