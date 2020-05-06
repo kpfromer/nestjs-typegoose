@@ -58,7 +58,7 @@
     "rxjs": "6.5.5",
     "semantic-release": "17.0.7",
     "supertest": "latest",
-    "ts-jest": "25.4.0",
+    "ts-jest": "25.5.0",
     "tslint": "5.20.1",
     "typescript": "3.8.3"
   },
