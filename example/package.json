@@ -41,7 +41,7 @@
     "@types/node": "12.12.38",
     "@types/supertest": "2.0.9",
     "jest": "26.0.1",
-    "mongodb-memory-server": "6.5.2",
+    "mongodb-memory-server": "6.6.0",
     "prettier": "1.19.1",
     "supertest": "4.0.2",
     "ts-jest": "25.5.1",
