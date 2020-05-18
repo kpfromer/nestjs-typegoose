@@ -54,7 +54,7 @@
     "husky": "4.2.5",
     "jest": "26.0.1",
     "mongodb-memory-server": "6.6.0",
-    "mongoose": "5.9.14",
+    "mongoose": "5.9.15",
     "rxjs": "6.5.5",
     "semantic-release": "17.0.7",
     "supertest": "latest",
