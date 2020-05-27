@@ -1,3 +1,10 @@
+## [7.1.25](https://github.com/kpfromer/nestjs-typegoose/compare/v7.1.24...v7.1.25) (2020-05-27)
+
+
+### Bug Fixes
+
+* **deps:** update dependency @docusaurus/core to v2.0.0-alpha.56 ([8a6d4c2](https://github.com/kpfromer/nestjs-typegoose/commit/8a6d4c2b3fb771cfd7ce078d30fbce04b184e76f))
+
 ## [7.1.24](https://github.com/kpfromer/nestjs-typegoose/compare/v7.1.23...v7.1.24) (2020-05-19)
 
 
