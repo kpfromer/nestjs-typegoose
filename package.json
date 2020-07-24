@@ -45,7 +45,7 @@
     "@semantic-release/npm": "7.0.5",
     "@semantic-release/release-notes-generator": "9.0.1",
     "@typegoose/typegoose": "6.5.0",
-    "@types/jest": "26.0.6",
+    "@types/jest": "26.0.7",
     "@types/mongoose": "5.7.32",
     "@types/supertest": "2.0.10",
     "commitizen": "4.1.2",
