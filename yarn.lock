@@ -6020,10 +6020,10 @@ modify-values@^1.0.0:
   resolved "https://registry.yarnpkg.com/modify-values/-/modify-values-1.0.1.tgz#b3939fa605546474e3e3e3c63d64bd43b4ee6022"
   integrity sha512-xV2bxeN6F7oYjZWTe/YPAy6MN2M+sL4u/Rlm2AHCIVGfo2p1yGmBHQ6vHehl4bRTZBdHu3TSkWdYgkwpYzAGSw==
 
-mongodb-memory-server-core@6.6.5:
-  version "6.6.5"
-  resolved "https://registry.yarnpkg.com/mongodb-memory-server-core/-/mongodb-memory-server-core-6.6.5.tgz#8be56b4ecc98d394bdf0b11fe8461233c4efa43c"
-  integrity sha512-9CPNXmawk2FQnrDzthRnTAnv5oLryYNTXhbRrO/EYd41e51Tux9ObEnbWEX6/EsTlW9BY9lp5UnAOgSKYThREw==
+mongodb-memory-server-core@6.6.6:
+  version "6.6.6"
+  resolved "https://registry.yarnpkg.com/mongodb-memory-server-core/-/mongodb-memory-server-core-6.6.6.tgz#298eeca363731eb11a924c11c68e2617882682e1"
+  integrity sha512-vRpqWlMdRCJYlOjfhFr9RWVUOA+dFZJF8mKMe5b7itY/aOur2ktztAL2lD868VokUfIqiu7F8Wev1/i7CdrNEQ==
   dependencies:
     "@types/cross-spawn" "^6.0.2"
     "@types/debug" "^4.1.5"
@@ -6055,12 +6055,12 @@ mongodb-memory-server-core@6.6.5:
   optionalDependencies:
     mongodb "^3.5.9"
 
-mongodb-memory-server@6.6.5:
-  version "6.6.5"
-  resolved "https://registry.yarnpkg.com/mongodb-memory-server/-/mongodb-memory-server-6.6.5.tgz#1abe5cbcadb49eb39aa179dd1f26427675bce92e"
-  integrity sha512-xrFz6GH5SEzGM3R0fR1xhlFuUjhFYQT5R7lEVAFVPuh/8w0ibjMx6kVgpDyNWthw6v2XylVW5bSCbvpBw4BpCg==
+mongodb-memory-server@6.6.6:
+  version "6.6.6"
+  resolved "https://registry.yarnpkg.com/mongodb-memory-server/-/mongodb-memory-server-6.6.6.tgz#9e8bd2140110e76b30076be8a28ea8b0f571666b"
+  integrity sha512-34PvA7uMeb/jcjBWHqTo16CfK+4T+kniF59wdH6a0egMGYZdVoYs/+r4R6J1So7Cw2HIJznf8qLf5ycTuyWiuQ==
   dependencies:
-    mongodb-memory-server-core "6.6.5"
+    mongodb-memory-server-core "6.6.6"
 
 mongodb@3.6.0:
   version "3.6.0"
