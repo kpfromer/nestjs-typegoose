@@ -1,3 +1,10 @@
+## [7.1.34](https://github.com/kpfromer/nestjs-typegoose/compare/v7.1.33...v7.1.34) (2020-08-28)
+
+
+### Bug Fixes
+
+* **deps:** update dependency @docusaurus/preset-classic to v2.0.0-alpha.62 ([0563b24](https://github.com/kpfromer/nestjs-typegoose/commit/0563b24c38aba4bc4b9954f72e2ed9497d5d0623))
+
 ## [7.1.33](https://github.com/kpfromer/nestjs-typegoose/compare/v7.1.32...v7.1.33) (2020-08-28)
 
 
