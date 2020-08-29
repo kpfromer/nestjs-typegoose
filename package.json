@@ -53,7 +53,7 @@
     "cz-conventional-changelog": "3.3.0",
     "husky": "4.2.5",
     "jest": "26.4.2",
-    "mongodb-memory-server": "6.6.6",
+    "mongodb-memory-server": "6.6.7",
     "mongoose": "5.10.2",
     "rxjs": "6.6.2",
     "semantic-release": "17.1.1",
