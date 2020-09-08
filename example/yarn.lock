@@ -4830,10 +4830,10 @@ mkdirp@^0.5.3:
   dependencies:
     minimist "^1.2.5"
 
-mongodb-memory-server-core@6.6.9:
-  version "6.6.9"
-  resolved "https://registry.yarnpkg.com/mongodb-memory-server-core/-/mongodb-memory-server-core-6.6.9.tgz#00bcd126bdfaf6f26a8bf1aa62ddc0692bfa755d"
-  integrity sha512-EC53iQv1FHQCNr9Km7GUGydYlK8+Wg1HodLxce3euRDe0CTyWyc7cShGndOYsFX9cDpsQLqLnUP4lWbl92exAQ==
+mongodb-memory-server-core@6.7.0:
+  version "6.7.0"
+  resolved "https://registry.yarnpkg.com/mongodb-memory-server-core/-/mongodb-memory-server-core-6.7.0.tgz#2a14c00e7a4cc5263ce671824d425c29b5f1082e"
+  integrity sha512-N6pQqS6KjOGcfdydDgJ0ddaaifM8Ee6BtP+nFQIDjon76pvOtPuR8PddXM/tWeSv5fNhPx00/ILZCmpE8IiwLw==
   dependencies:
     "@types/tmp" "^0.2.0"
     camelcase "^6.0.0"
@@ -4849,35 +4849,22 @@ mongodb-memory-server-core@6.6.9:
     semver "^7.3.2"
     tar-stream "^2.1.3"
     tmp "^0.2.1"
-    uuid "^8.2.0"
+    uuid "8.3.0"
     yauzl "^2.10.0"
   optionalDependencies:
-    mongodb "^3.5.9"
+    mongodb "3.6.1"
 
-mongodb-memory-server@6.6.9:
-  version "6.6.9"
-  resolved "https://registry.yarnpkg.com/mongodb-memory-server/-/mongodb-memory-server-6.6.9.tgz#31cbe69091166d70ccaff3e88099efe0594a0bd3"
-  integrity sha512-Jcq4CGLnJvh5+dfJSmfMOF/VtbgXSB3KUPOGPeTlfX5/Fn/IZBXWccrTUKx5l+8HrcYErCYm4n8Kz2dpz53eSQ==
+mongodb-memory-server@6.7.0:
+  version "6.7.0"
+  resolved "https://registry.yarnpkg.com/mongodb-memory-server/-/mongodb-memory-server-6.7.0.tgz#a8c5db6f753bd8a3de0c34517abf5279c0caf7f3"
+  integrity sha512-vCXvDfi2Sbvg6/Ww0LBRbp5FZtqeFA1zLJeF4wlwU7IBwcop3zI75nq+dm6hlMzLGVIsLhN5fb1Ps8hztz3TFw==
   dependencies:
-    mongodb-memory-server-core "6.6.9"
+    mongodb-memory-server-core "6.7.0"
 
 mongodb@3.6.1:
   version "3.6.1"
   resolved "https://registry.yarnpkg.com/mongodb/-/mongodb-3.6.1.tgz#2c5cc2a81456ba183e8c432d80e78732cc72dabd"
   integrity sha512-uH76Zzr5wPptnjEKJRQnwTsomtFOU/kQEU8a9hKHr2M7y9qVk7Q4Pkv0EQVp88742z9+RwvsdTw6dRjDZCNu1g==
-  dependencies:
-    bl "^2.2.0"
-    bson "^1.1.4"
-    denque "^1.4.1"
-    require_optional "^1.0.1"
-    safe-buffer "^5.1.2"
-  optionalDependencies:
-    saslprep "^1.0.0"
-
-mongodb@^3.5.9:
-  version "3.5.9"
-  resolved "https://registry.yarnpkg.com/mongodb/-/mongodb-3.5.9.tgz#799b72be8110b7e71a882bb7ce0d84d05429f772"
-  integrity sha512-vXHBY1CsGYcEPoVWhwgxIBeWqP3dSu9RuRDsoLRPTITrcrgm1f0Ubu1xqF9ozMwv53agmEiZm0YGo+7WL3Nbug==
   dependencies:
     bl "^2.2.0"
     bson "^1.1.4"
@@ -6993,7 +6980,7 @@ utils-merge@1.0.1:
   resolved "https://registry.yarnpkg.com/utils-merge/-/utils-merge-1.0.1.tgz#9f95710f50a267947b2ccc124741c1028427e713"
   integrity sha1-n5VxD1CiZ5R7LMwSR0HBAoQn5xM=
 
-uuid@8.3.0, uuid@^8.2.0, uuid@^8.3.0:
+uuid@8.3.0, uuid@^8.3.0:
   version "8.3.0"
   resolved "https://registry.yarnpkg.com/uuid/-/uuid-8.3.0.tgz#ab738085ca22dc9a8c92725e459b1d507df5d6ea"
   integrity sha512-fX6Z5o4m6XsXBdli9g7DtWgAx+osMsRRZFKma1mIUsLCz6vRvv+pz5VNbyu9UEDzpMWulZfvpgb/cmDXVulYFQ==
