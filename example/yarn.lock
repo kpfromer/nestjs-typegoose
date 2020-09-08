@@ -4830,10 +4830,10 @@ mkdirp@^0.5.3:
   dependencies:
     minimist "^1.2.5"
 
-mongodb-memory-server-core@6.6.8:
-  version "6.6.8"
-  resolved "https://registry.yarnpkg.com/mongodb-memory-server-core/-/mongodb-memory-server-core-6.6.8.tgz#8951979251c9dfc9d32df641e445d1a2acc449d9"
-  integrity sha512-1VsFaRJ4uB4vBAUXS0U0s6G+Ixvzlpw0DGNZtLfAgRq2T1F9H0TkjcoPdCZ/wtMU0rhjC1U9VdgVcLviLQcs7A==
+mongodb-memory-server-core@6.6.9:
+  version "6.6.9"
+  resolved "https://registry.yarnpkg.com/mongodb-memory-server-core/-/mongodb-memory-server-core-6.6.9.tgz#00bcd126bdfaf6f26a8bf1aa62ddc0692bfa755d"
+  integrity sha512-EC53iQv1FHQCNr9Km7GUGydYlK8+Wg1HodLxce3euRDe0CTyWyc7cShGndOYsFX9cDpsQLqLnUP4lWbl92exAQ==
   dependencies:
     "@types/tmp" "^0.2.0"
     camelcase "^6.0.0"
@@ -4854,12 +4854,12 @@ mongodb-memory-server-core@6.6.8:
   optionalDependencies:
     mongodb "^3.5.9"
 
-mongodb-memory-server@6.6.8:
-  version "6.6.8"
-  resolved "https://registry.yarnpkg.com/mongodb-memory-server/-/mongodb-memory-server-6.6.8.tgz#28f8e11456602a3c26d0cd84786f27d3e24dc7c4"
-  integrity sha512-tHUim6bPVIO/QKgqxPApXIlZmJT3YYaBF2v3DSNkFW/DB4KJIem5I9uNgOvTORsEXlAbfy8Dp6JulemWXR12qQ==
+mongodb-memory-server@6.6.9:
+  version "6.6.9"
+  resolved "https://registry.yarnpkg.com/mongodb-memory-server/-/mongodb-memory-server-6.6.9.tgz#31cbe69091166d70ccaff3e88099efe0594a0bd3"
+  integrity sha512-Jcq4CGLnJvh5+dfJSmfMOF/VtbgXSB3KUPOGPeTlfX5/Fn/IZBXWccrTUKx5l+8HrcYErCYm4n8Kz2dpz53eSQ==
   dependencies:
-    mongodb-memory-server-core "6.6.8"
+    mongodb-memory-server-core "6.6.9"
 
 mongodb@3.6.1:
   version "3.6.1"
