@@ -1,50 +1,50 @@
 module.exports = {
-  title: 'nestjs-typegoose',
-  tagline: 'Combine NestJS with Typegoose to reduce clutter',
-  url: 'https://kpfromer.github.io',
-  baseUrl: '/nestjs-typegoose/',
-  favicon: 'img/favicon.ico',
-  organizationName: 'kpfromer',
-  projectName: 'nestjs-typegoose',
+  title: "nestjs-typegoose",
+  tagline: "Combine NestJS with Typegoose to reduce clutter",
+  url: "https://kpfromer.github.io",
+  baseUrl: "/nestjs-typegoose/",
+  favicon: "img/favicon.ico",
+  organizationName: "kpfromer",
+  projectName: "nestjs-typegoose",
   themeConfig: {
     navbar: {
-      title: 'Nestjs Typegoose',
+      title: "Nestjs Typegoose",
       // logo: {
       //   alt: 'My Site Logo',
       //   src: 'img/logo.svg',
       // },
-      links: [
-        {to: 'docs/install', label: 'Docs', position: 'left'},
+      items: [
+        { to: "docs/install", label: "Docs", position: "left" },
         {
-          href: 'https://github.com/kpfromer/nestjs-typegoose',
-          label: 'GitHub',
-          position: 'right',
+          href: "https://github.com/kpfromer/nestjs-typegoose",
+          label: "GitHub",
+          position: "right",
         },
       ],
     },
     footer: {
-      style: 'dark',
+      style: "dark",
       links: [
         {
-          title: 'Docs',
+          title: "Docs",
           items: [
             {
-              label: 'Installation',
-              to: 'docs/install',
+              label: "Installation",
+              to: "docs/install",
             },
             {
-              label: 'Getting Started',
-              to: 'docs/usage',
+              label: "Getting Started",
+              to: "docs/usage",
             },
           ],
         },
         {
-          title: 'Social',
+          title: "Social",
           items: [
             {
-              label: 'GitHub',
-              href: 'https://github.com/kpfromer/nestjs-typegoose',
-            }
+              label: "GitHub",
+              href: "https://github.com/kpfromer/nestjs-typegoose",
+            },
           ],
         },
       ],
@@ -53,15 +53,15 @@ module.exports = {
   },
   presets: [
     [
-      '@docusaurus/preset-classic',
+      "@docusaurus/preset-classic",
       {
         docs: {
-          sidebarPath: require.resolve('./sidebars.js'),
+          sidebarPath: require.resolve("./sidebars.js"),
           editUrl:
-            'https://github.com/kpfromer/nestjs-typegoose/edit/master/website/',
+            "https://github.com/kpfromer/nestjs-typegoose/edit/master/website/",
         },
         theme: {
-          customCss: require.resolve('./src/css/custom.css'),
+          customCss: require.resolve("./src/css/custom.css"),
         },
       },
     ],
