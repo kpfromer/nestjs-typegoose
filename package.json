@@ -1,6 +1,6 @@
 {
   "name": "nestjs-typegoose",
-  "version": "7.1.36",
+  "version": "7.1.37",
   "description": "A nestjs module wrapper for typegoose",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",

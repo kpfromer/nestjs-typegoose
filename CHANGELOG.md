@@ -1,3 +1,10 @@
+## [7.1.37](https://github.com/kpfromer/nestjs-typegoose/compare/v7.1.36...v7.1.37) (2020-09-09)
+
+
+### Bug Fixes
+
+* update docs website configuration ([ed8fcdf](https://github.com/kpfromer/nestjs-typegoose/commit/ed8fcdf300bc318188f6e46d25bf814f0b2ed1dd))
+
 ## [7.1.36](https://github.com/kpfromer/nestjs-typegoose/compare/v7.1.35...v7.1.36) (2020-09-04)
 
 
