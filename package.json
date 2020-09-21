@@ -25,8 +25,8 @@
   "peerDependencies": {
     "@nestjs/common": "^6.10.1 || ^7.0.0",
     "@nestjs/core": "^6.10.1 || ^7.0.0",
-    "@typegoose/typegoose": "^6.2.1",
-    "mongoose": "^5.8.4"
+    "@typegoose/typegoose": "^6.2.1 || ^7.0.0",
+    "mongoose": "^5.10.6"
   },
   "dependencies": {
     "is-class": "^0.0.9",
@@ -44,8 +44,9 @@
     "@semantic-release/git": "9.0.0",
     "@semantic-release/npm": "7.0.5",
     "@semantic-release/release-notes-generator": "9.0.1",
-    "@typegoose/typegoose": "6.5.0",
+    "@typegoose/typegoose": "7.4.0",
     "@types/jest": "26.0.13",
+    "@types/mongodb": "^3.5.27",
     "@types/mongoose": "5.7.36",
     "@types/supertest": "2.0.10",
     "commitizen": "4.2.1",
