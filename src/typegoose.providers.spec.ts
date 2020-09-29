@@ -1,5 +1,5 @@
 import * as typegoose from '@typegoose/typegoose';
-import { prop, Ref } from '@typegoose/typegoose';
+import { prop, Ref, ReturnModelType } from '@typegoose/typegoose';
 import * as mongoose from 'mongoose';
 import { Connection } from 'mongoose';
 import { MongoMemoryServer } from 'mongodb-memory-server';
@@ -63,7 +63,7 @@ describe('createTypegooseProviders', () => {
     beforeEach(() => {
       mockSetModel = jest
         .spyOn(typegoose, 'getModelForClass')
-        .mockImplementation(() => jest.fn());
+        .mockImplementation(() => jest.fn() as ReturnModelType<any, any>);
       MockTypegooseClass1 = jest.fn();
       mockConnection = jest.fn() as any;
 
@@ -236,8 +236,8 @@ describe('createTypegooseProviders', () => {
 });
 
 describe('convertToTypegooseClassWithOptions', () => {
-  class MockTypegooseClass { }
-  class MockDiscriminator { }
+  class MockTypegooseClass {}
+  class MockDiscriminator {}
 
   it('returns model as typegooseClass if it is just a class', () => {
     expect(convertToTypegooseClassWithOptions(MockTypegooseClass)).toEqual({

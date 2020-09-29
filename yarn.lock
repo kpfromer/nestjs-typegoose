@@ -967,16 +967,16 @@
   resolved "https://registry.yarnpkg.com/@tootallnate/once/-/once-1.1.2.tgz#ccb91445360179a04e7fe6aff78c00ffc1eeaf82"
   integrity sha512-RbzJvlNzmRq5c3O09UipeuXno4tA1FE6ikOjxZK0tuxVv3412l64l5t1W5pj4+rJq9vpkm/kwiR07aZXnsKPxw==
 
-"@typegoose/typegoose@6.5.0":
-  version "6.5.0"
-  resolved "https://registry.yarnpkg.com/@typegoose/typegoose/-/typegoose-6.5.0.tgz#fb012dd62b4aaad3b2c7a460a348bdaf19bb402b"
-  integrity sha512-FARKV2B+LOM9YlDxlf4y3gTgjl0RjbSofMUAesuNvETVuTehJ3YY5SYOXnoM8LrJgemESP8oBnVfExVSs8YxVA==
+"@typegoose/typegoose@7.4.0":
+  version "7.4.0"
+  resolved "https://registry.yarnpkg.com/@typegoose/typegoose/-/typegoose-7.4.0.tgz#b996f0e7a273feec8bc808251ef854ee77b9e412"
+  integrity sha512-HpKM+RwypP/N2U5fO6l7lLCMGw3Ft2xUpafJqlGeKIQki9myPufHayqiLOAzFlaYWD1LgIuFWDGJFKpXhgCzbA==
   dependencies:
-    lodash "^4.17.15"
-    loglevel "^1.6.8"
+    lodash "^4.17.20"
+    loglevel "^1.7.0"
     reflect-metadata "^0.1.13"
     semver "^7.3.2"
-    tslib "^1.11.1"
+    tslib "^2.0.1"
 
 "@types/babel__core@^7.0.0", "@types/babel__core@^7.1.7":
   version "7.1.9"
@@ -1083,7 +1083,7 @@
   resolved "https://registry.yarnpkg.com/@types/minimist/-/minimist-1.2.0.tgz#69a23a3ad29caf0097f06eda59b361ee2f0639f6"
   integrity sha1-aaI6OtKcrwCX8G7aWbNh7i8GOfY=
 
-"@types/mongodb@*":
+"@types/mongodb@*", "@types/mongodb@^3.5.27":
   version "3.5.27"
   resolved "https://registry.yarnpkg.com/@types/mongodb/-/mongodb-3.5.27.tgz#158a7a43ce25ef3592ac8a62e62ab38bebf661f2"
   integrity sha512-1jxKDgdfJEOO9zp+lv43p8jOqRs02xPrdUTzAZIVK9tVEySfCEmktL2jEu9A3wOBEOs18yKzpVIKUh8b8ALk3w==
@@ -5363,7 +5363,7 @@ log-driver@^1.2.7:
   resolved "https://registry.yarnpkg.com/log-driver/-/log-driver-1.2.7.tgz#63b95021f0702fedfa2c9bb0a24e7797d71871d8"
   integrity sha512-U7KCmLdqsGHBLeWqYlFA0V0Sl6P08EE1ZrmA9cxjUE0WVqT9qnyVDPz1kzpFEP0jdJuFnasWIfSd7fsaNXkpbg==
 
-loglevel@^1.6.8:
+loglevel@^1.7.0:
   version "1.7.0"
   resolved "https://registry.yarnpkg.com/loglevel/-/loglevel-1.7.0.tgz#728166855a740d59d38db01cf46f042caa041bb0"
   integrity sha512-i2sY04nal5jDcagM3FMfG++T69GEEM8CYuOfeOIvmXzOIcwE9a/CJPR0MFM97pYMj/u10lzz7/zd7+qwhrBTqQ==
@@ -8256,12 +8256,12 @@ ts-jest@26.3.0:
     semver "7.x"
     yargs-parser "18.x"
 
-tslib@2.0.1:
+tslib@2.0.1, tslib@^2.0.1:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-2.0.1.tgz#410eb0d113e5b6356490eec749603725b021b43e"
   integrity sha512-SgIkNheinmEBgx1IUNirK0TUD4X9yjjBRTqqjggWCU3pUEqIk3/Uwl3yRixYKT6WjQuGiwDv4NomL3wqRCj+CQ==
 
-tslib@^1.11.1, tslib@^1.8.0, tslib@^1.8.1, tslib@^1.9.0:
+tslib@^1.8.0, tslib@^1.8.1, tslib@^1.9.0:
   version "1.13.0"
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-1.13.0.tgz#c881e13cc7015894ed914862d276436fa9a47043"
   integrity sha512-i/6DQjL8Xf3be4K/E6Wgpekn5Qasl1usyw++dAA35Ue5orEn65VIxOA+YvNNl9HV3qv70T7CNwjODHZrLwvd1Q==
