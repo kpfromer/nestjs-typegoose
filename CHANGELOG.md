@@ -1,3 +1,10 @@
+## [7.1.38](https://github.com/kpfromer/nestjs-typegoose/compare/v7.1.37...v7.1.38) (2020-09-29)
+
+
+### Bug Fixes
+
+* test typing ([97cdb73](https://github.com/kpfromer/nestjs-typegoose/commit/97cdb7340d4f9c1acfa691456b88a61f114d5a8a))
+
 ## [7.1.37](https://github.com/kpfromer/nestjs-typegoose/compare/v7.1.36...v7.1.37) (2020-09-09)
 
 
