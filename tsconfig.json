@@ -1,6 +1,8 @@
 {
   "compilerOptions": {
     "module": "commonjs",
+    "esModuleInterop": true,
+    "moduleResolution": "node",
     "declaration": true,
     "noImplicitAny": false,
     "strictBindCallApply": true,
@@ -8,13 +10,15 @@
     "removeComments": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "target": "es2017",
+    "target": "es2020",
     "sourceMap": false,
     "outDir": "build",
     "baseUrl": "./",
     "incremental": true,
     "tsBuildInfoFile": ".tsbuildinfo",
-    "lib": ["esnext"]
+    "lib": ["es2020"],
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true
   },
   "exclude": ["node_modules", "dist", "build", "example"]
 }

@@ -1,6 +1,6 @@
-import * as typegoose from '@typegoose/typegoose';
-import { prop, Ref, ReturnModelType } from '@typegoose/typegoose';
-import * as mongoose from 'mongoose';
+import * as Typegoose from '@typegoose/typegoose';
+import { prop, Ref, ReturnModelType, ModelOptions, Severity } from '@typegoose/typegoose';
+import mongoose from 'mongoose';
 import { Connection } from 'mongoose';
 import { MongoMemoryServer } from 'mongodb-memory-server';
 import { DEFAULT_DB_CONNECTION_NAME } from './typegoose.constants';
@@ -10,8 +10,9 @@ import {
 } from './typegoose.providers';
 import any = jasmine.any;
 
-const mongod = new MongoMemoryServer();
+let mongod: MongoMemoryServer;
 
+@ModelOptions({options: { allowMixed: Severity.ALLOW }})
 class MockUser {
   @prop()
   name: string;
@@ -38,8 +39,10 @@ describe('createTypegooseProviders', () => {
   beforeAll(async () => {
     jest.setTimeout(120000);
 
+    mongod = await MongoMemoryServer.create();
+    
     connection = await mongoose.createConnection(
-      await mongod.getConnectionString(),
+      mongod.getUri(),
       {
         useCreateIndex: true,
         useFindAndModify: true,
@@ -62,7 +65,7 @@ describe('createTypegooseProviders', () => {
       provider;
     beforeEach(() => {
       mockSetModel = jest
-        .spyOn(typegoose, 'getModelForClass')
+        .spyOn(Typegoose, 'getModelForClass')
         .mockImplementation(() => jest.fn() as ReturnModelType<any, any>);
       MockTypegooseClass1 = jest.fn();
       mockConnection = jest.fn() as any;

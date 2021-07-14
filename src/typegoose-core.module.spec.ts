@@ -1,5 +1,5 @@
 import { TypegooseCoreModule } from './typegoose-core.module';
-import * as mongoose from 'mongoose';
+import mongoose from 'mongoose';
 import { DEFAULT_DB_CONNECTION_NAME, TYPEGOOSE_MODULE_OPTIONS, TYPEGOOSE_CONNECTION_NAME } from './typegoose.constants';
 import { DynamicModule } from '@nestjs/common';
 import { FactoryProvider, ClassProvider } from '@nestjs/common/interfaces';

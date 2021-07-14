@@ -16,7 +16,7 @@
     "test:e2e": "jest --config ./test/jest-e2e.json",
     "test:watch": "jest --watch",
     "coverage": "yarn run test:cov && cat ./coverage/lcov.info | coveralls",
-    "prepare": "npm run build",
+    "prepare": "npm run build && husky install",
     "commit": "git cz"
   },
   "author": "Kyle Pfromer",
@@ -52,7 +52,7 @@
     "commitizen": "4.2.1",
     "coveralls": "3.1.0",
     "cz-conventional-changelog": "3.3.0",
-    "husky": "4.3.0",
+    "husky": "^7.0.0",
     "jest": "26.4.2",
     "mongodb-memory-server": "6.7.1",
     "mongoose": "5.10.4",
@@ -90,13 +90,6 @@
   "config": {
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
-    }
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "yarn test",
-      "pre-push": "yarn test",
-      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
     }
   }
 }
