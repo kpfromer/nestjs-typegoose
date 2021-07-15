@@ -1,4 +1,4 @@
-import * as request from 'supertest';
+import request from 'supertest';
 import { Test } from '@nestjs/testing';
 import {
   Body,
@@ -11,16 +11,43 @@ import { InjectModel, TypegooseModule, getModelToken } from '../src';
 import { prop } from '@typegoose/typegoose';
 import { MongoMemoryServer } from 'mongodb-memory-server';
 
-const mongod = new MongoMemoryServer();
+let mongod: MongoMemoryServer;
+let mongoUri: string;
+let app: INestApplication;
+
+beforeAll(async () => {
+
+  mongod = await MongoMemoryServer.create();
+
+  mongoUri = mongod.getUri();
+
+  const moduleFixture = await Test.createTestingModule({
+    imports: [MockApp, MockSubModule]
+  }).compile();
+
+  app = moduleFixture.createNestApplication();
+  await app.init();
+});
+
+afterAll(() => mongod.stop());
 
 @Module({
-  imports: [TypegooseModule.forRoot('mongoose:uri')]
+  imports: [ TypegooseModule.forRootAsync({
+    useFactory: () => {
+      return {
+        uri: mongoUri,
+        useNewUrlParser: true,
+        useUnifiedTopology: true
+      }
+    }
+  })
+  ]
 })
 export class MockApp {}
 
 class MockTypegooseClass {
   @prop()
-  description;
+  description: string;
 }
 
 class MockDiscriminatorParent extends MockTypegooseClass {
@@ -90,20 +117,6 @@ class MockSubController {
 class MockSubModule {}
 
 describe('App consuming TypegooseModule', () => {
-  let app;
-
-  beforeAll(async () => {
-    await mongod.getConnectionString();
-
-    const moduleFixture = await Test.createTestingModule({
-      imports: [MockApp, MockSubModule]
-    }).compile();
-
-    app = moduleFixture.createNestApplication();
-    await app.init();
-  });
-
-  afterAll(() => mongod.stop());
 
   it('should store and get mockTask', async () => {
     await request(app.getHttpServer())
@@ -126,13 +139,6 @@ describe('App consuming TypegooseModule', () => {
 });
 
 describe('Clear typegoose state after module destroy', () => {
-  let app: INestApplication;
-
-  beforeAll(async () => {
-    await mongod.getConnectionString();
-  });
-
-  afterAll(() => mongod.stop());
 
   beforeEach(async () => {
     const moduleFixture = await Test.createTestingModule({
