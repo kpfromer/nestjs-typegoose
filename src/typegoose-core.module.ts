@@ -129,7 +129,7 @@ export class TypegooseCoreModule implements OnApplicationShutdown {
 
     if (connection) {
       await connection.close();
-      [...models.entries()].reduce((array, [ key, model ]) => {
+      [...models.entries()].reduce((array, [key, model]) => {
         if (model.db === connection) {
           array.push(key);
         }
