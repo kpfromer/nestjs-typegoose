@@ -66,7 +66,7 @@ export class TypegooseCoreModule implements OnApplicationShutdown {
         } = typegooseModuleOptions;
         return mongoose.createConnection(uri, typegooseOptions);
       },
-      inject: [ TYPEGOOSE_MODULE_OPTIONS ] // inject output of async config creator
+      inject: [TYPEGOOSE_MODULE_OPTIONS] // inject output of async config creator
     };
     const asyncProviders = this.createAsyncProviders(options);
     return {
@@ -77,7 +77,7 @@ export class TypegooseCoreModule implements OnApplicationShutdown {
         connectionProvider,
         connectionNameProvider
       ],
-      exports: [ connectionProvider ]
+      exports: [connectionProvider]
     };
   }
 
@@ -88,7 +88,7 @@ export class TypegooseCoreModule implements OnApplicationShutdown {
    */
   private static createAsyncProviders(options: TypegooseModuleAsyncOptions): Provider[] {
     if (options.useExisting || options.useFactory) {
-      return [ this.createAsyncOptionsProvider(options) ];
+      return [this.createAsyncOptionsProvider(options)];
     }
     return [
       this.createAsyncOptionsProvider(options),
@@ -116,7 +116,7 @@ export class TypegooseCoreModule implements OnApplicationShutdown {
       provide: TYPEGOOSE_MODULE_OPTIONS,
       useFactory: async (optionsFactory: TypegooseOptionsFactory) =>
         await optionsFactory.createTypegooseOptions(),
-      inject: [ options.useExisting || options.useClass ],
+      inject: [options.useExisting || options.useClass],
     };
   }
 
@@ -129,7 +129,7 @@ export class TypegooseCoreModule implements OnApplicationShutdown {
 
     if (connection) {
       await connection.close();
-      [ ...models.entries() ].reduce((array, [ key, model ]) => {
+      [...models.entries()].reduce((array, [ key, model ]) => {
         if (model.db === connection) {
           array.push(key);
         }

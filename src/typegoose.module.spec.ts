@@ -98,7 +98,7 @@ describe('TypegooseModule', () => {
       jest.spyOn(createProviders, 'convertToTypegooseClassWithOptions')
         .mockImplementation(() => {
           count += 1;
-          return convertedModels[ count ];
+          return convertedModels[count];
         });
 
       jest.spyOn(createProviders, 'createTypegooseProviders')
