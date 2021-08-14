@@ -51,6 +51,10 @@ jobs:
     needs: [test]
     steps:
       - uses: actions/checkout@v2
+        with:
+          # needed for semantic release
+          # see https://github.com/semantic-release/git/issues/196#issuecomment-702839100
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Setup Node.js
         uses: actions/setup-node@master
@@ -79,7 +83,7 @@ jobs:
       - name: Release
         run: npx semantic-release
         env:
-          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
   docs-release:
