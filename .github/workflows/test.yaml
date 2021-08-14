@@ -11,7 +11,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Set Node.js
+      - name: Setup Node.js
         uses: actions/setup-node@master
         with:
           node-version: 10.x
@@ -50,7 +50,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Set Node.js
+      - name: Setup Node.js
         uses: actions/setup-node@master
         with:
           node-version: 10.x
@@ -80,4 +80,31 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-      # TODO: deploy docs website
+  gh-release:
+    if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: "10.x"
+
+      - uses: webfactory/ssh-agent@v0.5.0
+        with:
+          ssh-private-key: ${{ secrets.GH_PAGES_DEPLOY }}
+
+      - name: Release to GitHub Pages
+        env:
+          USE_SSH: true
+          GIT_USER: git
+        run: |
+          cd website
+
+          git config --global user.email "kpfromer2@gmail.com"
+          git config --global user.name "Kyle Pfromer"
+
+          yarn install --frozen-lockfile
+
+          yarn deploy
