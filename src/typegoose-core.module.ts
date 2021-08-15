@@ -1,4 +1,4 @@
-import * as mongoose from 'mongoose';
+import mongoose from 'mongoose';
 import { models } from '@typegoose/typegoose/lib/internal/data';
 import { DynamicModule, Global, Module, Provider, OnApplicationShutdown, Inject } from '@nestjs/common';
 import { ModuleRef } from '@nestjs/core';
