@@ -57,7 +57,7 @@
     "mongodb-memory-server": "6.7.1",
     "mongoose": "5.10.4",
     "rxjs": "6.6.3",
-    "semantic-release": "17.1.1",
+    "semantic-release": "17.2.3",
     "supertest": "latest",
     "ts-jest": "26.3.0",
     "tslint": "5.20.1",
