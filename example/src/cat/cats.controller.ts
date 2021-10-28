@@ -1,6 +1,6 @@
-import { Controller, Get, Post, Body } from '@nestjs/common';
-import { CatsService } from './cats.service';
-import { Cat } from './cat.model';
+import { Body, Controller, Get, Post } from '@nestjs/common'
+import { CatsService } from './cats.service'
+import { Cat } from './cat.model'
 
 @Controller('cats')
 export class CatsController {
@@ -8,11 +8,11 @@ export class CatsController {
 
   @Get()
   async getCats(): Promise<Cat[] | null> {
-    return await this.catsService.findAll();
+    return await this.catsService.findAll()
   }
 
   @Post()
   async create(@Body() cat: Cat): Promise<Cat> {
-    return await this.catsService.create(cat);
+    return await this.catsService.create(cat)
   }
 }
