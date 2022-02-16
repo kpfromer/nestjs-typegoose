@@ -1,6 +1,6 @@
 {
   "name": "nestjs-typegoose",
-  "version": "7.1.38",
+  "version": "8.0.0",
   "description": "A nestjs module wrapper for typegoose",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -23,10 +23,10 @@
   "license": "MIT",
   "repository": "github:kpfromer/nestjs-typegoose",
   "peerDependencies": {
-    "@nestjs/common": "^6.10.1 || ^7.0.0",
-    "@nestjs/core": "^6.10.1 || ^7.0.0",
-    "@typegoose/typegoose": "^6.2.1 || ^7.0.0",
-    "mongoose": "^5.10.6"
+    "@nestjs/common": "^8.3.0",
+    "@nestjs/core": "^8.3.0",
+    "@typegoose/typegoose": "^9.6.2",
+    "mongoose": "^6.2.1"
   },
   "dependencies": {
     "is-class": "^0.0.9",
@@ -35,33 +35,30 @@
   "devDependencies": {
     "@commitlint/cli": "9.1.2",
     "@commitlint/config-conventional": "9.1.2",
-    "@nestjs/common": "7.4.4",
-    "@nestjs/core": "7.4.4",
-    "@nestjs/platform-express": "7.4.4",
-    "@nestjs/testing": "7.4.4",
+    "@nestjs/common": "^8.3.0",
+    "@nestjs/core": "^8.3.0",
+    "@nestjs/platform-express": "^8.3.0",
+    "@nestjs/testing": "^8.3.0",
     "@semantic-release/changelog": "5.0.1",
     "@semantic-release/commit-analyzer": "8.0.1",
     "@semantic-release/git": "9.0.0",
     "@semantic-release/npm": "7.0.5",
     "@semantic-release/release-notes-generator": "9.0.1",
-    "@typegoose/typegoose": "7.4.0",
+    "@typegoose/typegoose": "^9.6.2",
     "@types/jest": "26.0.13",
-    "@types/mongodb": "^3.5.27",
-    "@types/mongoose": "5.7.36",
     "@types/supertest": "2.0.10",
     "commitizen": "4.2.1",
     "coveralls": "3.1.0",
     "cz-conventional-changelog": "3.3.0",
     "husky": "4.3.0",
     "jest": "26.4.2",
-    "mongodb-memory-server": "6.7.1",
-    "mongoose": "5.10.4",
-    "rxjs": "6.6.3",
+    "mongodb-memory-server": "8.3.0",
+    "mongoose": "^6.2.1",
     "semantic-release": "17.1.1",
     "supertest": "latest",
     "ts-jest": "26.3.0",
     "tslint": "5.20.1",
-    "typescript": "3.9.7"
+    "typescript": "^4.5.5"
   },
   "jest": {
     "moduleFileExtensions": [

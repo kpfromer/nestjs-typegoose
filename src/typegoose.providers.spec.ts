@@ -23,7 +23,7 @@ class MockSpecialUser extends MockUser {
 }
 
 class MockExtraSpecialUser extends MockSpecialUser {
-  @prop()
+  @prop({ ref: () => MockUser })
   otherUser: Ref<MockUser>;
 }
 
@@ -34,19 +34,14 @@ class MockTask {
 
 describe('createTypegooseProviders', () => {
   let connection: Connection;
+  let mongod: MongoMemoryServer;
 
   beforeAll(async () => {
     jest.setTimeout(120000);
+    mongod = await MongoMemoryServer.create();
 
-    connection = await mongoose.createConnection(
-      await mongod.getConnectionString(),
-      {
-        useCreateIndex: true,
-        useFindAndModify: true,
-        useNewUrlParser: true,
-        useUnifiedTopology: true
-      }
-    );
+    const uri = mongod.getUri();
+    connection = await mongoose.createConnection(uri);
   });
 
   afterAll(async () => {
@@ -60,6 +55,7 @@ describe('createTypegooseProviders', () => {
       mockConnection,
       schemaOptions,
       provider;
+
     beforeEach(() => {
       mockSetModel = jest
         .spyOn(typegoose, 'getModelForClass')
@@ -236,8 +232,8 @@ describe('createTypegooseProviders', () => {
 });
 
 describe('convertToTypegooseClassWithOptions', () => {
-  class MockTypegooseClass {}
-  class MockDiscriminator {}
+  class MockTypegooseClass { }
+  class MockDiscriminator { }
 
   it('returns model as typegooseClass if it is just a class', () => {
     expect(convertToTypegooseClassWithOptions(MockTypegooseClass)).toEqual({

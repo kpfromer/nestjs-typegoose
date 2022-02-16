@@ -21,7 +21,7 @@ describe('TypegooseModule', () => {
         providers: 'DbConnection'
       } as any));
 
-      const module = TypegooseModule.forRoot('mongourl', {db: 'db settings'});
+      const module = TypegooseModule.forRoot('mongourl', { dbName: 'db settings' });
 
       expect(module).toEqual({
         module: TypegooseModule,
@@ -32,7 +32,7 @@ describe('TypegooseModule', () => {
         ]
       });
 
-      expect(CoreModule.forRoot).toHaveBeenCalledWith('mongourl', {db: 'db settings'});
+      expect(CoreModule.forRoot).toHaveBeenCalledWith('mongourl', { dbName: 'db settings' });
     });
 
     it('should call global CoreModule forRoot with empty config', () => {
@@ -56,7 +56,7 @@ describe('TypegooseModule', () => {
         useFactory: () => {
           return {
             uri: 'mongourl',
-            db: 'db settings'
+            dbName: 'db settings'
           };
         }
       };
