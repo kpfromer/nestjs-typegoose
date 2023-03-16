@@ -61,7 +61,7 @@
     "supertest": "latest",
     "ts-jest": "26.3.0",
     "tslint": "5.20.1",
-    "typescript": "3.9.7"
+    "typescript": "4.9.5"
   },
   "jest": {
     "moduleFileExtensions": [
