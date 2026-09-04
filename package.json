@@ -24,7 +24,7 @@
   "repository": "github:kpfromer/nestjs-typegoose",
   "peerDependencies": {
     "@nestjs/common": "^6.10.1 || ^7.0.0",
-    "@nestjs/core": "^6.10.1 || ^7.0.0",
+    "@nestjs/core": "^11.1.18 ^11.1.18",
     "@typegoose/typegoose": "^6.2.1 || ^7.0.0",
     "mongoose": "^5.10.6"
   },
@@ -36,7 +36,7 @@
     "@commitlint/cli": "9.1.2",
     "@commitlint/config-conventional": "9.1.2",
     "@nestjs/common": "7.4.4",
-    "@nestjs/core": "7.4.4",
+    "@nestjs/core": "11.1.18",
     "@nestjs/platform-express": "7.4.4",
     "@nestjs/testing": "7.4.4",
     "@semantic-release/changelog": "5.0.1",
