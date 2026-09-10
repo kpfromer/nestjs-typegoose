@@ -26,7 +26,7 @@
     "@nestjs/common": "^6.10.1 || ^7.0.0",
     "@nestjs/core": "^6.10.1 || ^7.0.0",
     "@typegoose/typegoose": "^6.2.1 || ^7.0.0",
-    "mongoose": "^5.10.6"
+    "mongoose": "^6.13.10"
   },
   "dependencies": {
     "is-class": "^0.0.9",
@@ -55,7 +55,7 @@
     "husky": "4.3.0",
     "jest": "26.4.2",
     "mongodb-memory-server": "6.7.1",
-    "mongoose": "5.10.4",
+    "mongoose": "6.13.10",
     "rxjs": "6.6.3",
     "semantic-release": "17.1.1",
     "supertest": "latest",
